@@ -32,20 +32,20 @@ App({
         }
       }
     })
-    wx.getSystemInfo({
-      success: function (res) {
-        if(res.model.search("iPhone")){
-          app.globalData.isiPhone = 1;
-          if(res.model.search("iPhone X")){
-            app.globalData.isiPhoneX = 1;
-          }else{
-            app.globalData.isiPhoneX = 0;
-          }
-        }else{
-          app.globalData.isiPhone = 0;
-        }
-      }
-    });
+    // wx.getSystemInfo({
+    //   success: function (res) {
+    //     if(res.model.search("iPhone")){
+    //       app.globalData.isiPhone = 1;
+    //       if(res.model.search("iPhone X")){
+    //         app.globalData.isiPhoneX = 1;
+    //       }else{
+    //         app.globalData.isiPhoneX = 0;
+    //       }
+    //     }else{
+    //       app.globalData.isiPhone = 0;
+    //     }
+    //   }
+    // });
   },
   globalData: {
     userInfo: null,

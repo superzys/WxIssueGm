@@ -1,0 +1,22 @@
+<!-- index.wxml -->
+<image class="main_bg" src="../imagesUrl/LoginBk.jpg"></image>
+<view class="container">
+  <!-- <view class="userinfo">
+    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo">
+      获取头像昵称
+    </button>
+    <block wx:else>
+      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+    </block>
+  </view> -->
+  <view class="fuzhuBtns">
+    <image bindtap="bindBtnClickMoreGames" class="Btn_MoreGame" src="../images/Btn_MoreGame.png" mode="cover"></image>
+    <image bindtap="bindBtnClickOpenRank" class="Btn_Rank" src="../images/Btn_Rank.png" mode="cover"></image>
+    <image bindtap="bindBtnClickShare" class="Btn_Share" src="../images/Btn_Share.png" mode="cover"></image>
+  </view>
+  <image bindtap="bindBtnClickStartGame" class="Btn_StartGame" src="../images/Btn_StartGame.png" mode="cover"></image>
+  <!-- <view class="usermotto">
+    <text class="user-motto">{{motto}}</text>
+  </view> -->
+</view>

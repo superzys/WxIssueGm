@@ -1,0 +1,32 @@
+<!-- pages/sub_pages/signin/signin.wxml -->
+<image class="main_bg" src="../../imagesUrl/GameBk.jpg"></image>
+<view class="header">
+    <image src="../../images/Title_DayReward.png"></image>
+    <!-- <view class="header-content">每日登陆奖励</view> -->
+</view>
+<view class="page">
+    <view class="wrap">
+        <view class="sign-item" wx:for="{{gold}}" wx:for-index="idx">
+            <image class="day_Bk" src="{{signinCount==idx?'../../images/ImgBk_DayCanGain.png':'../../images/ImgBk_DayLock.png'}}"/>
+             <view class="day_Info">
+                    <text class="item-title">{{day[idx]}}</text>
+                     <image class="img_icon" src="../../images/Img_DinaLB.png"></image>
+                    <text class="item_Reward">{{gold[idx]}}</text>
+             </view>
+     
+
+            <!-- <view class="item-coin" style="background:  {{signinCount==idx?'#29708E':'#fff'}}; color: {{signinCount==idx?'#fff':'#12A8F8'}}">
+                <view></view>
+                <view>{{gold[idx]}}金币</view>
+                <view class="sign">
+                    <text wx:if="{{item_bg[idx]=='#fff'&&signinCount!=idx}}">已领</text>
+                </view>
+            </view> -->
+        </view>
+    </view>
+
+        <image bindtap="onKnow"  class="btn_hongbao" src="../../images/Btn_GainDayReward.png"></image>
+       
+  <!--    <button bindtap="onKnow" class="btn_hongbao" wx:if="{{!isSignin}}">领取金币</button>
+    <button bindtap="onKnow" class="btn_hongbao" style="background: #c7c7c7" wx:else>已经签到</button> -->
+</view>
