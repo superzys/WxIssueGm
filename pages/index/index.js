@@ -61,6 +61,8 @@ Page({
     }
     //启动后应当初始化玩家的数据
     //如果没有登录过； 呵呵 给一份数据
+    // let signTime = wx.getStorageSync(app.globalData.LAST_SIGNIN);
+
     let signTime = wx.getStorageSync(app.globalData.LAST_SIGNIN);
     let date = new Date();
     let curDay = date.getDate();

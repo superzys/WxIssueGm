@@ -1,6 +1,7 @@
 //app.js
 App({
   onLaunch: function () {
+    let curApp=this;
     // 展示本地存储能力
     var logs = wx.getStorageSync('logs') || []
     logs.unshift(Date.now())
@@ -32,20 +33,20 @@ App({
         }
       }
     })
-    // wx.getSystemInfo({
-    //   success: function (res) {
-    //     if(res.model.search("iPhone")){
-    //       app.globalData.isiPhone = 1;
-    //       if(res.model.search("iPhone X")){
-    //         app.globalData.isiPhoneX = 1;
-    //       }else{
-    //         app.globalData.isiPhoneX = 0;
-    //       }
-    //     }else{
-    //       app.globalData.isiPhone = 0;
-    //     }
-    //   }
-    // });
+    wx.getSystemInfo({
+      success:  res => {
+        if(res.model.search("iPhone")){
+          this.globalData.isiPhone = 1;
+          if(res.model.search("iPhone X")){
+            this.globalData.isiPhoneX = 1;
+          }else{
+            this.globalData.isiPhoneX = 0;
+          }
+        }else{
+          this.globalData.isiPhone = 0;
+        }
+      }
+    });
   },
   globalData: {
     userInfo: null,
