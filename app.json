@@ -1,0 +1,13 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/logs/logs",
+    "pages/sub_pages/signin/signin"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#3d6e84",
+    "navigationBarTitleText": "WeChat",
+    "navigationBarTextStyle": "#000000"
+  }
+}
