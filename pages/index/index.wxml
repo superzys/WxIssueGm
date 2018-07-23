@@ -1,4 +1,6 @@
 <!-- index.wxml -->
+<import src="../dialog_pages/lockChapterTIp/lockChapterTIp.wxml"/>
+
 <image class="main_bg" src="../imagesUrl/LoginBk.jpg"></image>
 <view class="container">
   <!-- <view class="userinfo">
@@ -20,3 +22,7 @@
     <text class="user-motto">{{motto}}</text>
   </view> -->
 </view>
+
+
+<template is="toast" data="{{txt,isShow,iconClass}}"></template>
+

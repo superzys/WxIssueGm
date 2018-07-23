@@ -1,0 +1,15 @@
+<!--pages/dialog_pages/lockChapterTip/lockChapterTip.wxml-->
+<!-- //name相当于模板的标识，引用的时候好判断引用哪一个 -->
+<template name="toast">        
+<!-- //wx：if是条件渲染，使用这个是为了好判断是否显示或隐藏toast -->
+     <view class='toast-out' wx:if='{{isShow}}'>　　　　
+         <view class='toast-in'>　　　　　　
+         <!-- //使用的阿里字体图标，根据传入的class值改变显示的图标 -->
+             <span  class='iconfont {{iconClass}}'></span>    
+               <!-- 　//需要显示的提醒内容 -->
+             <view class='toast-txt'>
+                 {{txt}}　　　　　　　　　
+             </view>
+         </view>
+     </view>
+</template>

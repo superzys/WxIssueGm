@@ -2,7 +2,14 @@
   "pages": [
     "pages/index/index",
     "pages/logs/logs",
-    "pages/sub_pages/signin/signin"
+    "pages/sub_pages/signin/signin",
+    "pages/sub_pages/chapterLv/chapterLv",
+    "pages/sub_pages/gamePlot/gamePlot",
+    "pages/sub_pages/choosPhoto/choosePhoto",
+    "pages/sub_pages/moreGameFun/moreGameFun",
+    "pages/sub_pages/createMyIssue/createMyIssue",
+    "pages/sub_pages/rankPage/rankPage",
+    "pages/dialog_pages/lockChapterTip/lockChapterTip"
   ],
   "window": {
     "backgroundTextStyle": "light",

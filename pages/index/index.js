@@ -3,8 +3,12 @@
 const app = getApp()
 const dataCenter = require('../../utils/dataCenter.js')
 
+
 Page({
   data: {
+    txt:"sss",
+    isShow:true,
+    iconClass:"adsasd",
     motto: 'Hello World',
     userInfo: {},
     hasUserInfo: false,
@@ -19,10 +23,16 @@ Page({
     })
   },
   bindBtnClickStartGame: function () {
-    console.log("click startGame");
-    wx.navigateTo({
-      url: "../sub_pages/signin/signin"
+    wx.showToast({
+      // title: "获得" + this.data.curRewardNum + "萝卜币",
+      image: "../imagesUrl/Dialog_LockChapter.png",
+      mask:true,
+      duration: 2e3
     });
+    // console.log("click startGame");
+    // wx.navigateTo({
+    //   url: "../sub_pages/signin/signin"
+    // });
   },
   bindBtnClickMoreGames: function () {
 
