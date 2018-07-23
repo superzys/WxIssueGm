@@ -6,15 +6,15 @@
 </view>
 <view class="page">
     <view class="wrap">
-        <view class="sign-item" wx:for="{{gold}}" wx:for-index="idx">
-            <image class="day_Bk" src="{{signinCount==idx?'../../images/ImgBk_DayCanGain.png':'../../images/ImgBk_DayLock.png'}}"/>
-             <view class="day_Info">
-                    <text class="item-title">{{day[idx]}}</text>
-                     <image class="img_icon" src="../../images/Img_DinaLB.png"></image>
-                    <text class="item_Reward">{{gold[idx]}}</text>
-             </view>
-     
-
+        <view class="sign-item" wx:for="{{dayArr}}" wx:for-index="idx" wx:key="day">
+            <image class="day_Bk" src="{{item.isSigned?'../../images/ImgBk_DayCanGain.png':'../../images/ImgBk_DayLock.png'}}" />
+            <view class="day_Info">
+                <text class="item-title">{{item.dayDes}}</text>
+                <view class="viewIcon">
+                    <image class="img_icon" src="../../images/Img_DinaLB.png"></image>
+                </view>
+                <text class="item_Reward">{{item.rewardNum}}</text>
+            </view>
             <!-- <view class="item-coin" style="background:  {{signinCount==idx?'#29708E':'#fff'}}; color: {{signinCount==idx?'#fff':'#12A8F8'}}">
                 <view></view>
                 <view>{{gold[idx]}}金币</view>
@@ -24,9 +24,7 @@
             </view> -->
         </view>
     </view>
-
-        <image bindtap="onKnow"  class="btn_hongbao" src="../../images/Btn_GainDayReward.png"></image>
-       
-  <!--    <button bindtap="onKnow" class="btn_hongbao" wx:if="{{!isSignin}}">领取金币</button>
+    <image bindtap="onKnow" class="btn_hongbao" src="../../images/Btn_GainDayReward.png"></image>
+    <!-- <button bindtap="onKnow" class="btn_hongbao" wx:if="{{!isSignin}}">领取金币</button>
     <button bindtap="onKnow" class="btn_hongbao" style="background: #c7c7c7" wx:else>已经签到</button> -->
 </view>

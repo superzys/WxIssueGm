@@ -1,6 +1,7 @@
 //index.js
 //获取应用实例
 const app = getApp()
+const dataCenter = require('../../utils/dataCenter.js')
 
 Page({
   data: {
@@ -62,11 +63,36 @@ Page({
     //启动后应当初始化玩家的数据
     //如果没有登录过； 呵呵 给一份数据
     // let signTime = wx.getStorageSync(app.globalData.LAST_SIGNIN);
+    let chapterId = wx.getStorageSync(app.globalData.GAME_CHAPTERID);
+    if (chapterId == undefined || chapterId == "") {//没存的话初始化用户
+      app.gameData.chapterId = 1;
+      app.gameData.cpPlotIndex = 0;
+      app.gameData.goldNum = 0;
+      app.gameData.shareNumToday = 0;
+      app.gameData.totalSignedDayNum = 0;
+      app.gameData.lastSignDay = 0;
+      app.gameData.plotIdArr = [];
+      
+    dataCenter.SaveAllData(app.gameData,app.globalData);
+    }
+    else {//如果是登录过的根据时间判断 初始化
 
-    let signTime = wx.getStorageSync(app.globalData.LAST_SIGNIN);
+      app.gameData.goldNum = wx.getStorageSync(app.globalData.GAME_GOLD);
+
+      app.gameData.chapterId = wx.getStorageSync(app.globalData.GAME_CHAPTERID);
+      app.gameData.cpPlotIndex = wx.getStorageSync(app.globalData.GAME_CPPLOTINDEX);
+      app.gameData.plotIdArr = wx.getStorageSync(app.globalData.GAME_PLOT_ARR);
+
+      app.gameData.shareNumToday = wx.getStorageSync(app.globalData.SHARE_COUNT);
+      app.gameData.totalSignedDayNum = wx.getStorageSync(app.globalData.TOTAL_SIGNIN_COUNT);
+      app.gameData.lastSignDay = wx.getStorageSync(app.globalData.LAST_SIGNIN);
+
+    }
+    
     let date = new Date();
-    let curDay = date.getDate();
-    if (curDay != signTime) {
+    let curDay = date.getDate();   
+
+    if (curDay != app.gameData.lastSignDay) {
       wx.navigateTo({
         url: "../sub_pages/signin/signin"
       });

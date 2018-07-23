@@ -52,10 +52,28 @@ App({
     userInfo: null,
     isiPhone: 0,
     isiPhoneX: 0,
-    SHARE_TIME: "ShareTime",
+    GAME_USERID: "gameUserID",
+    GAME_GOLD: "gameGold",
+
+    GAME_CHAPTERID: "gameChapterId",
+    GAME_CPPLOTINDEX: "gameCpPlotIndex",
+    GAME_PLOT_ARR: "gamePlotArr",
+    
     SHARE_COUNT: "ShareCount",
     LAST_SIGNIN: "LastSignin",
     TOTAL_SIGNIN_COUNT: "TotalSigninCount",
+
     CodeVersion: "0.1.01"
+  },
+  gameData: {
+    gameUserId :0,
+    goldNum :0,
+    chapterId :0,
+    cpPlotIndex: 0,
+    shareNumToday:0,
+    remainSignNum:0,
+    totalSignedDayNum:0,
+    lastSignDay:0,
+    plotIdArr:[]
   }
 })

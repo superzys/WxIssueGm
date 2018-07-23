@@ -53,11 +53,18 @@
 
 .day_Info{
     /* color: #0E638D; */
+    display: flex;
     width: 100%;
     padding: 0 20rpx;
     height: 86rpx;
     line-height: 86rpx;
     position: fixed;
+}
+.viewIcon{
+    /* color: #0E638D; */
+   
+    height: 86rpx;
+    line-height: 86rpx;
 }
 .item-title {
     color: #ffffff;
@@ -72,6 +79,7 @@
     margin-left: 200rpx;
     width: 56rpx;
     height: 58rpx;  
+    margin-top: 15rpx;
 }
 .item_Reward{
     justify-content: center;
