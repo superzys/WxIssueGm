@@ -1,2 +1,36 @@
-<!--pages/sub_pages/chapterLv.wxml-->
-<text>pages/sub_pages/chapterLv.wxml</text>
+<!-- pages/sub_pages/chapterLv.wxml -->
+<image class="main_bg" src="../../imagesUrl/GameBk.jpg"></image>
+<view class="rankList-wrap">
+    <scroll-view scrollY="true">
+        
+        <view class="item" bindtap="ChoosedOneChapter"  data-item="{{item}}" wx:for="{{chapterArr}}" wx:for-index="idx" wx:key="chapterId"  wx:for-item="item">
+            <image class="chapterBk" src="../../images/ImgBk_Chapter.png"></image>
+            <view class="viewChapterInfo">
+                <text class="ChappterName">{{item.Name}}</text>
+                <text class="ChappterLv">LV{{item.chapterId}}</text>
+            </view>
+            <view class="ViewHard" >
+                <view class="OneLuoBo" wx:for="{{item.luoboArr}}" wx:for-index="lbIdx" wx:key="id" wx:for-item="luobo">
+                    <image class="luoboIcon" src="../../images/{{luobo?'Img_LuoBoZi':'Img_LuoBo'}}.png"></image>
+                </view>
+            </view>
+            <view class="ViewLock" wx:if="{{!item.isUnLock}}">
+                <image class="maskBk" src="../../images/Img_LockMask.png"></image>
+                <image class="lockIcon" src="../../images/Img_Lock.png"></image>
+            </view>
+            
+            <!-- <image class="top" src="../../images/1.png" wx:if="{{idx==0}}"></image>
+            <image class="top" src="../../images/2.png" wx:elif="{{idx==1}}"></image>
+            <image class="top" src="../../images/3.png" wx:elif="{{idx==2}}"></image>
+            <view class="rank-order" style="flex: none" wx:else>{{idx+1}}</view>
+            <image class="avatar" src="{{item.show.avatarUrl}}"></image>
+            <view style="margin-left: 20rpx">{{item.show.nickName}}</view>
+            <text class="level">{{item.dataValue}}</text> -->
+        </view>
+    </scroll-view>
+</view>
+<view catchtap="unshowLockTips" class="tipLockInfo" wx:if="{{isShowLockTip}}">
+    <view class="ViewTipLock">
+        <image class="tipLockImg" src="../../imagesUrl/Dialog_LockChapter.png"></image>
+    </view>
+</view>

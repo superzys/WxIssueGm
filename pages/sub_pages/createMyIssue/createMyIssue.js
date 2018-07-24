@@ -1,3 +1,5 @@
+const app = getApp()
+
 // pages/sub_pages/createMyIssue/createMyIssue.js
 Page({
 
@@ -5,7 +7,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-  
+    leftPhoto: 0,
+    rightPhoto: 0
   },
 
   /**

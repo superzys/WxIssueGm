@@ -1,1 +1,120 @@
 /* pages/sub_pages/chapterLv.wxss */
+
+.main_bg {
+    width: 100%;
+    position: absolute;
+    z-index: -1;
+    height: 100%;
+}
+
+
+.rankList-wrap {
+    flex: 1;
+    width: 92%;
+    height: 76%;
+    align-items: center;
+    flex-direction: column;
+    padding-left: 4%;
+}
+
+.rankList-wrap scroll-view {
+    padding-top: 120rpx;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: hidden;
+    height: 100%;
+}
+
+.item {
+    width: 644rpx;
+    height: 145rpx;
+    display: flex;
+    align-items: center;
+}
+
+.viewChapterInfo {
+    width: 644rpx;
+    height: 120rpx;
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    position: absolute;
+    padding-left: 4%;
+    padding-top : 5%;
+}
+
+.ViewHard {
+    width: 620rpx;
+    height: 100rpx;
+    display: flex;
+    flex-direction: row;
+    align-items: right;
+    position: absolute;
+    justify-content:flex-end;
+}
+
+.OneLuoBo {
+    width: 59rpx;
+    height: 98rpx;
+    display: absolute;
+    flex-direction: row;
+    align-items: right;
+}
+
+.ViewLock {
+    width: 644rpx;
+    height: 145rpx;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+}
+
+.chapterBk {
+    width: 640rpx;
+    height: 142rpx;
+}
+.maskBk {
+    position: absolute;
+    width: 644rpx;
+    height: 145rpx;
+}
+.lockIcon {
+    position: absolute;
+    width: 56rpx;
+    height: 80rpx;
+    padding-top : 30rpx;
+}
+.luoboIcon {
+    width: 59rpx;
+    height: 98rpx;
+}
+
+
+.tipLockInfo {
+    position: fixed;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* justify-content: center; */
+    z-index: 2000;
+    background: rgba(0, 0, 0, 0.4);
+}
+
+.ViewTipLock {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;    
+    margin-top: 40%;
+}
+
+.tipLockImg {
+    width: 559rpx;
+    height: 268rpx;
+}

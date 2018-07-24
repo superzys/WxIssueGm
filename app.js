@@ -68,12 +68,18 @@ App({
   gameData: {
     gameUserId :0,
     goldNum :0,
+    gameChapterId :0,
+    gameCpPlotIdx :0,
+
     chapterId :0,
     cpPlotIndex: 0,
     shareNumToday:0,
     remainSignNum:0,
     totalSignedDayNum:0,
     lastSignDay:0,
-    plotIdArr:[]
+    plotIdArr:[],
+
+    choosePhotoLeft:0,
+    choosePhotoRight:0
   }
 })

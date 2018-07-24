@@ -5,7 +5,7 @@
      <view class='toast-out' wx:if='{{isShow}}'>　　　　
          <view class='toast-in'>　　　　　　
          <!-- //使用的阿里字体图标，根据传入的class值改变显示的图标 -->
-             <span  class='iconfont {{iconClass}}'></span>    
+             <span  class='="../images/{{iconClass}}.png'></span>    
                <!-- 　//需要显示的提醒内容 -->
              <view class='toast-txt'>
                  {{txt}}　　　　　　　　　

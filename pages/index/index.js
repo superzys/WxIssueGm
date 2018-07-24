@@ -22,17 +22,34 @@ Page({
       url: '../logs/logs'
     })
   },
-  bindBtnClickStartGame: function () {
-    wx.showToast({
-      // title: "获得" + this.data.curRewardNum + "萝卜币",
-      image: "../imagesUrl/Dialog_LockChapter.png",
-      mask:true,
-      duration: 2e3
+  toastShow:function(str,icon){
+    var _this = this;
+    _this.setData({
+        isShow: true,
+        txt: str,
+        iconClass:icon
     });
-    // console.log("click startGame");
-    // wx.navigateTo({
-    //   url: "../sub_pages/signin/signin"
+    setTimeout(function () {    //toast消失
+        _this.setData({
+            isShow: false
+        });
+    }, 1500);  
+},
+
+  bindBtnClickStartGame: function () {
+    // wx.showToast({
+    //   // title: "获得" + this.data.curRewardNum + "萝卜币",
+    //   image: "../imagesUrl/Dialog_LockChapter.png",
+    //   mask:true,
+    //   duration: 2e3
     // });
+
+      // this.toastShow('登录名不能为空',"Btn_MoreGame");
+
+    // console.log("click startGame");
+    wx.navigateTo({
+      url: "../sub_pages/chapterLv/chapterLv"
+    });
   },
   bindBtnClickMoreGames: function () {
 

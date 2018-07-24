@@ -3,17 +3,28 @@ Page({
 
   /**
    * 页面的初始数据
+   * {
+   * imgUrl
+   * Name
+   * rankNum
+   * chapterName
+   * doneNum
+   * }
    */
   data: {
-  
+    myInfo:{},
+    rankArr:{}
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+    //先显示自己。 然后请求数据
+
+    
   },
+
 
   /**
    * 生命周期函数--监听页面初次渲染完成

@@ -1,5 +1,5 @@
 <!-- index.wxml -->
-<import src="../dialog_pages/lockChapterTIp/lockChapterTIp.wxml"/>
+<import src="../dialog_pages/lockChapterTip/lockChapterTip.wxml"/>
 
 <image class="main_bg" src="../imagesUrl/LoginBk.jpg"></image>
 <view class="container">

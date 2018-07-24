@@ -1,2 +1,2 @@
 <!--pages/sub_pages/gamePlot.wxml-->
-<text>pages/sub_pages/gamePlot.wxml</text>
+<image class="main_bg" src="../../imagesUrl/GameBk.jpg"></image>

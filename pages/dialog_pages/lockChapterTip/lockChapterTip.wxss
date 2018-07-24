@@ -1,6 +1,7 @@
 /* pages/dialog_pages/lockChapterTip/lockChapterTip.wxss */
 .toast-out {
     position: fixed;
+    background: rgba(0, 0, 0, 0.7);
     top: 0;
     left: 0;
     z-index: 9999;
