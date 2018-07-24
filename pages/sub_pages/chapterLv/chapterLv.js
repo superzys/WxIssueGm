@@ -53,7 +53,7 @@ Page({
     let curChapter = item.currentTarget.dataset.item;
     console.log(JSON.stringify(curChapter));
     if (curChapter.isUnLock) {
-      app.gameData.gameChapterId = curChapter._id;
+      app.gameData.gameChapterId = curChapter.chapterId;
 
       app.gameData.gameCpPlotIdx = 0;
       if (curChapter._id == app.gameData.chapterId) {
