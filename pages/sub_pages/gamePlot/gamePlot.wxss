@@ -1,1 +1,62 @@
 /* pages/sub_pages/gamePlot.wxss */
+.ViewTalk{
+    width: 80%;
+    height: 50%;
+    /* padding-top: 60rpx;
+    border-radius: 10rpx;
+    background-color: rgba(0,0,0,0.2);
+    margin-top: 80rpx; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.ViewOp{
+    width: 80%;
+    height: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.ViewBtns{
+    /* width: ; */
+    height: 70rpx;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+/* .ViewOp{
+    width: 80%;
+    height: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+} */
+
+.Img_Line {
+    width: 658rpx;
+    height: 5rpx;
+}
+.btnTip {
+    width: 255rpx;
+    height: 66rpx;
+}
+.btnShare {
+    width: 255rpx;
+    height: 66rpx;
+}
+.btnReStart {
+    width: 86rpx;
+    height: 94rpx;
+}
+.imgLuobo {
+    width: 56rpx;
+    height: 58rpx;
+}
+.imgCsdFontBk {
+    width: 76rpx;
+    height: 78rpx;
+}
+.ImgBk_FontShow {
+    width: 76rpx;
+    height: 80rpx;
+}

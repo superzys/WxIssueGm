@@ -76,7 +76,7 @@ Page({
     }
   },
   unshowLockTips: function () {
-    t.setData({
+    this.setData({
       isShowLockTip: false
     });
   },

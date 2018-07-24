@@ -1,2 +1,28 @@
-<!--pages/sub_pages/gamePlot.wxml-->
+<!-- pages/sub_pages/gamePlot.wxml -->
 <image class="main_bg" src="../../imagesUrl/GameBk.jpg"></image>
+<view class="ViewTalk">
+     <image class="Img_Line" src="../../images/Img_Line.png" />
+</view>
+<view class="ViewOp">
+    <view class="ViewBtns">
+        <image class="btnTip" src="../../images/Btn_Tip.png" />
+        <image class="btnShare" src="../../images/Btn_ShareInPlot.png" />
+    </view>
+    <view class="ViewChoosed">
+        <image class="btnReStart" src="../../images/Btn_ReStart.png" />
+        <view class="ViewCsdFont">
+            <view class="OneFontView" wx:for="{{ChoosedFontArr}}" data-item="{{item}}" wx:for-index="idx" wx:key="idx" wx:for-item="item">
+                <image class="imgCsdFontBk" src="../../images/ImgBk_FontChoose.png" />
+                <text class="lab_Csd">{{item.str}}</text>
+            </view>
+        </view>
+        <image class="imgLuobo" src="../../images/Img_DinaLB.png" />
+        <text class="lab_Money">{{Gold}}</text>
+    </view>
+    <view class="ViewAllFont">
+        <view class="OneShowFontView" wx:for="{{AllFontArr}}" data-item="{{item}}" wx:for-index="idx" wx:key="idx" wx:for-item="item" style="visibility:{{!item.IsChoose?'hidden':'show'}}">
+            <image class="ImgBk_FontShow" src="../../images/ImgBk_FontChoose.png" />
+            <text class="lab_Csd">{{item.str}}</text>
+        </view>
+    </view>
+</view>
