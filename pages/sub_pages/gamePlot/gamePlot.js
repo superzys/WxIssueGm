@@ -15,6 +15,7 @@ Page({
     IsNextChapter: false,
     isNeedCharge: false,
     isNeedShare: false,
+    allFontColumNum: 3,
 
     CurCpData: {},
 
@@ -36,6 +37,7 @@ Page({
   },
 
   ShowPlotInfo: function (chapterId, cpPlotIdx) {
+    this.data.IsGameing = true;
     let curCpData = undefined;
     for (let i = 0; i < util.chapterArr.length; i++) {
       let cpData = util.chapterArr[i];
@@ -71,6 +73,7 @@ Page({
           allFontArr.sort(function () {
             return 0.5 - Math.random();
           });
+          let allFontColumNum = Math.ceil(allFontArr.length / 2);
           //封装选择字体的结构
           let fontObkArr = [];
           for (let i = 0; i < allFontArr.length; i++) {
@@ -83,7 +86,7 @@ Page({
           }
           //制作答案选项
           let ChoosedFontArr = [];
-          for (let i = 0; i < curPlotData.OptionNum; i++) {
+          for (let i = 0; i < curPlotData.RightAnsArr.length; i++) {
             let fontObj = {};
             fontObj.idx = i;
             fontObj.sourceIdx = -1;
@@ -100,8 +103,9 @@ Page({
             IsNextChapter: false,
             isNeedCharge: false,
             isNeedShare: false,
+            allFontColumNum: allFontColumNum,
             CurCpData: curCpData,
-            hasUserInfo: curPlotData,
+            CurPlotData: curPlotData,
             AllFontArr: fontObkArr,
             ChoosedFontArr: ChoosedFontArr,
             Gold: app.gameData.goldNum
@@ -123,7 +127,7 @@ Page({
     if (!this.data.IsGameing) {
       return;
     }
-    if (app.gameData.goldNum >= this.CurPlotData.RewardGoldNum) {//钱足够
+    if (app.gameData.goldNum >= this.data.CurPlotData.RewardGoldNum) {//钱足够
       let fitArr = [];
       for (let i = 0; i < this.data.ChoosedFontArr.length; i++) {
         let fontObj = this.data.ChoosedFontArr[i];
@@ -131,9 +135,19 @@ Page({
           fitArr.push(i);
         }
       }
+      if (fitArr.length == 0) {
+        wx.showToast({
+          title: "请先删除一个选项",
+          // image: "",
+          mask: true,
+          duration: 2e3
+        });
+        return;
+      }
       //随机出提示那个字
       let TipIdx = Math.floor(Math.random(0, fitArr.length));
-      let tipStr = this.data.CurPlotData.RightAnsArr[TipIdx];
+      let fotnIdx = fitArr[TipIdx];
+      let tipStr = this.data.CurPlotData.RightAnsArr[fotnIdx];
       let tipFontObj = undefined;
       let sourceIdx = -1;
       for (let i = 0; i < this.data.AllFontArr.length; i++) {
@@ -147,17 +161,18 @@ Page({
       }
       //这个字可以提示的话
       if (tipFontObj != undefined) {
-        app.gameData.goldNum -= this.CurPlotData.RewardGoldNum;
+        app.gameData.goldNum -= this.data.CurPlotData.RewardGoldNum;
 
-        let tipCmpObj = this.data.ChoosedFontArr[TipIdx];
+        let tipCmpObj = this.data.ChoosedFontArr[fotnIdx];
         tipCmpObj.str = tipStr;
         tipCmpObj.sourceIdx = sourceIdx;
 
         this.setData({
-          AllFontArr: fontObkArr,
-          ChoosedFontArr: ChoosedFontArr,
+          AllFontArr: this.data.AllFontArr,
+          ChoosedFontArr: this.data.ChoosedFontArr,
           Gold: app.gameData.goldNum
         });
+        this.checkIsWinOrLose();
       }
     } else {
       wx.showToast({
@@ -177,20 +192,21 @@ Page({
     }
     let fontObj = item.currentTarget.dataset.item;
     if (!fontObj.IsChoose && fontObj.str != "") {//可以被选中
-      this.AddOneFontToShow(fontObj);
+      let dataFontObk = this.data.AllFontArr[fontObj.idx];
+      this.AddOneFontToShow(dataFontObk);
     }
   },
   AddOneFontToShow: function (sourceFontObj) {
 
-    for (let i = 0; i < this.ChoosedFontArr.length; i++) {
-      let fontObj = this.ChoosedFontArr[i];
+    for (let i = 0; i < this.data.ChoosedFontArr.length; i++) {
+      let fontObj = this.data.ChoosedFontArr[i];
       if (fontObj.str == "") {//没有答案
         fontObj.sourceIdx = sourceFontObj.idx;
         fontObj.str = sourceFontObj.str;
-
+        sourceFontObj.IsChoose = true;
         this.setData({
-          AllFontArr: fontObkArr,
-          ChoosedFontArr: ChoosedFontArr
+          AllFontArr: this.data.AllFontArr,
+          ChoosedFontArr: this.data.ChoosedFontArr
         });
         this.checkIsWinOrLose();
         break;
@@ -206,27 +222,32 @@ Page({
     let fontObj = item.currentTarget.dataset.item;
     if (fontObj.str != "" && fontObj.sourceIdx >= 0) {//取消
       this.data.AllFontArr[fontObj.sourceIdx].IsChoose = false;
-      fontObj.str = "";
-      fontObj.sourceIdx = -1;
+      let datafontObj = this.data.ChoosedFontArr[fontObj.idx];
+      datafontObj.str = "";
+      datafontObj.sourceIdx = -1;
       this.setData({
-        AllFontArr: fontObkArr,
-        ChoosedFontArr: ChoosedFontArr
+        AllFontArr: this.data.AllFontArr,
+        ChoosedFontArr: this.data.ChoosedFontArr
       });
     } else {//本来啥都没有 瞎点
 
     }
   },
+  /**
+   * 如果胜利了。这一关是打过了的  提示奖励金币
+   * 如果下一关是激活的  直接去下一关;
+   */
   checkIsWinOrLose: function () {
     let isAllWin = true;
     let isNotEnd = false;
-    for (let i = 0; i < this.ChoosedFontArr.length; i++) {
-      let fontObj = this.ChoosedFontArr[i];
+    for (let i = 0; i < this.data.ChoosedFontArr.length; i++) {
+      let fontObj = this.data.ChoosedFontArr[i];
       if (fontObj.str == "") {//没有答案或者不对的话 
         isAllWin = false;
         isNotEnd = true;
         break;
       }
-      if (fontObj.str != this.CurPlotData.RightAnsArr[i]) {
+      if (fontObj.str != this.data.CurPlotData.RightAnsArr[i]) {
         isAllWin = false;
       }
     }
@@ -237,14 +258,25 @@ Page({
         let isNextChapter = false;
         let isNeedCharge = false;
         let isNeedShare = false;
-        if (this.data.CurCpData.plotArr.length == (pp.gameData.gameCpPlotIdx + 1)) {//这是最后一关
+        if (this.data.CurCpData.PlotIDArr.length == (app.gameData.gameCpPlotIdx + 1)) {//这是最后一关
           isNextChapter = true;
-          if (this.CurCpData.ChargeNum > 0) {
+          if (this.data.CurCpData.ChargeNum > 0) {
             if (app.globalData.isiPhone) {
               isNeedShare = true;
             } else {
               isNeedCharge = true;
             }
+          }
+        }
+        if (isNextChapter) {//去下一章节了
+          if (app.gameData.chapterId > app.gameData.gameChapterId) {//下一关也开了 直接去吧
+            this.btnClick_NextChapter();
+            return;
+          }
+        } else {//检测本关是否领过奖励
+          if (app.gameData.plotIdArr.indexOf(this.data.CurPlotData._id) >= 0) {//领取过奖励
+            this.btnClick_NextPlot();
+            return;
           }
         }
         this.setData({
@@ -262,42 +294,111 @@ Page({
           IsNextPlot: false,
           IsNextChapter: false,
         });
+        setTimeout(() => {
+          this.unShowLoseTip();
+        }, 2e3);
       }
     }
   },
-/**
- * 返回 章节选择
- */
-  btnClick_Return :function () {
+  /**
+   * 重新开始
+   */
+  btnClick_RestartGame :function () {
+    for (let i = 0; i < this.data.AllFontArr.length; i++) {
+      let fontObj = this.data.AllFontArr[i];
+      fontObj.IsChoose = false;
+    }
+    for (let i = 0; i < this.data.ChoosedFontArr.length; i++) {
+      let fontObj = this.data.ChoosedFontArr[i];
+      fontObj.str = "";
+      fontObj.sourceIdx = -1;
+    }
     
+    this.setData({
+      IsGameing: true,
+      IsLoseGame: false,
+      IsNextPlot: false,
+      IsNextChapter: false,
+      isNeedCharge: false,
+      isNeedShare: false,
+      AllFontArr: this.data.AllFontArr,
+      ChoosedFontArr: this.data.ChoosedFontArr,
+      Gold: app.gameData.goldNum
+    });
   },
-/**
- * 充值
- */
-  btnClick_Charge :function () {
-    
+  /**
+   * 返回 章节选择
+   */
+  btnClick_Return: function () {
+
   },
-/**
- * 分享
- */
-  btnClick_Share :function () {
-    
+  /**
+   * 充值
+   */
+  btnClick_Charge: function () {
+
+  },
+  /**
+   * 分享的金币
+   */
+  btnClick_Share: function () {
+
+  },
+  /**
+   * 分享解锁
+   */
+  btnClick_ShareUnlockChapter: function () {
+
   },
   /**
    * 下一关
    */
-  btnClick_NextPlot :function () {
-    
+  btnClick_NextPlot: function () {
+    app.gameData.gameCpPlotIdx++;
+    if (app.gameData.chapterId == app.gameData.gameChapterId && app.gameData.cpPlotIndex < app.gameData.gameCpPlotIdx) {//是当前关卡的话。 进度改掉
+      app.gameData.cpPlotIndex = app.gameData.gameCpPlotIdx;
+    }
+
+    if (app.gameData.plotIdArr.indexOf(this.data.CurPlotData._id) < 0) {
+      app.gameData.plotIdArr.push(this.data.CurPlotData._id);
+    }
+    //这样需要更新服务器数据
+    this.ShowPlotInfo(app.gameData.gameChapterId, app.gameData.gameCpPlotIdx);
   },
   /**
    * 下一章节
    */
-   btnClick_NextChapter :function () {
-    
+  btnClick_NextChapter: function () {
+    app.gameData.gameChapterId++;
+    app.gameData.gameCpPlotIdx = 0;
+    if (app.gameData.chapterId < app.gameData.gameChapterId) {//是当前关卡的话。 进度改掉
+      app.gameData.cpPlotIndex = app.gameData.gameCpPlotIdx;
+      app.gameData.chapterId = app.gameData.gameChapterId;
+    }
+    if (app.gameData.plotIdArr.indexOf(this.data.CurPlotData._id) < 0) {
+      app.gameData.plotIdArr.push(this.data.CurPlotData._id);
+    }
+
+    //这样需要更新服务器数据
+    this.ShowPlotInfo(app.gameData.gameChapterId, app.gameData.gameCpPlotIdx);
   },
 
-
-
+  /**
+   * 关闭失败的提示
+   */
+  unShowLoseTip: function () {
+    this.data.IsGameing = true;
+    this.setData({
+      IsGameing: true,
+      IsLoseGame: false
+    });
+  },
+  /**
+   * 点击到了背景
+   */
+  clickTipBk: function () {
+    //不做处理只是为了阻挡点击
+  },
 
   /**
    * 生命周期函数--监听页面初次渲染完成

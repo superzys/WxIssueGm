@@ -77,6 +77,7 @@ Page({
 
     app.gameData.lastSignDay =curDay;
     app.gameData.totalSignedDayNum++;
+    app.gameData.goldNum+=this.data.curRewardNum;
     dataCenter.SaveSignedData(app.gameData,app.globalData);
     wx.showToast({
       title: "获得" + this.data.curRewardNum + "萝卜币",

@@ -28,8 +28,8 @@ const chapterArr =[
 {"_id":12,"Name":"第四章","Desc":"蒂娜","ChargeNum":1,"HardLv":12,"PlotIDArr":[1,2,3]}
 ];
 const plotArr =[
-  {"_id":"1","Name":"名字","DialogsArr":[{"PhotoId":0,"IsLeft":1,"Words":"请问你","ImgFaceArr":null},{"PhotoId":1,"IsLeft":0,"Words":"你问撒","ImgFaceArr":null},{"PhotoId":0,"IsLeft":1,"Words":"问完了","ImgFaceArr":null}],"RightAnsArr":["答","案"],"WrongAnsArr":["错","误","干","扰"],"OptionNum":6,"RewardGoldNum":5},
-{"_id":"2","Name":"名字2","DialogsArr":[{"PhotoId":0,"IsLeft":1,"Words":"请问你2","ImgFaceArr":null},{"PhotoId":1,"IsLeft":0,"Words":"你问撒2","ImgFaceArr":null},{"PhotoId":0,"IsLeft":1,"Words":"问完了2","ImgFaceArr":null}],"RightAnsArr":["答","案"],"WrongAnsArr":["错","误","干","扰"],"OptionNum":6,"RewardGoldNum":5},
+  {"_id":"1","Name":"名字","DialogsArr":[{"PhotoId":0,"IsLeft":1,"Words":"请问你","ImgFaceArr":null},{"PhotoId":1,"IsLeft":0,"Words":"你问撒你问撒你问撒你问撒你问撒你问撒你问撒你问撒你问撒你问撒你问撒你问撒你问撒你问撒你问撒","ImgFaceArr":null},{"PhotoId":0,"IsLeft":1,"Words":"问完了你问撒你问撒你问撒你问撒你问撒你问撒你问撒你问撒你问撒你问撒你问撒你问撒你问撒你问撒你问撒你问撒你问撒你问撒你问撒你问撒你问撒你问撒你问撒你问撒你问撒你问撒你问撒你问撒你问撒你问撒你问撒你问撒你问撒你问撒你问撒你问撒你问撒你问撒你问撒你问撒你问撒你问撒你问撒你问撒你问撒你问撒你问撒你问撒你问撒你问撒你问撒你问撒你问撒你问撒你问撒你问撒你问撒你问撒你问撒你问撒你问撒你问撒你问撒你问撒你问撒你问撒你问撒你问撒你问撒你问撒你问撒你问撒你问撒你问撒你问撒你问撒你问撒你问撒你问撒你问撒你问撒你问撒你问撒你问撒你问撒你问撒你问撒你问撒你问撒你问撒你问撒你问撒你问撒你问撒你问撒你问撒你问撒你问撒你问撒你问撒你问撒你问撒你问撒你问撒你问撒你问撒你问撒你问撒你问撒你问撒你问撒你问撒你问撒你问撒你问撒你问撒你问撒你问撒你问撒你问撒你问撒你问撒你问撒你问撒你问撒你问撒","ImgFaceArr":null}],"RightAnsArr":["答","案"],"WrongAnsArr":["错","误","干","扰"],"OptionNum":6,"RewardGoldNum":5},
+{"_id":"2","Name":"名字2","DialogsArr":[{"PhotoId":0,"IsLeft":1,"Words":"请问你2","ImgFaceArr":null},{"PhotoId":1,"IsLeft":0,"Words":"你问撒2你问撒你问撒你问撒你问撒你问撒你问撒你问撒你问撒你问撒你问撒你问撒你问撒你问撒你问撒","ImgFaceArr":null},{"PhotoId":0,"IsLeft":1,"Words":"问完了2","ImgFaceArr":null}],"RightAnsArr":["答","案"],"WrongAnsArr":["错","误","干","扰"],"OptionNum":6,"RewardGoldNum":5},
 {"_id":"3","Name":"名字3","DialogsArr":[{"PhotoId":0,"IsLeft":1,"Words":"请问你3","ImgFaceArr":null},{"PhotoId":1,"IsLeft":0,"Words":"你问撒3","ImgFaceArr":null},{"PhotoId":0,"IsLeft":1,"Words":"问完了3","ImgFaceArr":null}],"RightAnsArr":["答","案"],"WrongAnsArr":["错","误","干","扰"],"OptionNum":6,"RewardGoldNum":5}
 ];
 
