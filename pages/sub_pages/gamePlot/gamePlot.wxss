@@ -76,7 +76,7 @@
 }
 .Img_Line {
     position: fixed;
-    padding-top: 700rpx;
+    padding-top: 10rpx;
     width: 658rpx;
     height: 5rpx;
 }
@@ -94,6 +94,7 @@
 .ViewBtns {
     width: 100%;
     height: 110rpx;
+    padding-top: 15rpx;
     display: flex;
     flex-direction: row;
     align-items: center;

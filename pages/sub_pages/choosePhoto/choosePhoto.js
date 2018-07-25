@@ -1,5 +1,5 @@
 const app = getApp()
-// pages/sub_pages/choosPhoto/choosePhoto.js
+// pages/sub_pages/choosePhoto/choosePhoto.js
 //选择了头像后存在game info里
 Page({
 

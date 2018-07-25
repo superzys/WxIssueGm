@@ -1,1 +1,136 @@
 /* pages/sub_pages/rankPage/rankPage.wxss */
+.radio-group {
+    display: flex;
+    flex-direction: row;
+    margin-top: 40rpx;
+    width: 93%;
+}
+
+.radio {
+    flex: 1;
+    margin: 10rpx;
+    border-radius: 10rpx;
+    height: 80rpx;
+    font-size: 40rpx;
+    font-weight: bold;
+    color: white;
+    text-align: center;
+    line-height: 80rpx;
+    box-shadow: 0rpx 5rpx 0rpx #888;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.radio image {
+    width: 150rpx;
+    height: 42rpx;
+}
+
+.choosed {
+    background: linear-gradient(to right,#FECD65,#FDCC63);
+}
+
+.un-choosed {
+    background: linear-gradient(to right,#43D0E0,#46CEDE);
+}
+
+.rankList-wrap {
+    flex: 1;
+    background: #EEEFF1;
+    width: 90%;
+    border-radius: 20rpx;
+    margin: 20rpx 0;
+    display: flex;
+    flex-direction: column;
+    border: 1rpx solid #C8D4D5;
+}
+
+.rankList-wrap scroll-view {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: hidden;
+    height: 620rpx;
+}
+
+.item {
+    height: 130rpx;
+    margin: 10rpx;
+    border-radius: 20rpx;
+    background: linear-gradient(to right,#4FA9F1,#5988EC);
+    display: flex;
+    align-items: center;
+}
+
+.item view {
+    font-size: 35rpx;
+    font-weight: bold;
+    flex: 1;
+    text-align: start;
+    color: white;
+}
+
+.userinfo-nickname {
+    font-size: 35rpx;
+    font-weight: bold;
+    flex: 1;
+    text-align: left;
+    color: white;
+}
+
+.top {
+    height: 80rpx;
+    width: 80rpx;
+    margin-left: 20rpx;
+}
+
+.avatar {
+    height: 80rpx;
+    width: 80rpx;
+    border: 2rpx solid white;
+    margin-left: 20rpx;
+}
+
+.me {
+    background: linear-gradient(to right,#f9cd38,#fd9526);
+}
+
+.rank-order {
+    font-size: 60rpx!important;
+    width: 70rpx;
+    font-weight: bold;
+    margin-left: 30rpx;
+}
+
+.no-data {
+    font-size: 40rpx;
+    font-weight: bold;
+    text-align: center;
+    margin: 40rpx auto;
+}
+
+.level {
+    font-size: 30rpx;
+    text-align: center;
+    font-weight: bold;
+    color: white;
+    margin-right: 20rpx;
+}
+
+.tips {
+    font-size: 25rpx;
+    margin-bottom: 5rpx;
+    color: #888;
+}
+
+page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.ad-bottom {
+    position: relative;
+}

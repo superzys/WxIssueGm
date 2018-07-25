@@ -1,2 +1,22 @@
 <!--pages/sub_pages/choosPhoto/choosePhoto.wxml-->
-<text>pages/sub_pages/choosPhoto/choosePhoto.wxml</text>
+<image class="main_bg" src="../../imagesUrl/GameBk.jpg"></image>
+<view class="ViewPage">
+    <image class="imgBk" src="../../imagesUrl/Dialog_ChoosePhotoBk.png" />
+    
+    <view class="ViewContent">
+<!-- 上组建 -->
+        <view class="ViewCsdPhoto">
+            <image class="ImgPhoto" src="../../images/PhotoBig_{{leftPhoto}}.png" />
+            <image bind:tap="btnClick_Left_Pre" class="btnPre" src="../../images/Btn_Right.png" />
+            <image bind:tap="btnClick_Left_Next" class="btnNext" src="../../images/Btn_Left.png" />
+        </view>
+        <image class="imgLine" src="../../images/Img_PhotoCmpLine.png" />
+        <!-- 下组建 -->
+        <view class="ViewCsdPhoto">
+            <image class="ImgPhoto" src="../../images/PhotoBig_{{rightPhoto}}.png" />
+            <image bind:tap="btnClick_Right_Pre" class="btnPre" src="../../images/Btn_Right.png" />
+            <image bind:tap="btnClick_Rightt_Next" class="btnNext" src="../../images/Btn_Left.png" />
+        </view>
+    </view>
+    <image bind:tap="btnClick_Sure" class="btnSure" src="../../images/Btn_ChoosePhoto.png" />
+</view>

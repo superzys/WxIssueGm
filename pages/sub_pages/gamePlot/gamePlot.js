@@ -19,6 +19,8 @@ Page({
 
     CurCpData: {},
 
+    WordsArr :[],
+
     CurPlotData: {},
     //选项答案 {idx, str ,IsChoose}
     AllFontArr: [],
@@ -96,6 +98,22 @@ Page({
             ChoosedFontArr.push(fontObj);
           }
 
+          let WordsArr = [];
+          for (let i = 0; i < curPlotData.DialogsArr.length; i++) {
+            // "PhotoId":0,"IsLeft":1,"Words":"请问你","ImgFaceArr
+            let word = curPlotData.DialogsArr[i];
+            let wordObj = {};
+            wordObj.PhotoId = word.PhotoId;
+            wordObj.IsLeft = word.IsLeft;
+            wordObj.Words = word.Words;
+            wordObj.ImgFaceArr = word.ImgFaceArr;
+            wordObj.TxtLen = Math.ceil(word.Words.length / 13);
+            if (wordObj.TxtLen < 2) {
+              wordObj.TxtLen = 2;
+            }
+            WordsArr.push(wordObj);
+          }
+
           this.setData({
             IsGameing: true,
             IsLoseGame: false,
@@ -103,6 +121,7 @@ Page({
             IsNextChapter: false,
             isNeedCharge: false,
             isNeedShare: false,
+            WordsArr:WordsArr,
             allFontColumNum: allFontColumNum,
             CurCpData: curCpData,
             CurPlotData: curPlotData,
@@ -303,7 +322,7 @@ Page({
   /**
    * 重新开始
    */
-  btnClick_RestartGame :function () {
+  btnClick_RestartGame: function () {
     for (let i = 0; i < this.data.AllFontArr.length; i++) {
       let fontObj = this.data.AllFontArr[i];
       fontObj.IsChoose = false;
@@ -313,7 +332,7 @@ Page({
       fontObj.str = "";
       fontObj.sourceIdx = -1;
     }
-    
+
     this.setData({
       IsGameing: true,
       IsLoseGame: false,

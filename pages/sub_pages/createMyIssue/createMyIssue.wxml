@@ -1,3 +1,29 @@
-<!--pages/sub_pages/createMyIssue/createMyIssue.wxml-->
+<!-- pages/sub_pages/createMyIssue/createMyIssue.wxml -->
 <image class="main_bg" src="../../imagesUrl/GameBk.jpg"></image>
-
+<view class="ViewPage">
+    <image class="imgBk" src="../../imagesUrl/bk_Chuti.png" />
+    <view class="ViewContent">
+        <view class="ViewTalk">
+            <scroll-view scrollY="true">
+                <view class="ViewOneTalk" bindtap="clickTipBk" wx:for="{{issueArr}}" data-item="{{item}}" wx:for-index="idx" wx:key="idx" wx:for-item="item">
+                    <!-- <view class="bkView"> -->
+                    <image class="ImgBkTalk" src="../../images/{{item.IsLeft?'ImgBk_Ct_Left':'ImgBk_Ct_Right'}}.png" style="height:{{item.Words.length >26?item.Words.length /13 *40:80}}rpx" />
+                    <!-- </view> -->
+                    <image class="ImgPhoto" style="padding-left:{{item.IsLeft?'15rpx':'400rpx'}}" src="../../images/SmPhoto_{{item.PhotoId}}.png" />
+                    <!-- 一行13个字 背景高度 40 -->
+                     <textarea bindinput="inputWords" class="inputWords_Left" wx:if="{{item.IsLeft}}"></textarea>
+                     <textarea bindinput="inputWords" class="inputWords_Right" wx:if="{{!item.IsLeft}}"></textarea>
+                    <!-- <text class="lab_Talk_Left" wx:if="{{item.IsLeft}}">{{item.Words}}</text>
+                    <text class="lab_Talk_Right" wx:if="{{!item.IsLeft}}" style="text-align:{{item.Words.length > 13?'left':'right'}}">{{item.Words}}</text> -->
+                </view>
+            </scroll-view>
+        </view>
+        <!-- 答案输入框 -->
+        <input bindinput="inputAnswear" class="inputAns" maxlength="6" placeholder="答案不能超过6个汉字" value="{{answear}}"></input>
+        <checkbox-group bindchange="changeAgreement" class="agreement">
+            <checkbox checked="{{isAgree}}"></checkbox>
+            <text bindtap="readAgreement">我已阅读并同意用户协议</text>
+        </checkbox-group>
+    </view>
+    <image bind:tap="btnSurePhoto" class="Btn_Submit" src="../../images/Btn_Submit.png" />
+</view>

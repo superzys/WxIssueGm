@@ -16,7 +16,7 @@ Page({
   },
   btnClick_CreateIssue: function () {
     wx.navigateTo({
-      url: "../sub_pages/createMyIssue/createMyIssue"
+      url: "../choosePhoto/choosePhoto"
     });
   },
 

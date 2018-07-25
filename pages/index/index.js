@@ -57,10 +57,14 @@ Page({
     });
   },
   bindBtnClickOpenRank: function () {
-
+    wx.navigateTo({
+      url: "../sub_pages/rankPage/rankPage"
+    });
   },
   bindBtnClickShare: function () {
-
+    wx.navigateTo({
+      url: "../sub_pages/createMyIssue/createMyIssue"
+    });
   },
   onLoad: function () {
     if (app.globalData.userInfo) {

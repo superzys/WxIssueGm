@@ -7,17 +7,44 @@ Page({
    * 页面的初始数据
    */
   data: {
-    leftPhoto: 0,
-    rightPhoto: 0
+    answear:"",
+    issueArr:[],
+    isAgree:false
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+    //初始化的时候给三个对话
+    let arr = [];
+    for(let i=0;i<6;i++){
+      let oneTalk = {};
+      // "PhotoId":0,"IsLeft":1,"Words":"请问你"
+      oneTalk.IsLeft = i%2==0?true:false;
+      oneTalk.PhotoId = 0;
+      oneTalk.Words = "背景高背景高背景高背景高背景高背景高背景高背景高";
+      arr.push(oneTalk);
+    }  
+    this.setData({
+      issueArr: arr
+    });
+  },
+  inputWords :function (item) {
+    
+  },
+  btnSurePhoto:function () {
+    
   },
 
+  readAgreement:function(){
+    if(!this.data.isAgree){
+      //弹出来 规则
+    }
+    this.setData({
+      isAgree: !this.data.isAgree
+  });
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

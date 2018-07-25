@@ -1,11 +1,10 @@
 <!-- pages/sub_pages/gamePlot.wxml -->
 <image class="main_bg" src="../../imagesUrl/GameBk.jpg"></image>
 <view class="ViewTalk">
-    <image class="Img_Line" src="../../images/Img_Line.png" />
     <scroll-view scrollY="true">
-        <view class="ViewOneTalk" bindtap="clickTipBk" wx:for="{{CurPlotData.DialogsArr}}" data-item="{{item}}" wx:for-index="idx" wx:key="idx" wx:for-item="item">
+        <view class="ViewOneTalk" bindtap="clickTipBk" wx:for="{{WordsArr}}" data-item="{{item}}" wx:for-index="idx" wx:key="idx" wx:for-item="item">
             <!-- <view class="bkView"> -->
-                <image class="ImgBkTalk" src="../../images/{{item.IsLeft?'ImgBk_Left':'ImgBk_Right'}}.png" style="height:{{item.Words.length >26?item.Words.length /13 *56:106}}rpx"  />
+                <image class="ImgBkTalk" src="../../images/{{item.IsLeft?'ImgBk_Left':'ImgBk_Right'}}.png" style="height:{{item.TxtLen *51}}rpx"  />
             <!-- </view> -->
             <image class="ImgPhoto" style="padding-left:{{item.IsLeft?'15rpx':'500rpx'}}" src="../../images/Photo_{{item.PhotoId}}.png" />
             <!-- 一行13个字 背景高度 53 -->
@@ -15,6 +14,7 @@
     </scroll-view>
 </view>
 <view class="ViewOp">
+    <image class="Img_Line" src="../../images/Img_Line.png" />
     <view class="ViewBtns">
         <image bind:tap="TipOneAnswer" class="btnTip" src="../../images/Btn_Tip.png" />
         <image bind:tap="btnClick_Share" class="btnShare" src="../../images/Btn_ShareInPlot.png" />
