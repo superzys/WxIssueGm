@@ -1,2 +1,8 @@
 <!--pages/sub_pages/moreGameFun/moreGameFun.wxml-->
-<text>pages/sub_pages/moreGameFun/moreGameFun.wxml</text>
+<image class="main_bg" src="../../imagesUrl/GameBk.jpg"></image>
+<view class="ViewPage">
+    <image bind:tap="btnClick_CreateIssue" class="btnImg" src="../../images/Btn_WoChuTi.png" />
+    <image bind:tap="btnClick_Wujin" class="btnImg" src="../../images/Btn_WuJinStart.png" />
+    <image bind:tap="btnClick_Baby" class="btnImg" src="../../images/Btn_Baby.png" />
+    <image bind:tap="btnClick_Taolu" class="btnImg" src="../../images/Btn_Taolu.png" />
+</view>

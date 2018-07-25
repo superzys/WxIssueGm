@@ -1,1 +1,13 @@
 /* pages/sub_pages/moreGameFun/moreGameFun.wxss */
+.ViewPage{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;    
+}
+.btnImg
+{
+    padding-top: 40rpx;
+    width: 649rpx;
+    height: 194rpx;
+}

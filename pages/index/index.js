@@ -6,9 +6,9 @@ const dataCenter = require('../../utils/dataCenter.js')
 
 Page({
   data: {
-    txt:"sss",
-    isShow:true,
-    iconClass:"adsasd",
+    txt: "sss",
+    isShow: true,
+    iconClass: "adsasd",
     motto: 'Hello World',
     userInfo: {},
     hasUserInfo: false,
@@ -22,19 +22,19 @@ Page({
       url: '../logs/logs'
     })
   },
-  toastShow:function(str,icon){
+  toastShow: function (str, icon) {
     var _this = this;
     _this.setData({
-        isShow: true,
-        txt: str,
-        iconClass:icon
+      isShow: true,
+      txt: str,
+      iconClass: icon
     });
     setTimeout(function () {    //toast消失
-        _this.setData({
-            isShow: false
-        });
-    }, 1500);  
-},
+      _this.setData({
+        isShow: false
+      });
+    }, 1500);
+  },
 
   bindBtnClickStartGame: function () {
     // wx.showToast({
@@ -44,7 +44,7 @@ Page({
     //   duration: 2e3
     // });
 
-      // this.toastShow('登录名不能为空',"Btn_MoreGame");
+    // this.toastShow('登录名不能为空',"Btn_MoreGame");
 
     // console.log("click startGame");
     wx.navigateTo({
@@ -52,7 +52,9 @@ Page({
     });
   },
   bindBtnClickMoreGames: function () {
-
+    wx.navigateTo({
+      url: "../sub_pages/moreGameFun/moreGameFun"
+    });
   },
   bindBtnClickOpenRank: function () {
 
@@ -99,8 +101,8 @@ Page({
       app.gameData.totalSignedDayNum = 0;
       app.gameData.lastSignDay = 0;
       app.gameData.plotIdArr = [];
-      
-    dataCenter.SaveAllData(app.gameData,app.globalData);
+
+      dataCenter.SaveAllData(app.gameData, app.globalData);
     }
     else {//如果是登录过的根据时间判断 初始化
 
@@ -115,9 +117,9 @@ Page({
       app.gameData.lastSignDay = wx.getStorageSync(app.globalData.LAST_SIGNIN);
 
     }
-    
+
     let date = new Date();
-    let curDay = date.getDate();   
+    let curDay = date.getDate();
 
     if (curDay != app.gameData.lastSignDay) {
       wx.navigateTo({

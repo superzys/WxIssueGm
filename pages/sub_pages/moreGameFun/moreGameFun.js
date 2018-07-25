@@ -15,7 +15,9 @@ Page({
   
   },
   btnClick_CreateIssue: function () {
-  
+    wx.navigateTo({
+      url: "../sub_pages/createMyIssue/createMyIssue"
+    });
   },
 
   btnClick_Wujin: function () {
