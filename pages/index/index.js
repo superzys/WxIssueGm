@@ -2,6 +2,7 @@
 //获取应用实例
 const app = getApp()
 const dataCenter = require('../../utils/dataCenter.js')
+const NetReprot = require('../../utils/netReport.js')
 
 
 Page({
@@ -84,6 +85,7 @@ Page({
       // 在没有 open-type=getUserInfo 版本的兼容处理
       wx.getUserInfo({
         success: res => {
+          app.globalData.wxLoginInfo = res
           app.globalData.userInfo = res.userInfo
           this.setData({
             userInfo: res.userInfo,
@@ -133,7 +135,7 @@ Page({
 
   },
   StartLoginAndGotoGame:function(){
-    
+    NetReprot.LoginWx();
     wx.navigateTo({
       url: "../sub_pages/chapterLv/chapterLv"
     });
