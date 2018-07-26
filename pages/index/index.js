@@ -8,7 +8,7 @@ Page({
   data: {
     txt: "sss",
     isShow: true,
-    iconClass: "adsasd",
+
     motto: 'Hello World',
     userInfo: {},
     hasUserInfo: false,
@@ -22,21 +22,22 @@ Page({
       url: '../logs/logs'
     })
   },
-  toastShow: function (str, icon) {
-    var _this = this;
-    _this.setData({
-      isShow: true,
-      txt: str,
-      iconClass: icon
-    });
-    setTimeout(function () {    //toast消失
-      _this.setData({
-        isShow: false
-      });
-    }, 1500);
-  },
+  // toastShow: function (str, icon) {
+  //   var _this = this;
+  //   _this.setData({
+  //     isShow: true,
+  //     txt: str,
+  //     iconClass: icon
+  //   });
+  //   setTimeout(function () {    //toast消失
+  //     _this.setData({
+  //       isShow: false
+  //     });
+  //   }, 1500);
+  // },
 
   bindBtnClickStartGame: function () {
+    this.StartLoginAndGotoGame();
     // wx.showToast({
     //   // title: "获得" + this.data.curRewardNum + "萝卜币",
     //   image: "../imagesUrl/Dialog_LockChapter.png",
@@ -47,9 +48,7 @@ Page({
     // this.toastShow('登录名不能为空',"Btn_MoreGame");
 
     // console.log("click startGame");
-    wx.navigateTo({
-      url: "../sub_pages/chapterLv/chapterLv"
-    });
+
   },
   bindBtnClickMoreGames: function () {
     wx.navigateTo({
@@ -133,12 +132,19 @@ Page({
 
 
   },
+  StartLoginAndGotoGame:function(){
+    
+    wx.navigateTo({
+      url: "../sub_pages/chapterLv/chapterLv"
+    });
+  },
   getUserInfo: function (e) {
     console.log(e)
     app.globalData.userInfo = e.detail.userInfo
     this.setData({
       userInfo: e.detail.userInfo,
       hasUserInfo: true
-    })
+    });
+    this.StartLoginAndGotoGame();
   }
 })

@@ -7,9 +7,9 @@ Page({
    * 页面的初始数据
    */
   data: {
-    answear:"",
-    issueArr:[],
-    isAgree:false
+    answear: "",
+    issueArr: [],
+    isAgree: false
   },
 
   /**
@@ -18,79 +18,118 @@ Page({
   onLoad: function (options) {
     //初始化的时候给三个对话
     let arr = [];
-    for(let i=0;i<6;i++){
+    for (let i = 0; i < 3; i++) {
       let oneTalk = {};
-      // "PhotoId":0,"IsLeft":1,"Words":"请问你"
-      oneTalk.IsLeft = i%2==0?true:false;
+      // idx "PhotoId":0,"IsLeft":1,"Words":"请问你"
+      oneTalk.IsLeft = i % 2 == 0 ? true : false;
       oneTalk.PhotoId = 0;
-      oneTalk.Words = "背景高背景高背景高背景高背景高背景高背景高背景高";
+      oneTalk.idx = i;
+      oneTalk.heightRpx = 80;
+      oneTalk.Words = "";
       arr.push(oneTalk);
-    }  
+    }
     this.setData({
       issueArr: arr
     });
   },
-  inputWords :function (item) {
-    
+  inputWords: function (item) {
+    let curItem = item.currentTarget.dataset.item;
+    let oneTalk = this.data.issueArr[curItem.idx];
+    oneTalk.Words =    item.detail.value;
+ 
   },
-  btnSurePhoto:function () {
-    
+  inputAnswear: function (item) {
+  
+     this.data.answear = item.detail.value;
+ 
+  },
+  inputLingChange: function (item) {
+    let curItem = item.currentTarget.dataset.item;
+    let oneTalk = this.data.issueArr[curItem.idx];
+    if ((item.detail.heightRpx + 10) > curItem.heightRpx) {
+      oneTalk.heightRpx = item.detail.heightRpx + 10;
+
+      this.setData({
+        issueArr: this.data.issueArr
+      });
+    }
+
+    if (oneTalk.Words != "" && (oneTalk.idx + 1) == this.data.issueArr.length) {//最后一个给文本了
+      this.AddOneTalk();
+    }
+    // console.log("  "+item);
+  },
+  AddOneTalk: function () {
+    let oneTalk = {};
+    // idx "PhotoId":0,"IsLeft":1,"Words":"请问你"
+    oneTalk.IsLeft = (this.data.issueArr.length ) % 2 == 0 ? true : false;
+    oneTalk.PhotoId = 0;
+    oneTalk.idx = (this.data.issueArr.length );
+    oneTalk.heightRpx = 80;
+    oneTalk.Words = "";
+    this.data.issueArr.push(oneTalk);
+    this.setData({
+      issueArr: this.data.issueArr
+    });
+  },
+  btnSurePhoto: function () {
+
   },
 
-  readAgreement:function(){
-    if(!this.data.isAgree){
+  readAgreement: function () {
+    if (!this.data.isAgree) {
       //弹出来 规则
     }
     this.setData({
       isAgree: !this.data.isAgree
-  });
+    });
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-  
+
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-  
+
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-  
+
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-  
+
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-  
+
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-  
+
   },
 
   /**
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-  
+
   }
 })

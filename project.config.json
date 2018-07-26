@@ -11,8 +11,8 @@
 		"newFeature": true
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.2.0",
-	"appid": "wx5b26e594b350be52",
+	"libVersion": "2.2.1",
+	"appid": "wxc796a64f6bd2ef40",
 	"projectname": "WxIssueGm",
 	"isGameTourist": false,
 	"condition": {

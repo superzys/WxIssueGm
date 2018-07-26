@@ -1,60 +1,50 @@
-<!--pages/sub_pages/rankPage/rankPage.wxml-->
+<!-- pages/sub_pages/rankPage/rankPage.wxml -->
 <image class="main_bg" src="../../imagesUrl/GameBk.jpg"></image>
 <view class="radio-group">
     <view bindtap="clickTop" class="radio {{rankType==1?'choosed':'un-choosed'}}" data-type="1">
-        <image src="../../images/tg.png" wx:if="{{rankType==1}}"></image>
-        <image src="../../images/tg1.png" wx:else></image>
+        <image src="../../images/Btn_PveRank.png" wx:if="{{rankType==1}}"></image>
+        <image src="../../images/Btn_PveRank.png" wx:else></image>
     </view>
     <view bindtap="clickTop" class="radio  {{rankType==2?'choosed':'un-choosed'}}" data-type="2">
-        <image src="../../images/ct.png" wx:if="{{rankType==2}}"></image>
-        <image src="../../images/ct1.png" wx:else></image>
+        <image src="../../images/Btn_ChuTiRank.png" wx:if="{{rankType==2}}"></image>
+        <image src="../../images/Btn_ChuTiRank.png" wx:else></image>
     </view>
     <view bindtap="clickTop" class="radio  {{rankType==3?'choosed':'un-choosed'}}" data-type="3">
-        <image src="../../images/dz.png" wx:if="{{rankType==3}}"></image>
-        <image src="../../images/dz1.png" wx:else></image>
+        <image src="../../images/Btn_WuJinRank.png" wx:if="{{rankType==3}}"></image>
+        <image src="../../images/Btn_WuJinRank.png" wx:else></image>
     </view>
 </view>
 <view class="rankList-wrap">
     <scroll-view scrollY="true">
-        <view class="item" wx:if="{{rankType==1}}" wx:for="{{worldRankList}}" wx:for-index="idx">
-            <image class="top" src="../../images/1.png" wx:if="{{idx==0}}"></image>
-            <image class="top" src="../../images/2.png" wx:elif="{{idx==1}}"></image>
-            <image class="top" src="../../images/3.png" wx:elif="{{idx==2}}"></image>
+        <view class="item" data-item="{{item}}" wx:for="{{rankArr}}" wx:for-index="idx" wx:for-index="idx" wx:key="idx" wx:for-item="item">
+            <image class="top" src="../../images/Top1.png" wx:if="{{idx==0}}"></image>
+            <image class="top" src="../../images/Top2.png" wx:elif="{{idx==1}}"></image>
+            <image class="top" src="../../images/Top3.png" wx:elif="{{idx==2}}"></image>
             <view class="rank-order" style="flex: none" wx:else>{{idx+1}}</view>
-            <image class="avatar" src="{{item.show.avatarUrl}}"></image>
-            <view style="margin-left: 20rpx">{{item.show.nickName}}</view>
-            <text class="level">{{item.dataValue}}</text>
-        </view>
-        <view class="item" wx:if="{{rankType==3}}" wx:for="{{rankList}}" wx:for-index="idx">
-            <image class="top" src="../../images/1.png" wx:if="{{idx==0}}"></image>
-            <image class="top" src="../../images/2.png" wx:elif="{{idx==1}}"></image>
-            <image class="top" src="../../images/3.png" wx:elif="{{idx==2}}"></image>
-            <view class="rank-order" style="flex: none" wx:else>{{idx+1}}</view>
-            <image class="avatar" src="{{item.showInfo.avatarUrl}}"></image>
-            <view style="margin-left: 20rpx">{{item.showInfo.nickName}}</view>
-            <text class="level">{{item.praise}}</text>
-        </view>
-        <view class="item" wx:if="{{rankType==2}}" wx:for="{{questionList}}" wx:for-index="idx">
-            <image class="top" src="../../images/1.png" wx:if="{{idx==0}}"></image>
-            <image class="top" src="../../images/2.png" wx:elif="{{idx==1}}"></image>
-            <image class="top" src="../../images/3.png" wx:elif="{{idx==2}}"></image>
-            <view class="rank-order" style="flex: none" wx:else>{{idx+1}}</view>
-            <image class="avatar" src="{{item.show.avatarUrl}}"></image>
-            <view style="margin-left: 20rpx">{{item.show.nickName}}</view>
-            <text class="level">{{item.questions}}</text>
+            <image class="avatar" src="{{item.avatarUrl}}"></image>
+            <view style="margin-left: 20rpx">{{item.nickName}}</view>
+            <view class="ViewSelfInfo" wx:if="{{rankType==1}}">
+                <text class="myChapter" >{{item.value}}</text>
+                <text class="myPlot" >{{item.value1}}</text>
+            </view>
+            <text class="level" wx:if="{{rankType==2}}">{{item.praise}}</text>
+            <text class="level" wx:if="{{rankType==3}}">{{item.questions}}</text>
         </view>
     </scroll-view>
     <view class="item me" wx:if="{{rankType==1}}">
         <view style="flex: none" wx:if="{{myOrder!=0}}">
-            <image class="top" src="../../images/1.png" wx:if="{{myOrder==1}}"></image>
-            <image class="top" src="../../images/2.png" wx:elif="{{myOrder==2}}"></image>
-            <image class="top" src="../../images/3.png" wx:elif="{{myOrder==3}}"></image>
+            <image class="top" src="../../images/Top1.png" wx:if="{{myOrder==1}}"></image>
+            <image class="top" src="../../images/Top2.png" wx:elif="{{myOrder==2}}"></image>
+            <image class="top" src="../../images/Top3.png" wx:elif="{{myOrder==3}}"></image>
             <view class="rank-order" wx:else>{{myOrder}}</view>
         </view>
         <open-data class="avatar" type="userAvatarUrl"></open-data>
         <open-data class="userinfo-nickname" style="margin-left: 20rpx" type="userNickName"></open-data>
-        <text class="level">{{myLevel}}</text>
+        <view class="ViewSelfInfo">
+            <text class="myChapter">{{myChapter}}</text>
+            <text class="myPlot">{{myPlot}}</text>
+        </view>
     </view>
 </view>
 <view class="tips" wx:if="{{rankType==1}}">每5分钟刷新一次</view>
-<view class="tips" wx:else>每天24点刷新</view>
+<view class="tips" wx:else>每天3点刷新</view>

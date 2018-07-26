@@ -34,13 +34,6 @@
     overflow: hidden;
     height: 100%;
 }
-.agreement
-{
-    /* position: absolute;   */
-    padding-top: 10rpx;
-    /* width: 622rpx;
-    height: 814rpx; */
-}
 .imgBk
 {
     padding-top: 60rpx;
@@ -138,4 +131,16 @@
     color: #000000;
     padding-left: 9rpx;
     /* vertical-align: middle; */
+}
+.inputAns{
+    padding-top: 25rpx;
+    font-size: 28rpx;
+}
+.agreement
+{
+    /* position: absolute;   */
+    padding-top: 40rpx;
+    font-size: 34rpx;
+    /* width: 622rpx;
+    height: 814rpx; */
 }

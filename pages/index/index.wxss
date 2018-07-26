@@ -8,11 +8,29 @@
   overflow: hidden;
 }
 
+.ViewBtnStart {
+  top: 76%;
+  position: absolute;
+  align-items: center;
+  flex-direction: column;
+  width: 179rpx;
+  height: 129rpx;
+  /* margin-top: 260rpx; */
+}
 .Btn_StartGame {
   position: absolute;
   width: 243rpx;
   height: 151rpx;
-  top: 74%;
+  /* top: 74%; */
+}
+.Btn_GetUeseInfo {
+  position: absolute;
+  width: 223rpx;
+  height: 80rpx;
+  left: 5rpx;
+  top: 50rpx;
+  border:0rpx;
+  /* top: 74%;1px solid #353535 */
 }
 
 .userinfo {
@@ -55,6 +73,11 @@
   /* margin-top: 130rpx; */
 }
 .Btn_Share {
+  width: 179rpx;
+  height: 129rpx;
+  /* margin-top: 260rpx; */
+}
+.BtnStart {
   width: 179rpx;
   height: 129rpx;
   /* margin-top: 260rpx; */
