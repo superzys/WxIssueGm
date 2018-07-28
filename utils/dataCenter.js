@@ -43,6 +43,24 @@ const SaveSignedData = (date, keyData) => {
     });
 }
 
+const SaveLoginData = (date, keyData) => {
+    wx.setStorage({
+        key: keyData.GAME_USERID,
+        data: date.gameUserId
+    }); 
+}
+const SaveShareData = (date, keyData) => {
+
+    wx.setStorage({
+        key: keyData.GAME_USERID,
+        data: date.gameUserId
+    }); 
+    wx.setStorage({
+        key: keyData.SHARE_COUNT,
+        data: date.shareNumToday
+    }); 
+}
+
 const formatNumber = n => {
     n = n.toString()
     return n[1] ? n : '0' + n
@@ -50,5 +68,7 @@ const formatNumber = n => {
 
 module.exports = {
     SaveAllData: SaveAllData,
-    SaveSignedData:SaveSignedData
+    SaveSignedData:SaveSignedData,
+    SaveShareData:SaveShareData,
+    SaveLoginData:SaveLoginData
 }

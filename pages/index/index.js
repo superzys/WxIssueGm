@@ -1,8 +1,9 @@
 //index.js
 //获取应用实例
 const app = getApp()
-const dataCenter = require('../../utils/dataCenter.js')
-const NetReprot = require('../../utils/netReport.js')
+const dataCenter = require('../../utils/dataCenter.js');
+const NetReprot = require('../../utils/netReport.js');
+const shareCmp = require("../../utils/share-util.js")
 
 
 Page({
@@ -37,6 +38,32 @@ Page({
   //   }, 1500);
   // },
 
+  onShareAppMessage: function(a) {
+    var o = 7;
+    return {
+      title: '转发', // 转发标题（默认：当前小程序名称）
+      path: '/pages/index/index', // 转发路径（当前页面 path ），必须是以 / 开头的完整路径
+      success(e) {
+        console.log(e);
+       // shareAppMessage: ok,
+       // shareTickets 数组，每一项是一个 shareTicket ，对应一个转发对象
+         // 需要在页面onLoad()事件中实现接口
+         wx.showShareMenu({
+          // 要求小程序返回分享目标信息
+          withShareTicket: true
+         });
+      },
+      fail(e) {
+        console.log(e);
+       // shareAppMessage:fail cancel
+       // shareAppMessage:fail(detail message) 
+      },
+      complete() { 
+        console.log("complete");
+        NetReprot.ShareOnce();
+      }
+    }
+},
   bindBtnClickStartGame: function () {
     this.StartLoginAndGotoGame();
     // wx.showToast({
@@ -79,7 +106,13 @@ Page({
         this.setData({
           userInfo: res.userInfo,
           hasUserInfo: true
-        })
+        });
+        
+        if(app.gameData.SessonId > 0){
+
+        }  else{
+          NetReprot.LoginWx();
+        }  
       }
     } else {
       // 在没有 open-type=getUserInfo 版本的兼容处理
@@ -135,7 +168,12 @@ Page({
 
   },
   StartLoginAndGotoGame:function(){
-    NetReprot.LoginWx();
+    if(app.gameData.SessonId > 0){
+
+    }  else{
+      NetReprot.LoginWx();
+    }  
+
     wx.navigateTo({
       url: "../sub_pages/chapterLv/chapterLv"
     });
@@ -148,5 +186,33 @@ Page({
       hasUserInfo: true
     });
     this.StartLoginAndGotoGame();
+  },
+  getUserInfoAndMoreGame :function(e){
+    console.log(e)
+    app.globalData.userInfo = e.detail.userInfo
+    this.setData({
+      userInfo: e.detail.userInfo,
+      hasUserInfo: true
+    });
+    this.bindBtnClickMoreGames();
+  },
+  getUserInfoAndRank :function(e){
+    console.log(e)
+    app.globalData.userInfo = e.detail.userInfo
+    this.setData({
+      userInfo: e.detail.userInfo,
+      hasUserInfo: true
+    });
+    this.bindBtnClickOpenRank();
+  },
+  getUserInfoAndShare :function(e){
+    console.log(e)
+    app.globalData.userInfo = e.detail.userInfo
+    this.setData({
+      userInfo: e.detail.userInfo,
+      hasUserInfo: true
+    });
+    this.bindBtnClickShare();
   }
+
 })

@@ -25,5 +25,5 @@
             <text bindtap="readAgreement">我已阅读并同意用户协议</text>
         </checkbox-group>
     </view>
-    <image bind:tap="btnSurePhoto" class="Btn_Submit" src="../../images/Btn_Submit.png" />
+    <image bind:tap="Btn_SubmitIssue" class="Btn_Submit" src="../../images/Btn_Submit.png" />
 </view>

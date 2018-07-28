@@ -74,6 +74,7 @@ App({
   },
   gameData: {
     gameUserId :0,
+    SessonId :0,
     goldNum :0,
     gameChapterId :0,
     gameCpPlotIdx :0,

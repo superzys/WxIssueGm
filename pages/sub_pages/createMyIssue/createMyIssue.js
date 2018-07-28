@@ -1,4 +1,5 @@
 const app = getApp()
+const NetReprot = require('../../../utils/netReport.js')
 
 // pages/sub_pages/createMyIssue/createMyIssue.js
 Page({
@@ -35,13 +36,13 @@ Page({
   inputWords: function (item) {
     let curItem = item.currentTarget.dataset.item;
     let oneTalk = this.data.issueArr[curItem.idx];
-    oneTalk.Words =    item.detail.value;
- 
+    oneTalk.Words = item.detail.value;
+
   },
   inputAnswear: function (item) {
-  
-     this.data.answear = item.detail.value;
- 
+
+    this.data.answear = item.detail.value;
+
   },
   inputLingChange: function (item) {
     let curItem = item.currentTarget.dataset.item;
@@ -62,9 +63,9 @@ Page({
   AddOneTalk: function () {
     let oneTalk = {};
     // idx "PhotoId":0,"IsLeft":1,"Words":"请问你"
-    oneTalk.IsLeft = (this.data.issueArr.length ) % 2 == 0 ? true : false;
+    oneTalk.IsLeft = (this.data.issueArr.length) % 2 == 0 ? true : false;
     oneTalk.PhotoId = 0;
-    oneTalk.idx = (this.data.issueArr.length );
+    oneTalk.idx = (this.data.issueArr.length);
     oneTalk.heightRpx = 80;
     oneTalk.Words = "";
     this.data.issueArr.push(oneTalk);
@@ -72,8 +73,24 @@ Page({
       issueArr: this.data.issueArr
     });
   },
-  btnSurePhoto: function () {
+  Btn_SubmitIssue: function () {
+    let obj = {};
+    obj.LeftPhoto = app.gameData.choosePhotoLeft;
+    obj.RightPhoto = app.gameData.choosePhotoRight;
+    let WordsArr = [];
+    let TipsArr = [];
+    for (let i = 0; i < this.data.issueArr.length; i++) {
+      let oneTalk = this.data.issueArr[i];
+      WordsArr.push(oneTalk.Words);
+    }
+    for (let i = 0; i < this.data.answear.length; i++) {
+      let answearStr = this.data.answear[i];
+      TipsArr.push(answearStr);
+    }
+    obj.WordsArr = WordsArr;
+    obj.TipsArr = TipsArr;
 
+    NetReprot.SendDesignIssue(obj);
   },
 
   readAgreement: function () {

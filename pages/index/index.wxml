@@ -13,9 +13,22 @@
   </view> -->
   <view class="fuzhuBtns">
     <!-- <open-data type="userAvatarUrl"></open-data> -->
-    <image bindtap="bindBtnClickMoreGames" class="Btn_MoreGame" src="../images/Btn_MoreGame.png" mode="cover"></image>
-    <image bindtap="bindBtnClickOpenRank" class="Btn_Rank" src="../images/Btn_Rank.png" mode="cover"></image>
-    <image bindtap="bindBtnClickShare" class="Btn_Share" src="../images/Btn_Share.png" mode="cover"></image>
+    <view class="ViewMorGame">
+      <image bindtap="bindBtnClickMoreGames" class="Btn_MoreGame" src="../images/Btn_MoreGame.png" mode="cover"></image>
+      <button class="getUserInfoAndFun" wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" plain="true" bindgetuserinfo="getUserInfoAndMoreGame"></button>
+    </view>
+
+    <view class="ViewRank">
+      <image bindtap="bindBtnClickOpenRank" class="Btn_Rank" src="../images/Btn_Rank.png" mode="cover"></image>
+      <button class="getUserInfoAndFun" wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" plain="true" bindgetuserinfo="getUserInfoAndRank"></button>      
+    </view>
+
+    <view class="ViewShare">
+      <image bindtap="bindBtnClickShare" class="Btn_Share" src="../images/Btn_Share.png" mode="cover"></image>
+      <button class="getUserInfoAndFun" wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" plain="true" bindgetuserinfo="getUserInfoAndShare"></button>
+        <button class="getUserInfoAndFun" wx:else openType="share" plain="true" ></button>
+    </view>
+
   </view>
   <view class="ViewBtnStart">
     <image bindtap="bindBtnClickStartGame" class="Btn_StartGame" src="../images/Btn_StartGame.png" mode="cover"></image>

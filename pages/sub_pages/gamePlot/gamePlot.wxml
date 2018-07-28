@@ -17,7 +17,12 @@
     <image class="Img_Line" src="../../images/Img_Line.png" />
     <view class="ViewBtns">
         <image bind:tap="TipOneAnswer" class="btnTip" src="../../images/Btn_Tip.png" />
-        <image bind:tap="btnClick_Share" class="btnShare" src="../../images/Btn_ShareInPlot.png" />
+        
+         <button class="btnShare"  openType="share" plain="true" >      
+                <image class="btnShare" src="../../images/Btn_ShareInPlot.png" />
+         </button>
+
+     
     </view>
     <view class="ViewChoosed">
         <view class="ViewReStart">

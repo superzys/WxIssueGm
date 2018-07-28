@@ -1,3 +1,4 @@
+const app = getApp()
 // pages/sub_pages/moreGameFun/moreGameFun.js
 Page({
 
@@ -15,9 +16,13 @@ Page({
   
   },
   btnClick_CreateIssue: function () {
-    wx.navigateTo({
-      url: "../choosePhoto/choosePhoto"
-    });
+    if(app.gameData.SessonId > 0){
+      wx.navigateTo({
+        url: "../choosePhoto/choosePhoto"
+      });
+    }else{
+      
+    }
   },
 
   btnClick_Wujin: function () {

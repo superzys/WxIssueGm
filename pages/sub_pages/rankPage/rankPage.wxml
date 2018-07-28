@@ -2,15 +2,15 @@
 <image class="main_bg" src="../../imagesUrl/GameBk.jpg"></image>
 <view class="radio-group">
     <view bindtap="clickTop" class="radio {{rankType==1?'choosed':'un-choosed'}}" data-type="1">
-        <image src="../../images/Btn_PveRank.png" wx:if="{{rankType==1}}"></image>
+        <image src="../../images/Btn_PveRank_Down.png" wx:if="{{rankType==1}}"></image>
         <image src="../../images/Btn_PveRank.png" wx:else></image>
     </view>
     <view bindtap="clickTop" class="radio  {{rankType==2?'choosed':'un-choosed'}}" data-type="2">
-        <image src="../../images/Btn_ChuTiRank.png" wx:if="{{rankType==2}}"></image>
+        <image src="../../images/Btn_ChuTiRank_Down.png" wx:if="{{rankType==2}}"></image>
         <image src="../../images/Btn_ChuTiRank.png" wx:else></image>
     </view>
     <view bindtap="clickTop" class="radio  {{rankType==3?'choosed':'un-choosed'}}" data-type="3">
-        <image src="../../images/Btn_WuJinRank.png" wx:if="{{rankType==3}}"></image>
+        <image src="../../images/Btn_WuJinRank_Down.png" wx:if="{{rankType==3}}"></image>
         <image src="../../images/Btn_WuJinRank.png" wx:else></image>
     </view>
 </view>
