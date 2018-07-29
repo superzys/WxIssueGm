@@ -20,9 +20,13 @@ App({
       success: res => {
         console.log(res);
         if (res.authSetting['scope.userInfo']) {
+          wx.showLoading({
+            title: "加载中..."
+        });
           // 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
           wx.getUserInfo({
             success: res => {
+              wx.hideLoading();
               console.log(res);
               // 可以将 res 发送给后台解码出 unionId
               this.globalData.wxLoginInfo = res
@@ -33,6 +37,9 @@ App({
               if (this.userInfoReadyCallback) {
                 this.userInfoReadyCallback(res)
               }
+            },
+            fail: function(t) {
+                wx.hideLoading();
             }
           })
         }

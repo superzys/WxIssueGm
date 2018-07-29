@@ -33,7 +33,7 @@ Page({
     selfInfo.avatarUrl = app.globalData.userInfo.avatarUrl;
      
     let rankArr = [];
-    for(let i=0;i<5;i++){
+    for(let i=0;i<10;i++){
       let rankObj = {};
       rankObj.rankNum = i;
       rankObj.nickName = app.globalData.userInfo.nickName;

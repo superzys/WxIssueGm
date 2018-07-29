@@ -24,8 +24,8 @@
             <image class="avatar" src="{{item.avatarUrl}}"></image>
             <view style="margin-left: 20rpx">{{item.nickName}}</view>
             <view class="ViewSelfInfo" wx:if="{{rankType==1}}">
-                <text class="myChapter" >{{item.value}}</text>
-                <text class="myPlot" >{{item.value1}}</text>
+                <text class="myChapter">{{item.value}}</text>
+                <text class="myPlot">{{item.value1}}</text>
             </view>
             <text class="level" wx:if="{{rankType==2}}">{{item.praise}}</text>
             <text class="level" wx:if="{{rankType==3}}">{{item.questions}}</text>
@@ -45,6 +45,6 @@
             <text class="myPlot">{{myPlot}}</text>
         </view>
     </view>
+    <view class="tips" disabled="false" wx:if="{{rankType==1}}">每5分钟刷新一次</view>
+    <view class="tips" disabled="false" wx:else>每天3点刷新</view>
 </view>
-<view class="tips" disabled="false" wx:if="{{rankType==1}}">每5分钟刷新一次</view>
-<view class="tips" disabled="false" wx:else>每天3点刷新</view>
