@@ -10,7 +10,7 @@ Page({
    */
   data: {
     //{chapterId Name ChargeNum HardLv PlotIDArr isUnLock luoboArr}
-    chapterArr:[],
+    chapterArr: [],
     isShowLockTip: false
   },
 
@@ -18,6 +18,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    this.ShowCurLvInfo();
+  },
+  ShowCurLvInfo: function () {
     //组装数据 看那些解锁了那些没有
     let chapterArr = [];
     for (let i = 0; i < util.chapterArr.length; i++) {
@@ -31,13 +34,13 @@ Page({
       chapter.PlotIDArr = chapterData.PlotIDArr;
       chapter.isUnLock = app.gameData.chapterId < chapterData._id ? false : true;
 
-      let ziNum = Math.floor( chapter.HardLv / 5);
-      let huangNum =Math.floor( chapter.HardLv % 5);
+      let ziNum = Math.floor(chapter.HardLv / 5);
+      let huangNum = Math.floor(chapter.HardLv % 5);
       chapter.luoboArr = [];
-      for(let i=0;i<huangNum;i++){
+      for (let i = 0; i < huangNum; i++) {
         chapter.luoboArr.push(false);
       }
-      for(let i=0;i<ziNum;i++){
+      for (let i = 0; i < ziNum; i++) {
         chapter.luoboArr.push(true);
       }
       chapterArr.push(chapter);
@@ -92,7 +95,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    this.ShowCurLvInfo();
   },
 
   /**

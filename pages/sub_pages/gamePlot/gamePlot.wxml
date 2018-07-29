@@ -4,12 +4,12 @@
     <scroll-view scrollY="true">
         <view class="ViewOneTalk" bindtap="clickTipBk" wx:for="{{WordsArr}}" data-item="{{item}}" wx:for-index="idx" wx:key="idx" wx:for-item="item">
             <!-- <view class="bkView"> -->
-                <image class="ImgBkTalk" src="../../images/{{item.IsLeft?'ImgBk_Left':'ImgBk_Right'}}.png" style="height:{{item.TxtLen *51}}rpx"  />
+            <image class="ImgBkTalk" src="../../images/{{item.IsLeft?'ImgBk_Left':'ImgBk_Right'}}.png" style="height:{{item.TxtLen *51}}rpx" />
             <!-- </view> -->
             <image class="ImgPhoto" style="padding-left:{{item.IsLeft?'15rpx':'500rpx'}}" src="../../images/Photo_{{item.PhotoId}}.png" />
             <!-- 一行13个字 背景高度 53 -->
             <text class="lab_Talk_Left" wx:if="{{item.IsLeft}}">{{item.Words}}</text>
-            <text class="lab_Talk_Right" wx:if="{{!item.IsLeft}}" style="text-align:{{item.Words.length > 13?'left':'right'}}" >{{item.Words}}</text>
+            <text class="lab_Talk_Right" wx:if="{{!item.IsLeft}}" style="text-align:{{item.Words.length > 13?'left':'right'}}">{{item.Words}}</text>
         </view>
     </scroll-view>
 </view>
@@ -17,12 +17,9 @@
     <image class="Img_Line" src="../../images/Img_Line.png" />
     <view class="ViewBtns">
         <image bind:tap="TipOneAnswer" class="btnTip" src="../../images/Btn_Tip.png" />
-        
-         <button class="btnShare"  openType="share" >      
-                <image class="btnShareImg" src="../../images/Btn_ShareInPlot.png" />
-         </button>
-
-     
+        <button class="btnShare" openType="share">
+            <image class="btnShareImg" src="../../images/Btn_ShareInPlot.png" />
+        </button>
     </view>
     <view class="ViewChoosed">
         <view class="ViewReStart">
@@ -66,9 +63,21 @@
 <view catchtap="clickTipBk" class="tipNextChapterInfo" wx:if="{{IsNextChapter}}">
     <view class="ViewTipChapter">
         <image class="tipImg_Chapter" src="../../imagesUrl/Dialog_DoneChapter.png"></image>
-        <image bind:tap="btnClick_Return" class="btnReturn" src="../../images/Btn_Return.png" />
-        <image bind:tap="btnClick_ShareUnlockChapter" class="btnShareForUnLock" wx:if="{{isNeedShare}}" src="../../images/Btn_NextPlot.png" />
-        <image bind:tap="btnClick_NextChapter" class="btnNextChapter" wx:if="{{!isNeedShare && !isNeedCharge}}" src="../../images/Btn_NextChapter.png" />
-        <image bind:tap="btnClick_Charge" class="btnCharge" wx:if="{{isNeedCharge}}" src="../../images/Btn_Charge.png" />
+             <view class="ViewTipTxt">
+  <image class="tipTxt1" wx:if="{{!isNeedShare && !isNeedCharge}}" src="../../images/Tip_NextChapter.png"></image>
+  <image class="tipTxt2" wx:else src="../../images/Tip_UnlockChapter.png"></image>
+             </view>
+        <view class="ViewTipBtns">
+            <view class="TipBtnLeft">
+                <image bind:tap="btnClick_Return" class="btnReturn" src="../../images/Btn_Return.png" />
+            </view>
+            <view class="TipBtnRight">
+                <button class="btnShareForUnLock" openType="share" wx:if="{{isNeedShare}}">
+                    <image bind:tap="btnClick_ShareUnlockChapter" class="btnShareForUnLockImg" src="../../images/Btn_Charge.png" />
+                </button>
+                <image bind:tap="btnClick_NextChapter" class="btnNextChapter" wx:if="{{!isNeedShare && !isNeedCharge}}" src="../../images/Btn_NextChapter.png" />
+                <image bind:tap="btnClick_Charge" class="btnCharge" wx:if="{{isNeedCharge}}" src="../../images/Btn_Charge.png" />
+            </view>
+        </view>
     </view>
 </view>

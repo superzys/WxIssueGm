@@ -1,6 +1,7 @@
 const app = getApp()
 const dataCenter = require('../../../utils/dataCenter.js')
 const util = require('../../../utils/util.js')
+const NetReprot = require('../../../utils/netReport.js')
 
 // pages/sub_pages/gamePlot/gamePlot.js
 Page({
@@ -19,7 +20,7 @@ Page({
 
     CurCpData: {},
 
-    WordsArr :[],
+    WordsArr: [],
 
     CurPlotData: {},
     //选项答案 {idx, str ,IsChoose}
@@ -121,7 +122,7 @@ Page({
             IsNextChapter: false,
             isNeedCharge: false,
             isNeedShare: false,
-            WordsArr:WordsArr,
+            WordsArr: WordsArr,
             allFontColumNum: allFontColumNum,
             CurCpData: curCpData,
             CurPlotData: curPlotData,
@@ -138,6 +139,8 @@ Page({
     else {//这个章节是空的就回上个章节
       this.ShowPlotInfo(chapterId--, 0);
     }
+
+    dataCenter.SaveAllData(app.gameData, app.globalData);
   },
   /**
    * 给娃一个提示
@@ -257,6 +260,16 @@ Page({
    * 如果下一关是激活的  直接去下一关;
    */
   checkIsWinOrLose: function () {
+    // this.data.IsGameing = false;
+    // this.setData({
+    //   IsGameing: this.data.IsGameing,
+    //   IsLoseGame: false,
+    //   IsNextPlot: false,
+    //   IsNextChapter: true,
+    //   isNeedCharge: false,
+    //   isNeedShare: false,
+    // });
+    // return;
     let isAllWin = true;
     let isNotEnd = false;
     for (let i = 0; i < this.data.ChoosedFontArr.length; i++) {
@@ -283,7 +296,8 @@ Page({
             if (app.globalData.isiPhone) {
               isNeedShare = true;
             } else {
-              isNeedCharge = true;
+              // isNeedCharge = true;
+              isNeedShare = true;
             }
           }
         }
@@ -312,6 +326,8 @@ Page({
           IsLoseGame: true,
           IsNextPlot: false,
           IsNextChapter: false,
+          isNeedCharge: false,
+          isNeedShare: false,
         });
         setTimeout(() => {
           this.unShowLoseTip();
@@ -346,38 +362,64 @@ Page({
     });
   },
 
-  onShareAppMessage: function(a) {
-    var o = 7;
+  /**
+   * 如果当前在游戏中  加金币 
+   * 如果游戏结束了
+   */
+  onShareAppMessage: function (a) {
+  
+    let curPage = this;
     return {
       title: '转发', // 转发标题（默认：当前小程序名称）
       path: '/pages/index/index', // 转发路径（当前页面 path ），必须是以 / 开头的完整路径
       success(e) {
         console.log(e);
-       // shareAppMessage: ok,
-       // shareTickets 数组，每一项是一个 shareTicket ，对应一个转发对象
-         // 需要在页面onLoad()事件中实现接口
-         wx.showShareMenu({
+        // shareAppMessage: ok,
+        // shareTickets 数组，每一项是一个 shareTicket ，对应一个转发对象
+        // 需要在页面onLoad()事件中实现接口
+        wx.showShareMenu({
           // 要求小程序返回分享目标信息
           withShareTicket: true
-         });
+        });
       },
       fail(e) {
         console.log(e);
-       // shareAppMessage:fail cancel
-       // shareAppMessage:fail(detail message) 
+        // shareAppMessage:fail cancel
+        // shareAppMessage:fail(detail message) 
       },
-      complete() { 
+      complete() {
         console.log("complete");
-        NetReprot.ShareOnce();
+        if (curPage.data.IsGameing) {
+      
+          if (app.gameData.shareNumToday < 5) {
+            NetReprot.ShareOnce();
+            //不等结果。 自己计算成功    
+            wx.showToast({
+                title: "获得萝卜币+5",
+                image: "../../images/Img_DinaLB.png",
+                duration: 2e3
+            });
+            app.gameData.shareNumToday++;
+            app.gameData.goldNum+=5;   
+            dataCenter.SaveShareData(app.gameData, app.globalData);
+            
+        }
+        }
+        else {
+          //分享成功后解锁
+          NetReprot.ShareUnlock();
+          NetReprot.GainChapterReward(app.gameData.chapterId, curPage.data.CurPlotData._id);
+          curPage.GotoNextChapter();
+        }
       }
     }
-},
+  },
 
   /**
    * 返回 章节选择
    */
   btnClick_Return: function () {
-
+    wx.navigateBack({});
   },
   /**
    * 充值
@@ -387,20 +429,25 @@ Page({
   },
   /**
    * 分享的金币
-   */
-  btnClick_Share: function () {
+   *   btnClick_Share: function () {
 
   },
+   */
+
   /**
    * 分享解锁
-   */
-  btnClick_ShareUnlockChapter: function () {
+   *   btnClick_ShareUnlockChapter: function () {
 
   },
+   */
+
   /**
    * 下一关
    */
   btnClick_NextPlot: function () {
+    //这样需要更新服务器数据
+    NetReprot.GainPlotReward(app.gameData.chapterId, this.data.CurPlotData._id);
+
     app.gameData.gameCpPlotIdx++;
     if (app.gameData.chapterId == app.gameData.gameChapterId && app.gameData.cpPlotIndex < app.gameData.gameCpPlotIdx) {//是当前关卡的话。 进度改掉
       app.gameData.cpPlotIndex = app.gameData.gameCpPlotIdx;
@@ -409,13 +456,19 @@ Page({
     if (app.gameData.plotIdArr.indexOf(this.data.CurPlotData._id) < 0) {
       app.gameData.plotIdArr.push(this.data.CurPlotData._id);
     }
-    //这样需要更新服务器数据
+
     this.ShowPlotInfo(app.gameData.gameChapterId, app.gameData.gameCpPlotIdx);
   },
   /**
    * 下一章节
    */
   btnClick_NextChapter: function () {
+    NetReprot.GainChapterReward(app.gameData.chapterId, this.data.CurPlotData._id);
+this.GotoNextChapter();
+
+  },
+
+  GotoNextChapter:function(){
     app.gameData.gameChapterId++;
     app.gameData.gameCpPlotIdx = 0;
     if (app.gameData.chapterId < app.gameData.gameChapterId) {//是当前关卡的话。 进度改掉
@@ -489,10 +542,4 @@ Page({
 
   },
 
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  }
 })

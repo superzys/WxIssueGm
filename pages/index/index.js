@@ -38,32 +38,44 @@ Page({
   //   }, 1500);
   // },
 
-  onShareAppMessage: function(a) {
+  onShareAppMessage: function (a) {
     var o = 7;
     return {
       title: '转发', // 转发标题（默认：当前小程序名称）
       path: '/pages/index/index', // 转发路径（当前页面 path ），必须是以 / 开头的完整路径
       success(e) {
         console.log(e);
-       // shareAppMessage: ok,
-       // shareTickets 数组，每一项是一个 shareTicket ，对应一个转发对象
-         // 需要在页面onLoad()事件中实现接口
-         wx.showShareMenu({
+        // shareAppMessage: ok,
+        // shareTickets 数组，每一项是一个 shareTicket ，对应一个转发对象
+        // 需要在页面onLoad()事件中实现接口
+        wx.showShareMenu({
           // 要求小程序返回分享目标信息
           withShareTicket: true
-         });
+        });
       },
       fail(e) {
         console.log(e);
-       // shareAppMessage:fail cancel
-       // shareAppMessage:fail(detail message) 
+        // shareAppMessage:fail cancel
+        // shareAppMessage:fail(detail message) 
       },
-      complete() { 
+      complete() {
         console.log("complete");
         NetReprot.ShareOnce();
+        if (app.gameData.shareNumToday < 5) {
+          //不等结果。 自己计算成功    
+          wx.showToast({
+            title: "获得萝卜币+5",
+            image: "../images/Img_DinaLB.png",
+            duration: 2e3
+          });
+          app.gameData.shareNumToday++;
+          app.gameData.goldNum += 5;
+          dataCenter.SaveShareData(app.gameData, app.globalData);
+
+        }
       }
     }
-},
+  },
   bindBtnClickStartGame: function () {
     this.StartLoginAndGotoGame();
     // wx.showToast({
@@ -107,12 +119,12 @@ Page({
           userInfo: res.userInfo,
           hasUserInfo: true
         });
-        
-        if(app.gameData.SessonId > 0){
 
-        }  else{
+        if (app.gameData.SessonId > 0) {
+
+        } else {
           NetReprot.LoginWx();
-        }  
+        }
       }
     } else {
       // 在没有 open-type=getUserInfo 版本的兼容处理
@@ -136,6 +148,7 @@ Page({
       app.gameData.cpPlotIndex = 0;
       app.gameData.goldNum = 0;
       app.gameData.shareNumToday = 0;
+      app.gameData.lastLoginDay = 0;
       app.gameData.totalSignedDayNum = 0;
       app.gameData.lastSignDay = 0;
       app.gameData.plotIdArr = [];
@@ -155,12 +168,17 @@ Page({
       app.gameData.totalSignedDayNum = wx.getStorageSync(app.globalData.TOTAL_SIGNIN_COUNT);
       app.gameData.lastSignDay = wx.getStorageSync(app.globalData.LAST_SIGNIN);
       app.gameData.isAgreeXieYi = wx.getStorageSync(app.globalData.IS_AGREE_XIEYI);
+      app.gameData.lastLoginDay = wx.getStorageSync(app.globalData.LAST_LOGINDAY);
 
     }
 
     let date = new Date();
     let curDay = date.getDate();
-
+    if (app.gameData.lastLoginDay != curDay) {
+      app.gameData.lastLoginDay = curDay;
+      app.gameData.shareNumToday = 0;
+      dataCenter.SaveShareData();
+    }
     if (curDay != app.gameData.lastSignDay) {
       wx.navigateTo({
         url: "../sub_pages/signin/signin"
@@ -169,16 +187,21 @@ Page({
 
 
   },
-  StartLoginAndGotoGame:function(){
-    if(app.gameData.SessonId > 0){
+  StartLoginAndGotoGame: function () {
+    if (app.gameData.SessonId > 0) {
 
-    }  else{
+    } else {
       NetReprot.LoginWx();
-    }  
+    }
 
     wx.navigateTo({
       url: "../sub_pages/chapterLv/chapterLv"
     });
+  },
+  bindBtnClick :function(){
+    wx.showLoading({
+      title: "加载中..."
+  });
   },
   getUserInfo: function (e) {
     console.log(e)
@@ -187,33 +210,37 @@ Page({
       userInfo: e.detail.userInfo,
       hasUserInfo: true
     });
+    wx.hideLoading();
     this.StartLoginAndGotoGame();
   },
-  getUserInfoAndMoreGame :function(e){
+  getUserInfoAndMoreGame: function (e) {
     console.log(e)
     app.globalData.userInfo = e.detail.userInfo
     this.setData({
       userInfo: e.detail.userInfo,
       hasUserInfo: true
     });
+    wx.hideLoading();
     this.bindBtnClickMoreGames();
   },
-  getUserInfoAndRank :function(e){
+  getUserInfoAndRank: function (e) {
     console.log(e)
     app.globalData.userInfo = e.detail.userInfo
     this.setData({
       userInfo: e.detail.userInfo,
       hasUserInfo: true
     });
+    wx.hideLoading();
     this.bindBtnClickOpenRank();
   },
-  getUserInfoAndShare :function(e){
+  getUserInfoAndShare: function (e) {
     console.log(e)
     app.globalData.userInfo = e.detail.userInfo
     this.setData({
       userInfo: e.detail.userInfo,
       hasUserInfo: true
     });
+    wx.hideLoading();
     this.bindBtnClickShare();
   }
 

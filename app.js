@@ -75,6 +75,7 @@ App({
     
     IS_AGREE_XIEYI: "IsAgreeXieYi",
     SHARE_COUNT: "ShareCount",
+    LAST_LOGINDAY: "LastLoginDay",
     LAST_SIGNIN: "LastSignin",
     TOTAL_SIGNIN_COUNT: "TotalSigninCount",
 
@@ -94,7 +95,15 @@ App({
     remainSignNum:0,
     totalSignedDayNum:0,
     lastSignDay:0,
+    lastLoginDay:0,
     plotIdArr:[],
+
+    gameRankArr:undefined,
+    chutiRankArr:undefined,
+    wujinRankArr:undefined,
+    gameRankTime:0,//三分钟一次
+    chutiRankTime:0,//3点
+    wujinRankTime:0,//3点
 
     choosePhotoLeft:0,
     choosePhotoRight:0

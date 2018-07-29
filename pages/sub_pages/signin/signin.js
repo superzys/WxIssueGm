@@ -1,5 +1,8 @@
 const app = getApp()
 const dataCenter = require('../../../utils/dataCenter.js');
+
+const NetReprot = require('../../../utils/netReport.js')
+
 // pages/sub_pages/signin/signin.js
 Page({
 
@@ -79,6 +82,7 @@ Page({
     app.gameData.totalSignedDayNum++;
     app.gameData.goldNum+=this.data.curRewardNum;
     dataCenter.SaveSignedData(app.gameData,app.globalData);
+    NetReprot.GainLoginReward();
     wx.showToast({
       title: "获得" + this.data.curRewardNum + "萝卜币",
       image: "../images/Img_DinaLB.png",

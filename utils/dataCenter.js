@@ -1,4 +1,7 @@
 const SaveAllData = (date, keyData) => {
+    if (date == undefined || keyData == undefined) {
+        return;
+    }
     wx.setStorage({
         key: keyData.GAME_GOLD,
         data: date.goldNum
@@ -29,10 +32,13 @@ const SaveAllData = (date, keyData) => {
     });
 }
 const SaveSignedData = (date, keyData) => {
+    if (date == undefined || keyData == undefined) {
+        return;
+    }
     wx.setStorage({
         key: keyData.GAME_GOLD,
         data: date.goldNum
-    });  
+    });
     wx.setStorage({
         key: keyData.TOTAL_SIGNIN_COUNT,
         data: date.totalSignedDayNum
@@ -44,29 +50,49 @@ const SaveSignedData = (date, keyData) => {
 }
 
 const SaveLoginData = (date, keyData) => {
+    if (date == undefined || keyData == undefined) {
+        return;
+    }
     wx.setStorage({
         key: keyData.GAME_USERID,
         data: date.gameUserId
-    }); 
+    });
 }
 const SaveShareData = (date, keyData) => {
-
+    if (date == undefined || keyData == undefined) {
+        return;
+    }
     wx.setStorage({
-        key: keyData.GAME_USERID,
-        data: date.gameUserId
-    }); 
+        key: keyData.LAST_LOGINDAY,
+        data: date.lastLoginDay
+    });
     wx.setStorage({
         key: keyData.SHARE_COUNT,
         data: date.shareNumToday
-    }); 
+    });
 }
 const SaveYongHuXieYi = (date, keyData) => {
-
+    if (date == undefined || keyData == undefined) {
+        return;
+    }
     wx.setStorage({
         key: keyData.IS_AGREE_XIEYI,
         data: date.isAgreeXieYi
-    }); 
+    });
 }
+
+// const SaveGameData = (date, keyData) => {
+
+//     wx.setStorage({
+//         key: keyData.GAME_CHAPTERID,
+//         data: date.gameUserId
+//     }); 
+//     wx.setStorage({
+//         key: keyData.SHARE_COUNT,
+//         data: date.shareNumToday
+//     }); 
+// }
+
 const formatNumber = n => {
     n = n.toString()
     return n[1] ? n : '0' + n
@@ -74,8 +100,9 @@ const formatNumber = n => {
 
 module.exports = {
     SaveAllData: SaveAllData,
-    SaveSignedData:SaveSignedData,
-    SaveShareData:SaveShareData,
-    SaveYongHuXieYi:SaveYongHuXieYi,
-    SaveLoginData:SaveLoginData
+    // SaveGameData: SaveGameData,
+    SaveSignedData: SaveSignedData,
+    SaveShareData: SaveShareData,
+    SaveYongHuXieYi: SaveYongHuXieYi,
+    SaveLoginData: SaveLoginData
 }

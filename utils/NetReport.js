@@ -2,8 +2,8 @@ const app = getApp()
 
 const dataCenter = require('./dataCenter.js');
 
-// var serverURL = "http://192.168.10.152:8081/";
-var serverURL = "http://121.201.23.222:8081/";
+var serverURL = "http://192.168.10.152:8081/";
+// var serverURL = "http://121.201.23.222:8081/";
 
 
 module.exports = {
@@ -12,41 +12,44 @@ module.exports = {
      */
     LoginWx: function () {
         let userInfo = app.globalData.userInfo;
-        let wxLoginInfo = app.globalData.wxLoginInfo;
-        let gameUserId = wx.getStorageSync(app.globalData.GAME_USERID);
-        let obj = {};
-        obj.UserId = gameUserId;
-        obj.code = app.globalData.wxLoginCode;
-        obj.nickName = userInfo.nickName;
-        obj.gender = userInfo.gender;
-        obj.city = userInfo.city;
-        obj.province = userInfo.province;
-        obj.country = userInfo.country;
-        obj.avatarUrl = userInfo.avatarUrl;
-        let msg = JSON.stringify(obj);
-        wx.request({
-            url: serverURL + "LoginWx",
-            method: 'POST',
-            data: msg,
-            success: function (e) {
-                if (e.data.msg.error != undefined) {
-                    console.log("登录失败 上报用户信息");
-                } else {
-                    var userInfoObj = JSON.parse(e.data.msg);
-                    app.gameData.SessonId = userInfoObj.SessonId;
-                    app.gameData.gameUserId = userInfoObj.UserId;
-                    dataCenter.SaveLoginData(userInfoObj, app.globalData);
-                    console.log("登录成功 上报用户信息");
+        if(userInfo != undefined){
+            let wxLoginInfo = app.globalData.wxLoginInfo;
+            let gameUserId = wx.getStorageSync(app.globalData.GAME_USERID);
+            let obj = {};
+            obj.UserId = gameUserId;
+            obj.code = app.globalData.wxLoginCode;
+            obj.nickName = userInfo.nickName;
+            obj.gender = userInfo.gender;
+            obj.city = userInfo.city;
+            obj.province = userInfo.province;
+            obj.country = userInfo.country;
+            obj.avatarUrl = userInfo.avatarUrl;
+            let msg = JSON.stringify(obj);
+            wx.request({
+                url: serverURL + "LoginWx",
+                method: 'POST',
+                data: msg,
+                success: function (e) {
+                    if (e.data.msg.error != undefined) {
+                        console.log("登录失败 上报用户信息");
+                    } else {
+                        var userInfoObj = JSON.parse(e.data.msg);
+                        app.gameData.SessonId = userInfoObj.SessonId;
+                        app.gameData.gameUserId = userInfoObj.UserId;
+                        dataCenter.SaveLoginData(userInfoObj, app.globalData);
+                        console.log("登录成功 上报用户信息");
+                    }
                 }
-            }
-        });
+            });
+        }
+     
     },
 
     GainLoginReward: function () {
         let SessonId = app.gameData.SessonId;
 
         let obj = {};
-        obj.SessonId = SessonId;
+        obj.SessonId = SessonId+"";
         let msg = JSON.stringify(obj);
         wx.request({
             url: serverURL + "GainLoginReward",
@@ -69,9 +72,9 @@ module.exports = {
         let SessonId = app.gameData.SessonId;
 
         let obj = {};
-        obj.SessonId = SessonId;
-        obj.PlotId = PlotId;
-        obj.ChapterId = ChapterId;
+        obj.SessonId = SessonId+"";
+        obj.PlotId = PlotId+"";
+        obj.ChapterId = ChapterId+"";
         let msg = JSON.stringify(obj);
         wx.request({
             url: serverURL + "GainPlotReward",
@@ -94,9 +97,9 @@ module.exports = {
         let SessonId = app.gameData.SessonId;
 
         let obj = {};
-        obj.SessonId = SessonId;
-        obj.PlotId = PlotId;
-        obj.ChapterId = ChapterId;
+        obj.SessonId = SessonId+"";
+        obj.PlotId = PlotId+"";
+        obj.ChapterId = ChapterId+"";
         let msg = JSON.stringify(obj);
         wx.request({
             url: serverURL + "GainChapterReward",
@@ -116,23 +119,46 @@ module.exports = {
     },
 
     ShareOnce: function () {
-        if (app.gameData.shareNumToday < 5) {
-            //不等结果。 自己计算成功    
-            wx.showToast({
-                title: "获得萝卜币+5",
-                image: "../images/Img_DinaLB.png",
-                duration: 2e3
-            });
-            app.gameData.shareNumToday++;
-            app.gameData.goldNum+=5;   
-            dataCenter.SaveShareData();
-        }
+
 
 
         let SessonId = app.gameData.SessonId;
 
         let obj = {};
-        obj.SessonId = SessonId;
+        obj.SessonId = SessonId+"";
+        let msg = JSON.stringify(obj);
+        wx.request({
+            url: serverURL + "ShareOnce",
+            method: 'POST',
+            data: msg,
+            success: function (e) {
+                if (e.data.msg.error != undefined) {
+                    console.log("分享失败 上报用户信息");
+                } else {
+                    var getObj = JSON.parse(e.data.msg);
+                    let AddGoldNum = getObj.RewardGold;
+                    let UserGoldNum = getObj.UserGoldNum;
+                    console.log("分享结束 上报用户信息");
+                }
+            }
+        });
+    },
+    ShareUnlock: function () {
+
+        wx.showToast({
+            title: "解锁成功",
+            icon: "none",
+            duration: 2e3
+        });
+        app.gameData.shareNumToday++;
+        app.gameData.goldNum+=5;   
+        dataCenter.SaveShareData(app.gameData, app.globalData);
+
+
+        let SessonId = app.gameData.SessonId;
+
+        let obj = {};
+        obj.SessonId = SessonId +"";
         let msg = JSON.stringify(obj);
         wx.request({
             url: serverURL + "ShareOnce",
@@ -151,11 +177,11 @@ module.exports = {
         });
     },
 
-    GetRankInfo: function (rankType) {
+    GetRankInfo: function (rankType,callBack) {
         let SessonId = app.gameData.SessonId;
 
         let obj = {};
-        obj.SessonId = SessonId;
+        obj.SessonId = SessonId+"";
         obj.RankType = rankType;
         let msg = JSON.stringify(obj);
         wx.request({
@@ -165,11 +191,16 @@ module.exports = {
             success: function (e) {
                 if (e.data.msg.error != undefined) {
                     console.log("获取排行失败 上报用户信息");
+                    if(callBack){
+                        callBack([]);
+                    }
                 } else {
                     var getObj = JSON.parse(e.data.msg);
-                    let AddGoldNum = getObj.RewardGold;
-                    let UserGoldNum = getObj.UserGoldNum;
+                    let RankArr = getObj.RankArr;
                     console.log("获取排行结束 上报用户信息");
+                    if(callBack){
+                        callBack(RankArr);
+                    }
                 }
             }
         });
@@ -179,7 +210,7 @@ module.exports = {
         let SessonId = app.gameData.SessonId;
 
         let obj = {};
-        obj.SessonId = SessonId;
+        obj.SessonId = SessonId+"";
         obj.LeftPhoto = data.LeftPhoto;
         obj.RightPhoto = data.RightPhoto;
         obj.WordsArr = data.WordsArr;

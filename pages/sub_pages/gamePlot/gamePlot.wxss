@@ -325,11 +325,46 @@
 }
 
 .ViewTipChapter {
-    display: flex;
+    /* display: flex; */
     flex-direction: row;
     align-items: center;
     position: fixed;
     margin-top: 40%;
+}
+.ViewTipBtns {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    position: relative;
+    top: -340rpx;
+    width: 90%;
+    left: 5%;
+}
+.ViewTipTxt {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    position: relative;
+    justify-content: center;
+    top: -360rpx;
+    width: 100%;
+    height: 200rpx;
+    /* left: 5%; */
+}
+
+.TipBtnLeft {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 50%;
+    justify-content: center;
+}
+.TipBtnRight {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 50%;
+    justify-content: center;
 }
 
 .tipImg_Chapter {
@@ -338,33 +373,54 @@
 }
 
 .btnReturn {
-    position: fixed;
+    /* position: relative; */
     width: 146rpx;
     height: 84rpx;
-    padding-top: 280rpx;
-    padding-left: 100rpx;
+    /* padding-top: 280rpx;
+    padding-left: 100rpx; */
 }
 
 .btnShareForUnLock {
-    position: fixed;
-    width: 138rpx;
+    /* position: relative; */
+    background: rgba(0,0,0,0);
+    /* width: 138rpx; */
     height: 84rpx;
-    padding-top: 280rpx;
-    padding-left: 300rpx;
+    width: 200rpx;
+    /* padding-top: 280rpx;
+    padding-left: 300rpx; */
+    /* margin-left: 280rpx;
+    margin-top: 300rox; */
+}
+.btnShareForUnLock::after {
+  border:0px;  
+}
+
+.btnShareForUnLockImg {
+
+    width: 165rpx;
+    height: 83rpx;
 }
 
 .btnNextChapter {
-    position: fixed;
+    /* position: relative; */
     width: 183rpx;
     height: 83rpx;
-    padding-top: 280rpx;
-    padding-left: 300rpx;
+    /* padding-top: 280rpx;
+    padding-left: 300rpx; */
 }
 
 .btnCharge {
-    position: fixed;
+    /* position: relative; */
     width: 165rpx;
     height: 83rpx;
-    padding-top: 280rpx;
-    padding-left: 300rpx;
+    /* padding-top: 280rpx;
+    padding-left: 300rpx; */
+}
+.tipTxt1{
+    width: 358rpx;
+    height: 30rpx;
+}
+.tipTxt2{
+    width: 402rpx;
+    height: 70rpx;
 }
