@@ -1,5 +1,4 @@
-const app = getApp()
-// pages/sub_pages/moreGameFun/moreGameFun.js
+// pages/sub_pages/yonghuxieyi/yonghuxieyi.js
 Page({
 
   /**
@@ -15,32 +14,7 @@ Page({
   onLoad: function (options) {
   
   },
-  btnClick_CreateIssue: function () {
-    if(app.gameData.chapterId >=0 ){
-      // if(app.gameData.chapterId > 1 ){
-      wx.navigateTo({
-        url: "../choosePhoto/choosePhoto"
-      });
-    }else{
-      wx.showToast({
-        title: "完成第一章节才能使用此功能",
-        icon: "none",
-        duration: 2e3
-      });
-    }
-  },
 
-  btnClick_Wujin: function () {
-  
-  },
-  
-  btnClick_Baby: function () {
-  
-  },
-  
-  btnClick_Taolu: function () {
-  
-  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

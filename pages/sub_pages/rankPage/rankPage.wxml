@@ -31,7 +31,7 @@
             <text class="level" wx:if="{{rankType==3}}">{{item.questions}}</text>
         </view>
     </scroll-view>
-    <view class="item me" wx:if="{{rankType==1}}">
+    <view class="item me" disabled="false" wx:if="{{rankType==1}}">
         <view style="flex: none" wx:if="{{myOrder!=0}}">
             <image class="top" src="../../images/Top1.png" wx:if="{{myOrder==1}}"></image>
             <image class="top" src="../../images/Top2.png" wx:elif="{{myOrder==2}}"></image>
@@ -46,5 +46,5 @@
         </view>
     </view>
 </view>
-<view class="tips" wx:if="{{rankType==1}}">每5分钟刷新一次</view>
-<view class="tips" wx:else>每天3点刷新</view>
+<view class="tips" disabled="false" wx:if="{{rankType==1}}">每5分钟刷新一次</view>
+<view class="tips" disabled="false" wx:else>每天3点刷新</view>

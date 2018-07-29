@@ -139,6 +139,7 @@ Page({
       app.gameData.totalSignedDayNum = 0;
       app.gameData.lastSignDay = 0;
       app.gameData.plotIdArr = [];
+      app.gameData.isAgreeXieYi = 0;
 
       dataCenter.SaveAllData(app.gameData, app.globalData);
     }
@@ -153,6 +154,7 @@ Page({
       app.gameData.shareNumToday = wx.getStorageSync(app.globalData.SHARE_COUNT);
       app.gameData.totalSignedDayNum = wx.getStorageSync(app.globalData.TOTAL_SIGNIN_COUNT);
       app.gameData.lastSignDay = wx.getStorageSync(app.globalData.LAST_SIGNIN);
+      app.gameData.isAgreeXieYi = wx.getStorageSync(app.globalData.IS_AGREE_XIEYI);
 
     }
 

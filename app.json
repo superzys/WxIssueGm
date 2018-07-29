@@ -8,7 +8,8 @@
     "pages/sub_pages/choosePhoto/choosePhoto",
     "pages/sub_pages/moreGameFun/moreGameFun",
     "pages/sub_pages/createMyIssue/createMyIssue",
-    "pages/sub_pages/rankPage/rankPage"
+    "pages/sub_pages/rankPage/rankPage",
+    "pages/sub_pages/yonghuxieyi/yonghuxieyi"
   ],
   "window": {
     "backgroundTextStyle": "light",

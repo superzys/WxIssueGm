@@ -8,30 +8,6 @@
   overflow: hidden;
 }
 
-.ViewBtnStart {
-  top: 76%;
-  position: fixed;
-  align-items: center;
-  flex-direction: column;
-  width: 179rpx;
-  height: 129rpx;
-  /* margin-top: 260rpx; */
-}
-.Btn_StartGame {
-  position: fixed;
-  width: 243rpx;
-  height: 151rpx;
-  /* top: 74%; */
-}
-.Btn_GetUeseInfo {
-  position: fixed;
-  width: 223rpx;
-  height: 80rpx;
-  left: 5rpx;
-  top: 50rpx;
-  border:0rpx;
-  /* top: 74%;1px solid #353535 */
-}
 
 .userinfo {
   display: flex;
@@ -72,18 +48,13 @@
   height: 129rpx;
   /* margin-top: 130rpx; */
 }
-.Btn_Share {
-  width: 179rpx;
-  height: 129rpx;
-  /* margin-top: 260rpx; */
-}
 .BtnStart {
   width: 179rpx;
   height: 129rpx;
   /* margin-top: 260rpx; */
 }
 .ViewMorGame {
-  position: fixed;
+  /* position: fixed; */
   align-items: center;
   flex-direction: column;
   width: 177rpx;
@@ -92,7 +63,7 @@
   /* margin-top: 260rpx; */
 }
 .ViewRank {
-  position: fixed;
+  /* position: fixed; */
   align-items: center;
   flex-direction: column;
   width: 177rpx;
@@ -101,7 +72,7 @@
   /* margin-top: 260rpx; */
 }
 .ViewShare {
-  position: fixed;
+  /* position: fixed; */
   align-items: center;
   flex-direction: column;
   width: 177rpx;
@@ -109,12 +80,57 @@
   top: 280rpx;
   /* margin-top: 260rpx; */
 }
-
+/* 分享 */
 .getUserInfoAndFun{
-  position: fixed;
-  width: 172rpx;
-  height: 64rpx;
+  /* position: fixed; */
+  background: rgba(0,0,0,0);
+  padding: 0;
+  width: 177rpx;
+  height: 129rpx;
   left: 5rpx;
-  top: 45rpx;
+  top: 0rpx;
+  border:0px;  
+}
+.getUserInfoAndFun::after {
+  border:0px;  
+}
+/* .getUserInfoAndFun button {
   border:0rpx;
+} */
+.Btn_Share {
+  width: 179rpx;
+  height: 129rpx;
+  /* margin-top: 260rpx; */
+}
+
+/* 开始 */
+
+.ViewBtnStart {
+  top: 76%;
+  position: fixed;
+  align-items: center;
+  flex-direction: row;
+  width: 243rpx;
+  height: 151rpx;
+  /* margin-top: 260rpx; */
+}
+.Btn_StartGame {
+  /* position: fixed; */
+  width: 243rpx;
+  height: 151rpx;
+  /* top: 74%; */
+}
+.Btn_GetUeseInfo {
+  background: rgba(0,0,0,0);
+  /* position: fixed; */
+  width: 270rpx;
+  margin-left: -28rpx;
+  height: 151rpx;
+  /* left: 5rpx;
+  top: 50rpx;
+  border:0rpx; */
+  /* top: 74%;1px solid #353535 */
+}
+.Btn_GetUeseInfo::after {
+  border:0px;  
 }

@@ -157,7 +157,7 @@ Page({
       if (fitArr.length == 0) {
         wx.showToast({
           title: "请先删除一个选项",
-          // image: "",
+          icon: "none",
           mask: true,
           duration: 2e3
         });
@@ -196,7 +196,7 @@ Page({
     } else {
       wx.showToast({
         title: "萝卜币不足",
-        // image: "",
+        icon: "none",
         mask: true,
         duration: 2e3
       });

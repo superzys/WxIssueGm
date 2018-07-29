@@ -60,7 +60,13 @@ const SaveShareData = (date, keyData) => {
         data: date.shareNumToday
     }); 
 }
+const SaveYongHuXieYi = (date, keyData) => {
 
+    wx.setStorage({
+        key: keyData.IS_AGREE_XIEYI,
+        data: date.isAgreeXieYi
+    }); 
+}
 const formatNumber = n => {
     n = n.toString()
     return n[1] ? n : '0' + n
@@ -70,5 +76,6 @@ module.exports = {
     SaveAllData: SaveAllData,
     SaveSignedData:SaveSignedData,
     SaveShareData:SaveShareData,
+    SaveYongHuXieYi:SaveYongHuXieYi,
     SaveLoginData:SaveLoginData
 }

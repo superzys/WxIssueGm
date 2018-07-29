@@ -125,6 +125,7 @@
 }
 
 .ViewCsdFont {
+    margin-left: 8%;
     width: 66%;
     height: 100rpx;
     display: flex;
@@ -169,49 +170,64 @@
 } */
 
 .btnTip {
+    position: fixed;
     padding-left: 6%;
     width: 255rpx;
     height: 66rpx;
 }
 
 .btnShare {
-    padding-left: 20%;
+    left: 52%;
+    position: fixed;
+    background: rgba(0,0,0,0);
+
+    width: 255rpx;
+    height: 66rpx;
+}
+.btnShare::after {
+  border:0px;  
+}
+.btnShareImg {
+    margin-left: -24rpx;
     width: 255rpx;
     height: 66rpx;
 }
 
+
 .btnReStart {
+    position: fixed;
     padding-left: 95rpx;
     width: 86rpx;
     height: 94rpx;
 }
 
 .imgLuobo {
+    position: fixed;
     width: 56rpx;
     height: 58rpx;
 }
 
 .imgCsdFontBk {
-    position: absolute;
+    position: fixed;
     width: 76rpx;
     height: 78rpx;
 }
 
 .ImgBk_FontShow {
-    position: absolute;
+    position: fixed;
     width: 76rpx;
     height: 80rpx;
 }
 
 .lab_Csd {
-    position: absolute;
+    position: fixed;
     width: 76rpx;
     height: 60rpx;
     text-align: center;
 }
 
 .lab_Money {
-    position: absolute;
+    position: fixed;
     width: 200rpx;
     height: 60rpx;
     text-align: left;
@@ -238,7 +254,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    position: absolute;
+    position: absolfixedute;
     margin-top: 40%;
 }
 
@@ -266,7 +282,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    position: absolute;
+    position: fixed;
     margin-top: 40%;
 }
 
@@ -276,14 +292,14 @@
 }
 
 .btnNextPlot {
-    position: absolute;
+    position: fixed;
     width: 183rpx;
     height: 83rpx;
     padding-top: 420rpx;
 }
 
 .lab_Reward {
-    position: absolute;
+    position: fixed;
     width: 200rpx;
     height: 100rpx;
     text-align: left;
@@ -312,7 +328,7 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    position: absolute;
+    position: fixed;
     margin-top: 40%;
 }
 
@@ -322,7 +338,7 @@
 }
 
 .btnReturn {
-    position: absolute;
+    position: fixed;
     width: 146rpx;
     height: 84rpx;
     padding-top: 280rpx;
@@ -330,7 +346,7 @@
 }
 
 .btnShareForUnLock {
-    position: absolute;
+    position: fixed;
     width: 138rpx;
     height: 84rpx;
     padding-top: 280rpx;
@@ -338,7 +354,7 @@
 }
 
 .btnNextChapter {
-    position: absolute;
+    position: fixed;
     width: 183rpx;
     height: 83rpx;
     padding-top: 280rpx;
@@ -346,7 +362,7 @@
 }
 
 .btnCharge {
-    position: absolute;
+    position: fixed;
     width: 165rpx;
     height: 83rpx;
     padding-top: 280rpx;

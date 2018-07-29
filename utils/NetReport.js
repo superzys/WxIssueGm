@@ -2,7 +2,8 @@ const app = getApp()
 
 const dataCenter = require('./dataCenter.js');
 
-var serverURL = "http://192.168.10.152:8081/";
+// var serverURL = "http://192.168.10.152:8081/";
+var serverURL = "http://121.201.23.222:8081/";
 
 
 module.exports = {

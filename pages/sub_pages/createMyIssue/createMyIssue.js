@@ -1,5 +1,6 @@
 const app = getApp()
 const NetReprot = require('../../../utils/netReport.js')
+const dataCenter = require('../../../utils/dataCenter.js');
 
 // pages/sub_pages/createMyIssue/createMyIssue.js
 Page({
@@ -29,7 +30,9 @@ Page({
       oneTalk.Words = "";
       arr.push(oneTalk);
     }
+ this.data.isAgree =    app.gameData.isAgreeXieYi;
     this.setData({
+      isAgree:this.data.isAgree,
       issueArr: arr
     });
   },
@@ -81,7 +84,12 @@ Page({
     let TipsArr = [];
     for (let i = 0; i < this.data.issueArr.length; i++) {
       let oneTalk = this.data.issueArr[i];
-      WordsArr.push(oneTalk.Words);
+      if(oneTalk.Words == "" && i == this.data.issueArr.length-1){
+        
+      }else{
+        WordsArr.push(oneTalk.Words);
+      }
+      
     }
     for (let i = 0; i < this.data.answear.length; i++) {
       let answearStr = this.data.answear[i];
@@ -94,12 +102,24 @@ Page({
   },
 
   readAgreement: function () {
-    if (!this.data.isAgree) {
-      //弹出来 规则
-    }
+    //弹出来 规则
+    wx.navigateTo({
+      url: "../yonghuxieyi/yonghuxieyi"
+    });
+    // if (!this.data.isAgree) {  
+
+    // }
+    // this.setData({
+    //   isAgree: !this.data.isAgree
+    // });
+  },
+  changeAgreement: function () {
+
+    app.gameData.isAgreeXieYi = !this.data.isAgree;
     this.setData({
       isAgree: !this.data.isAgree
     });
+    dataCenter.SaveYongHuXieYi(app.gameData, app.globalData);
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

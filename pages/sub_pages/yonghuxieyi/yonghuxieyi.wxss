@@ -1,0 +1,9 @@
+/* pages/sub_pages/yonghuxieyi/yonghuxieyi.wxss */
+
+.Title {
+    text-align: center;
+}
+
+.Content {
+    text-align: left;
+}

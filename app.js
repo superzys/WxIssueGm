@@ -66,6 +66,7 @@ App({
     GAME_CPPLOTINDEX: "gameCpPlotIndex",
     GAME_PLOT_ARR: "gamePlotArr",
     
+    IS_AGREE_XIEYI: "IsAgreeXieYi",
     SHARE_COUNT: "ShareCount",
     LAST_SIGNIN: "LastSignin",
     TOTAL_SIGNIN_COUNT: "TotalSigninCount",
@@ -78,6 +79,7 @@ App({
     goldNum :0,
     gameChapterId :0,
     gameCpPlotIdx :0,
+    isAgreeXieYi :0,
 
     chapterId :0,
     cpPlotIndex: 0,

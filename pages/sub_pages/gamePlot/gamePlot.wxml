@@ -18,8 +18,8 @@
     <view class="ViewBtns">
         <image bind:tap="TipOneAnswer" class="btnTip" src="../../images/Btn_Tip.png" />
         
-         <button class="btnShare"  openType="share" plain="true" >      
-                <image class="btnShare" src="../../images/Btn_ShareInPlot.png" />
+         <button class="btnShare"  openType="share" >      
+                <image class="btnShareImg" src="../../images/Btn_ShareInPlot.png" />
          </button>
 
      
