@@ -2,6 +2,7 @@
 const app = getApp()
 
 const NetReprot = require('../../../utils/netReport.js')
+const util = require('../../../utils/util.js')
 
 Page({
 
@@ -30,6 +31,13 @@ Page({
    */
   onLoad: function (options) {
     //先显示自己。 然后请求数据
+    let myChapter =util. GetChapterName(app.gameData.chapterId);
+    let myPlot =app.gameData.plotIdArr.length;
+
+    this.setData({
+      myChapter: myChapter,
+      myPlot:myPlot
+    });
 
     this.ShowChooseTypeRank();
 
@@ -59,36 +67,39 @@ Page({
     });
   },
   GetGameRanArr: function () {
+    let curPage = this;
     var timestamp = new Date().getTime();
-    if (app.gameData.gameRankArr == undefined || (app.gameData.gameRankTime - timestamp) >= 3000) {//需要更新
+    if (app.gameData.gameRankArr == undefined || (timestamp - app.gameData.gameRankTime ) >= 3000) {//需要更新
 
       wx.showLoading({
         title: "加载中..."
       });
       NetReprot.GetRankInfo(this.data.rankType, (arr) => {
         wx.hideLoading();
+        let rankArr = [];
+        for (let i = 0; i < arr.length; i++) {
+          let netObj = arr[i];
+          let rankObj = {};
+          rankObj.rankNum = netObj.rankNum;
+          rankObj.nickName = netObj.nickName;
+          rankObj.avatarUrl = netObj.avatarUrl;
+          let cpname =util. GetChapterName(netObj.value1);
+          rankObj.value = netObj.value+"";
+          rankObj.value1 = cpname;
+          rankArr.push(rankObj);
+        }
+        app.gameData.gameRankArr = rankArr;
+        app.gameData.gameRankTime = timestamp;
 
+        curPage.setData({
+          rankArr: rankArr
+        });
       });
+      return [];
     } else {
       return app.gameData.gameRankArr;
     }
 
-
-    let selfInfo = {};
-    selfInfo.nickName = app.globalData.userInfo.nickName;
-    selfInfo.avatarUrl = app.globalData.userInfo.avatarUrl;
-
-    let rankArr = [];
-    for (let i = 0; i < 10; i++) {
-      let rankObj = {};
-      rankObj.rankNum = i;
-      rankObj.nickName = app.globalData.userInfo.nickName;
-      rankObj.avatarUrl = selfInfo.avatarUrl;
-      rankObj.value = "saas";
-      rankObj.value1 = "saas";
-      rankArr.push(rankObj);
-    }
-    return rankArr;
   },
 
 

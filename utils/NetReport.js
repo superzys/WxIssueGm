@@ -20,20 +20,21 @@ module.exports = {
             obj.code = app.globalData.wxLoginCode;
             obj.nickName = userInfo.nickName;
             obj.gender = userInfo.gender;
-            obj.city = userInfo.city;
-            obj.province = userInfo.province;
-            obj.country = userInfo.country;
+            obj.city = userInfo.city+"";
+            obj.province = userInfo.province+"";
+            obj.country = userInfo.country+"";
             obj.avatarUrl = userInfo.avatarUrl;
             let msg = JSON.stringify(obj);
             wx.request({
                 url: serverURL + "LoginWx",
                 method: 'POST',
                 data: msg,
-                success: function (e) {
-                    if (e.data.msg.error != undefined) {
+                success: function (e) {                    
+                    var userInfoObj = JSON.parse(e.data.msg);
+
+                    if (userInfoObj.error != undefined) {
                         console.log("登录失败 上报用户信息");
                     } else {
-                        var userInfoObj = JSON.parse(e.data.msg);
                         app.gameData.SessonId = userInfoObj.SessonId;
                         app.gameData.gameUserId = userInfoObj.UserId;
                         dataCenter.SaveLoginData(userInfoObj, app.globalData);
@@ -56,10 +57,10 @@ module.exports = {
             method: 'POST',
             data: msg,
             success: function (e) {
-                if (e.data.msg.error != undefined) {
+                var getObj = JSON.parse(e.data.msg);
+                if (getObj.error != undefined) {
                     console.log("签到失败 上报用户信息");
                 } else {
-                    var getObj = JSON.parse(e.data.msg);
                     let AddGoldNum = getObj.AddGoldNum;
                     let UserGoldNum = getObj.UserGoldNum;
                     console.log("签到结束 上报用户信息");
@@ -81,11 +82,11 @@ module.exports = {
             method: 'POST',
             data: msg,
             success: function (e) {
-                if (e.data.msg.error != undefined) {
+                var getObj = JSON.parse(e.data.msg);
+                if (getObj.error != undefined) {
                     console.log("破关失败 上报用户信息");
                 } else {
-                    var getObj = JSON.parse(e.data.msg);
-                    let AddGoldNum = getObj.RewardGold;
+                     let AddGoldNum = getObj.RewardGold;
                     let UserGoldNum = getObj.UserGoldNum;
                     console.log("破关结束 上报用户信息");
                 }
@@ -106,11 +107,11 @@ module.exports = {
             method: 'POST',
             data: msg,
             success: function (e) {
-                if (e.data.msg.error != undefined) {
+                var getObj = JSON.parse(e.data.msg);
+                if (getObj.error != undefined) {
                     console.log("跳章节失败 上报用户信息");
                 } else {
-                    var getObj = JSON.parse(e.data.msg);
-                    let AddGoldNum = getObj.RewardGold;
+                     let AddGoldNum = getObj.RewardGold;
                     let UserGoldNum = getObj.UserGoldNum;
                     console.log("跳章节结束 上报用户信息");
                 }
@@ -132,11 +133,11 @@ module.exports = {
             method: 'POST',
             data: msg,
             success: function (e) {
-                if (e.data.msg.error != undefined) {
+                var getObj = JSON.parse(e.data.msg);
+                if (getObj.error != undefined) {
                     console.log("分享失败 上报用户信息");
                 } else {
-                    var getObj = JSON.parse(e.data.msg);
-                    let AddGoldNum = getObj.RewardGold;
+                     let AddGoldNum = getObj.RewardGold;
                     let UserGoldNum = getObj.UserGoldNum;
                     console.log("分享结束 上报用户信息");
                 }
@@ -165,11 +166,11 @@ module.exports = {
             method: 'POST',
             data: msg,
             success: function (e) {
-                if (e.data.msg.error != undefined) {
+                var getObj = JSON.parse(e.data.msg);
+                if (getObj.error != undefined) {
                     console.log("分享失败 上报用户信息");
                 } else {
-                    var getObj = JSON.parse(e.data.msg);
-                    let AddGoldNum = getObj.RewardGold;
+                     let AddGoldNum = getObj.RewardGold;
                     let UserGoldNum = getObj.UserGoldNum;
                     console.log("分享结束 上报用户信息");
                 }
@@ -182,21 +183,21 @@ module.exports = {
 
         let obj = {};
         obj.SessonId = SessonId+"";
-        obj.RankType = rankType;
+        obj.RankType = rankType-1;
         let msg = JSON.stringify(obj);
         wx.request({
             url: serverURL + "GetRankInfo",
             method: 'POST',
             data: msg,
             success: function (e) {
-                if (e.data.msg.error != undefined) {
+                var getObj = JSON.parse(e.data.msg);
+                if (getObj.error != undefined) {
                     console.log("获取排行失败 上报用户信息");
                     if(callBack){
                         callBack([]);
                     }
                 } else {
-                    var getObj = JSON.parse(e.data.msg);
-                    let RankArr = getObj.RankArr;
+                     let RankArr = getObj.RankArr;
                     console.log("获取排行结束 上报用户信息");
                     if(callBack){
                         callBack(RankArr);
@@ -223,11 +224,11 @@ module.exports = {
             method: 'POST',
             data: msg,
             success: function (e) {
-                if (e.data.msg.error != undefined) {
+                var getObj = JSON.parse(e.data.msg);
+                if (getObj.error != undefined) {
                     console.log("出题失败 上报用户信息");
                 } else {
-                    var getObj = JSON.parse(e.data.msg);
-                    let Status = getObj.Status;
+                     let Status = getObj.Status;
                     console.log("获取排行结束 上报用户信息");
                 }
             }
