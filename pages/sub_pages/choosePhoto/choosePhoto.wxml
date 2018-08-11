@@ -6,14 +6,14 @@
     <view class="ViewContent">
 <!-- 上组建 -->
         <view class="ViewCsdPhoto">
-            <image class="ImgPhoto" src="../../images/PhotoBig_{{leftPhoto}}.png" />
+            <image class="ImgPhoto" src="../../images/PhotoBig_{{leftPhoto}}.jpg" />
             <image bind:tap="btnClick_Left_Pre" class="btnPre" src="../../images/Btn_Right.png" />
             <image bind:tap="btnClick_Left_Next" class="btnNext" src="../../images/Btn_Left.png" />
         </view>
         <image class="imgLine" src="../../images/Img_PhotoCmpLine.png" />
         <!-- 下组建 -->
         <view class="ViewCsdPhoto">
-            <image class="ImgPhoto" src="../../images/PhotoBig_{{rightPhoto}}.png" />
+            <image class="ImgPhoto" src="../../images/PhotoBig_{{rightPhoto}}.jpg" />
             <image bind:tap="btnClick_Right_Pre" class="btnPre" src="../../images/Btn_Right.png" />
             <image bind:tap="btnClick_Rightt_Next" class="btnNext" src="../../images/Btn_Left.png" />
         </view>

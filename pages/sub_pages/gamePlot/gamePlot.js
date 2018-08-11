@@ -65,13 +65,14 @@ Page({
         if (curPlotData != undefined) {
           //打乱扰动顺序
           let WrongAnsArr = curPlotData.WrongAnsArr.concat();
-          let MorNum = curPlotData.OptionNum - curPlotData.RightAnsArr.length - curPlotData.WrongAnsArr.length;
+          let MorNum =  curPlotData.RightAnsArr.length + curPlotData.WrongAnsArr.length - curPlotData.OptionNum ;
           if (MorNum > 0) {
             while (MorNum > 0) {
               WrongAnsArr.shift();
               MorNum--;
             }
           }
+
           let allFontArr = curPlotData.RightAnsArr.concat(WrongAnsArr);
           allFontArr.sort(function () {
             return 0.5 - Math.random();

@@ -9,7 +9,7 @@
                     <!-- <view class="bkView"> -->
                     <image class="ImgBkTalk" src="../../images/{{item.IsLeft?'ImgBk_Ct_Left':'ImgBk_Ct_Right'}}.png" style="height:{{item.heightRpx}}rpx" />
                     <!-- </view> -->
-                    <image class="ImgPhoto" style="padding-left:{{item.IsLeft?'15rpx':'400rpx'}}" src="../../images/SmPhoto_{{item.PhotoId}}.png" />
+                    <image class="ImgPhoto" style="padding-left:{{item.IsLeft?'15rpx':'400rpx'}}" src="../../images/PhotoBig_{{item.PhotoId}}.jpg" />
                     <!-- 一行13个字 背景高度 40 -->
                      <textarea bindlinechange="inputLingChange" bindinput="inputWords" class="inputWords_Left" wx:if="{{item.IsLeft}}" data-item="{{item}}"></textarea>
                      <textarea bindlinechange="inputLingChange" bindinput="inputWords" class="inputWords_Right" wx:if="{{!item.IsLeft}}" data-item="{{item}}"></textarea>
