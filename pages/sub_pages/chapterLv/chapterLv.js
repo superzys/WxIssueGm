@@ -59,7 +59,7 @@ Page({
       app.gameData.gameChapterId = curChapter.chapterId;
 
       app.gameData.gameCpPlotIdx = 0;
-      if (curChapter._id == app.gameData.chapterId) {
+      if (curChapter.chapterId == app.gameData.chapterId) {
         app.gameData.gameCpPlotIdx = app.gameData.cpPlotIndex;
       }
       wx.navigateTo({
