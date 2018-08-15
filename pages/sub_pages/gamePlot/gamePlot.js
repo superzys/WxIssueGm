@@ -119,7 +119,7 @@ Page({
           this.setData({
             IsGameing: true,
             IsLoseGame: false,
-            IsNextPlot: false,
+            IsNextPlot: true,
             IsNextChapter: false,
             isNeedCharge: false,
             isNeedShare: false,

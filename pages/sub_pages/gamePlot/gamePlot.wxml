@@ -1,7 +1,7 @@
 <!-- pages/sub_pages/gamePlot.wxml -->
 <image class="main_bg" src="../../imagesUrl/GameBk.jpg"></image>
 <view class="ViewTalk">
-    <scroll-view scrollY="true">
+    <scroll-view scrollY="true" scroll-with-animation="true">
         <view class="ViewOneTalk" bindtap="clickTipBk" wx:for="{{WordsArr}}" data-item="{{item}}" wx:for-index="idx" wx:key="idx" wx:for-item="item">
             <!-- <view class="bkView"> -->
             <image class="ImgBkTalk" src="../../images/{{item.IsLeft?'ImgBk_Left':'ImgBk_Right'}}.png" style="height:{{item.TxtLen *51}}rpx" />
@@ -56,6 +56,8 @@
     <view class="ViewTipRight">
         <image class="tipImg_Right" src="../../imagesUrl/Dialog_RightPlot.png"></image>
         <text class="lab_Reward">+{{CurPlotData.RewardGoldNum}}</text>
+        <text class="lab_Ans">答案:{{CurPlotData.AnsTip}}</text>
+        <text class="lab_AnsTip">解析{{CurPlotData.AnsTip}}</text>
         <image bind:tap="btnClick_NextPlot" class="btnNextPlot" src="../../images/Btn_NextPlot.png" />
     </view>
 </view>

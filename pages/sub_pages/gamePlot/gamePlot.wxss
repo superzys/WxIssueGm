@@ -304,9 +304,29 @@
     height: 100rpx;
     text-align: left;
     font-size: 95rpx;
-    padding-top: 176rpx;
+    padding-top: 120rpx;
     color: #00b840;
     padding-left: 300rpx;
+}
+.lab_Ans {
+    position: fixed;
+    width: 500rpx;
+    height: 100rpx;
+    text-align: left;
+    font-size: 20rpx;
+    padding-top: 420rpx;
+    color: #000000;
+    padding-left: 20rpx;
+}
+.lab_AnsTip {
+    position: fixed;
+    width: 500rpx;
+    height: 100rpx;
+    text-align: left;
+    font-size: 20rpx;
+    padding-top: 520rpx;
+    color: #000000;
+    padding-left: 20rpx;
 }
 
 /* 下一个章节 */
