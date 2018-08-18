@@ -8,8 +8,8 @@
             <!-- </view> -->
             <image class="ImgPhoto" style="padding-left:{{item.IsLeft?'15rpx':'500rpx'}}" src="../../images/PhotoBig_{{item.PhotoId}}.jpg" />
             <!-- 一行13个字 背景高度 53 -->
-            <text class="lab_Talk_Left" wx:if="{{item.IsLeft}}">{{item.Words}}</text>
-            <text class="lab_Talk_Right" wx:if="{{!item.IsLeft}}" style="text-align:{{item.Words.length > 13?'left':'right'}}">{{item.Words}}</text>
+            <text class="lab_Talk_Left" wx:if="{{item.IsLeft}}" style="padding-top:{{item.Words.length > 13?'2rpx':'25rpx'}}">{{item.Words}}</text>
+            <text class="lab_Talk_Right" wx:if="{{!item.IsLeft}}" style="text-align:{{item.Words.length > 13?'left':'right'}};padding-top:{{item.Words.length > 13?'2rpx':'25rpx'}}">{{item.Words}}</text>
         </view>
     </scroll-view>
 </view>
@@ -56,8 +56,8 @@
     <view class="ViewTipRight">
         <image class="tipImg_Right" src="../../imagesUrl/Dialog_RightPlot.png"></image>
         <text class="lab_Reward">+{{CurPlotData.RewardGoldNum}}</text>
-        <text class="lab_Ans">答案:{{CurPlotData.AnsTip}}</text>
-        <text class="lab_AnsTip">解析{{CurPlotData.AnsTip}}</text>
+        <text class="lab_Ans">答案:{{rightStr}}</text>
+        <text class="lab_AnsTip">解析:{{CurPlotData.AnsDes}}</text>
         <image bind:tap="btnClick_NextPlot" class="btnNextPlot" src="../../images/Btn_NextPlot.png" />
     </view>
 </view>

@@ -17,7 +17,7 @@ Page({
     isNeedCharge: false,
     isNeedShare: false,
     allFontColumNum: 3,
-
+    rightStr:"",
     CurCpData: {},
 
     WordsArr: [],
@@ -90,13 +90,14 @@ Page({
           }
           //制作答案选项
           let ChoosedFontArr = [];
+        let rightStr=  "";
           for (let i = 0; i < curPlotData.RightAnsArr.length; i++) {
             let fontObj = {};
             fontObj.idx = i;
             fontObj.sourceIdx = -1;
             fontObj.str = "";
             fontObj.IsChoose = false;
-
+            rightStr+=curPlotData.RightAnsArr[i];
             ChoosedFontArr.push(fontObj);
           }
 
@@ -117,9 +118,10 @@ Page({
           }
 
           this.setData({
+            rightStr :rightStr,
             IsGameing: true,
             IsLoseGame: false,
-            IsNextPlot: true,
+            IsNextPlot: false,
             IsNextChapter: false,
             isNeedCharge: false,
             isNeedShare: false,

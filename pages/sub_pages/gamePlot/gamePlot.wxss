@@ -51,7 +51,7 @@
 
 .lab_Talk_Left {
     width: 500rpx;
-    padding-top: 2rpx;
+    /* padding-top: 2rpx; */
     letter-spacing: 2px;
     /* height: 100rpx; */
     position: absolute;
@@ -63,7 +63,7 @@
 }
 
 .lab_Talk_Right {
-    padding-top: 2rpx;
+    /* padding-top: 2rpx; */
     width: 500rpx;
     letter-spacing: 2px;
     /* height: 100rpx; */
@@ -310,23 +310,23 @@
 }
 .lab_Ans {
     position: fixed;
-    width: 500rpx;
+    width: 400rpx;
     height: 100rpx;
     text-align: left;
-    font-size: 20rpx;
-    padding-top: 420rpx;
+    font-size: 26rpx;
+    padding-top: 280rpx;
     color: #000000;
-    padding-left: 20rpx;
+    padding-left: 0rpx;
 }
 .lab_AnsTip {
     position: fixed;
-    width: 500rpx;
+    width: 400rpx;
     height: 100rpx;
     text-align: left;
-    font-size: 20rpx;
-    padding-top: 520rpx;
+    font-size: 26rpx;
+    padding-top: 320rpx;
     color: #000000;
-    padding-left: 20rpx;
+    padding-left: 0rpx;
 }
 
 /* 下一个章节 */
