@@ -52,7 +52,8 @@ Page({
     }
     if (curCpData != undefined) {
       if (cpPlotIdx >= curCpData.PlotIDArr.length) { //这关打完了。 跳下各章节
-        this.ShowPlotInfo(chapterId++, 0);
+        let nextId = chapterId+1;
+        this.ShowPlotInfo(nextId, 0);
       } else {
         let plotId = curCpData.PlotIDArr[cpPlotIdx];
         let curPlotData = undefined;
@@ -315,6 +316,9 @@ Page({
         }
         if (isNextChapter) { //去下一章节了
           if (app.gameData.chapterId > app.gameData.gameChapterId) { //下一关也开了 直接去吧
+            
+    app.gameData.gameChapterId++;
+    app.gameData.gameCpPlotIdx=0;
             this.btnClick_NextChapter();
             return;
           }
@@ -324,6 +328,7 @@ Page({
         
         } else { //检测本关是否领过奖励      
           if (app.gameData.plotIdArr.indexOf(this.data.CurPlotData._id) >= 0) { //领取过奖励
+            app.gameData.gameCpPlotIdx++;
             this.btnClick_NextPlot();
             return;
           }
@@ -488,7 +493,6 @@ Page({
    * 下一关
    */
   btnClick_NextPlot: function () {
-    app.gameData.gameCpPlotIdx++;
 
     this.ShowPlotInfo(app.gameData.gameChapterId, app.gameData.gameCpPlotIdx);
   },
@@ -496,8 +500,6 @@ Page({
    * 下一章节
    */
   btnClick_NextChapter: function () {
-    app.gameData.gameChapterId++;
-    app.gameData.gameCpPlotIdx=0;
     this.GotoNextChapter();
 
   },
