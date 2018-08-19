@@ -47,6 +47,8 @@ App({
     })
     wx.getSystemInfo({
       success:  res => {
+        let windowHeight = (res.windowHeight * (750 / res.windowWidth)); //将高度乘以换算后的该设备的rpx与px的比例
+        this.globalData.windowHeight = windowHeight;
         if(res.model.search("iPhone")){
           this.globalData.isiPhone = 1;
           if(res.model.search("iPhone X")){
@@ -66,6 +68,7 @@ App({
     wxLoginInfo: null,
     isiPhone: 0,
     isiPhoneX: 0,
+    windowHeight: 0,
     GAME_USERID: "gameUserID",
     GAME_GOLD: "gameGold",
 

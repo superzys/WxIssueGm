@@ -16,6 +16,7 @@ Page({
     IsNextChapter: false,
     isNeedCharge: false,
     isNeedShare: false,
+    talkViewTop:6,
     allFontColumNum: 3,
     rightStr:"",
     CurCpData: {},
@@ -102,6 +103,9 @@ Page({
           }
 
           let WordsArr = [];
+          let totalH  = 0;
+          let viewH = 0.53 *app.globalData.windowHeight;
+          let talkViewTop = 6;
           for (let i = 0; i < curPlotData.DialogsArr.length; i++) {
             // "PhotoId":0,"IsLeft":1,"Words":"请问你","ImgFaceArr
             let word = curPlotData.DialogsArr[i];
@@ -110,11 +114,17 @@ Page({
             wordObj.IsLeft = word.IsLeft;
             wordObj.Words = word.Words;
             wordObj.ImgFaceArr = word.ImgFaceArr;
-            wordObj.TxtLen = Math.ceil(word.Words.length / 13);
+            wordObj.TxtLen = Math.ceil(word.Words.length / 16);
             if (wordObj.TxtLen < 2) {
               wordObj.TxtLen = 2;
             }
             WordsArr.push(wordObj);
+            totalH += wordObj.TxtLen *35;
+          }
+          if(totalH >= viewH * 0.75){
+            talkViewTop = 6;
+          }else{
+            talkViewTop = (viewH - totalH - 30 )/2;
           }
 
           this.setData({
@@ -130,6 +140,7 @@ Page({
             CurCpData: curCpData,
             CurPlotData: curPlotData,
             AllFontArr: fontObkArr,
+            talkViewTop:talkViewTop,
             ChoosedFontArr: ChoosedFontArr,
             Gold: app.gameData.goldNum
           });
@@ -477,7 +488,7 @@ Page({
    * 下一关
    */
   btnClick_NextPlot: function () {
-
+    app.gameData.gameCpPlotIdx++;
 
     this.ShowPlotInfo(app.gameData.gameChapterId, app.gameData.gameCpPlotIdx);
   },
@@ -485,7 +496,8 @@ Page({
    * 下一章节
    */
   btnClick_NextChapter: function () {
- 
+    app.gameData.gameChapterId++;
+    app.gameData.gameCpPlotIdx=0;
     this.GotoNextChapter();
 
   },

@@ -1,15 +1,16 @@
 <!-- pages/sub_pages/gamePlot.wxml -->
 <image class="main_bg" src="../../imagesUrl/GameBk.jpg"></image>
 <view class="ViewTalk">
-    <scroll-view scrollY="true" scroll-with-animation="true">
+    <scroll-view scrollY="true" scroll-with-animation="true"
+    style="padding-top:{{talkViewTop }}rpx">
         <view class="ViewOneTalk" bindtap="clickTipBk" wx:for="{{WordsArr}}" data-item="{{item}}" wx:for-index="idx" wx:key="idx" wx:for-item="item">
             <!-- <view class="bkView"> -->
-            <image class="ImgBkTalk" src="../../images/{{item.IsLeft?'ImgBk_Left':'ImgBk_Right'}}.png" style="height:{{item.TxtLen *51}}rpx" />
+            <image class="ImgBkTalk" src="../../images/{{item.IsLeft?'ImgBk_Left':'ImgBk_Right'}}.png" style="height:{{item.TxtLen *32 +5}}rpx" />
             <!-- </view> -->
-            <image class="ImgPhoto" style="padding-left:{{item.IsLeft?'15rpx':'500rpx'}}" src="../../images/PhotoBig_{{item.PhotoId}}.jpg" />
+            <image class="ImgPhoto" style="padding-left:{{item.IsLeft?'15rpx':'520rpx'}}" src="../../images/PhotoBig_{{item.PhotoId}}.jpg" />
             <!-- 一行13个字 背景高度 53 -->
-            <text class="lab_Talk_Left" wx:if="{{item.IsLeft}}" style="padding-top:{{item.Words.length > 13?'2rpx':'25rpx'}}">{{item.Words}}</text>
-            <text class="lab_Talk_Right" wx:if="{{!item.IsLeft}}" style="text-align:{{item.Words.length > 13?'left':'right'}};padding-top:{{item.Words.length > 13?'2rpx':'25rpx'}}">{{item.Words}}</text>
+            <text class="lab_Talk_Left" wx:if="{{item.IsLeft}}" style="padding-top:{{item.Words.length > 16?'2rpx':'16rpx'}}">{{item.Words}}</text>
+            <text class="lab_Talk_Right" wx:if="{{!item.IsLeft}}" style="text-align:{{item.Words.length > 16?'left':'right'}};padding-top:{{item.Words.length > 16?'2rpx':'16rpx'}}">{{item.Words}}</text>
         </view>
     </scroll-view>
 </view>
@@ -65,7 +66,9 @@
 <view catchtap="clickTipBk" class="tipNextChapterInfo" wx:if="{{IsNextChapter}}">
     <view class="ViewTipChapter">
         <image class="tipImg_Chapter" src="../../imagesUrl/Dialog_DoneChapter.png"></image>
-             <view class="ViewTipTxt">
+    <view class="ViewTipTxt">
+    <text class="lab_Ans1">答案:{{rightStr}}</text>
+    <text class="lab_AnsTip1">解析:{{CurPlotData.AnsDes}}</text>
   <image class="tipTxt1" wx:if="{{!isNeedShare && !isNeedCharge}}" src="../../images/Tip_NextChapter.png"></image>
   <image class="tipTxt2" wx:else src="../../images/Tip_UnlockChapter.png"></image>
              </view>
