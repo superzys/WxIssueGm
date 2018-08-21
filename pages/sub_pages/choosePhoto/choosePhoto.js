@@ -35,8 +35,8 @@ Page({
   },
   btnClick_Left_Next: function () {
     this.data.leftPhoto++;
-    if (this.data.leftPhoto > 2) {
-      this.data.leftPhoto = 2;
+    if (this.data.leftPhoto > 15) {
+      this.data.leftPhoto = 15  ;
     }
     this.setData({
       leftPhoto: this.data.leftPhoto
@@ -53,8 +53,8 @@ Page({
   },
   btnClick_Rightt_Next: function () {
     this.data.rightPhoto++;
-    if (this.data.rightPhoto > 2) {
-      this.data.rightPhoto = 2;
+    if (this.data.rightPhoto > 15) {
+      this.data.rightPhoto = 15;
     }
     this.setData({
       rightPhoto: this.data.rightPhoto

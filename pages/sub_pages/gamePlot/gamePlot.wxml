@@ -5,12 +5,12 @@
     style="padding-top:{{talkViewTop }}rpx">
         <view class="ViewOneTalk" bindtap="clickTipBk" wx:for="{{WordsArr}}" data-item="{{item}}" wx:for-index="idx" wx:key="idx" wx:for-item="item">
             <!-- <view class="bkView"> -->
-            <image class="ImgBkTalk" src="../../images/{{item.IsLeft?'ImgBk_Left':'ImgBk_Right'}}.png" style="height:{{item.TxtLen *32 +5}}rpx" />
+            <image class="ImgBkTalk" src="../../images/{{item.IsLeft?'ImgBk_Left':'ImgBk_Right'}}.png" style="height:{{item.TxtLen *50 +4}}rpx;padding-left:{{item.IsLeft?'88rpx':'0rpx'}}" />
             <!-- </view> -->
-            <image class="ImgPhoto" style="padding-left:{{item.IsLeft?'15rpx':'520rpx'}}" src="../../images/PhotoBig_{{item.PhotoId}}.jpg" />
+            <image class="ImgPhoto" style="padding-left:{{item.IsLeft?'0rpx':'510rpx'}}" src="../../images/PhotoBig_{{item.PhotoId}}.jpg" />
             <!-- 一行13个字 背景高度 53 -->
-            <text class="lab_Talk_Left" wx:if="{{item.IsLeft}}" style="padding-top:{{item.Words.length > 16?'2rpx':'16rpx'}}">{{item.Words}}</text>
-            <text class="lab_Talk_Right" wx:if="{{!item.IsLeft}}" style="text-align:{{item.Words.length > 16?'left':'right'}};padding-top:{{item.Words.length > 16?'2rpx':'16rpx'}}">{{item.Words}}</text>
+            <text class="lab_Talk_Left" wx:if="{{item.IsLeft}}" style="padding-top:{{item.Words.length > 13?'2rpx':'25rpx'}}">{{item.Words}}</text>
+            <text class="lab_Talk_Right" wx:if="{{!item.IsLeft}}" style="text-align:{{item.Words.length > 13?'left':'right'}};padding-top:{{item.Words.length > 13?'2rpx':'25rpx'}}">{{item.Words}}</text>
         </view>
     </scroll-view>
 </view>

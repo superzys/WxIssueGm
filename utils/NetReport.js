@@ -230,7 +230,13 @@ module.exports = {
                     console.log("出题失败 上报用户信息");
                 } else {
                      let Status = getObj.Status;
-                    console.log("获取排行结束 上报用户信息");
+                     wx.showToast({
+                        title: "题目创建成功",
+                        icon: "none",
+                        mask: true,
+                        duration: 2e3
+                      });
+                    console.log("出题成功  上报用户信息");
                 }
             }
         });

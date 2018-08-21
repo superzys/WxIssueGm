@@ -99,7 +99,10 @@ Page({
     obj.TipsArr = TipsArr;
 
     NetReprot.SendDesignIssue(obj);
+    wx.navigateBack();
+    wx.navigateBack();
   },
+
 
   readAgreement: function () {
     //弹出来 规则

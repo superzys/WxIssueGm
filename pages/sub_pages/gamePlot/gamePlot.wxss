@@ -18,7 +18,7 @@
 /** 对话区*/
 .ViewTalk scroll-view {
     padding-top: 6rpx;
-    padding-bottom: 40rpx;
+    padding-bottom: 30rpx;
     flex: 1;
     display: flex;
     flex-direction: column;
@@ -37,26 +37,26 @@
 }
 
 .ImgBkTalk {
-    width: 606rpx;
+    width: 506rpx;
     height: 105rpx;
 }
 
 .ImgPhoto {
-    width: 60rpx;
-    height: 60rpx;
+    width: 86rpx;
+    height: 86rpx;
     padding-left: 15rpx;
     padding-top: 2rpx;
     position: absolute;
 }
 
 .lab_Talk_Left {
-    width: 500rpx;
+    width: 480rpx;
     /* padding-top: 2rpx; */
     letter-spacing: 2px;
     /* height: 100rpx; */
     position: absolute;
     text-align: left;
-    font-size: 22rpx;
+    font-size: 32rpx;
     color: #000000;
     padding-left: 110rpx;
     /* vertical-align: middle; */
@@ -64,14 +64,14 @@
 
 .lab_Talk_Right {
     /* padding-top: 2rpx; */
-    width: 500rpx;
+    width: 480rpx;
     letter-spacing: 2px;
     /* height: 100rpx; */
     position: absolute;
     text-align: right;
-    font-size: 22rpx;
+    font-size: 32rpx;
     color: #000000;
-    padding-left: 9rpx;
+    padding-left: 10rpx;
     /* vertical-align: middle; */
 }
 .Img_Line {
@@ -125,7 +125,7 @@
 }
 
 .ViewCsdFont {
-    margin-left: 8%;
+    margin-left: 6%;
     width: 66%;
     height: 100rpx;
     display: flex;
@@ -211,12 +211,14 @@
     position: fixed;
     width: 76rpx;
     height: 78rpx;
+    padding-left: 5rpx;
 }
 
 .ImgBk_FontShow {
     position: fixed;
     width: 76rpx;
     height: 80rpx;
+    padding-left: 5rpx;
 }
 
 .lab_Csd {
@@ -314,7 +316,7 @@
     height: 100rpx;
     text-align: left;
     font-size: 26rpx;
-    padding-top: 280rpx;
+    padding-top: 260rpx;
     color: #000000;
     padding-left: 0rpx;
 }
@@ -324,7 +326,7 @@
     height: 100rpx;
     text-align: left;
     font-size: 26rpx;
-    padding-top: 320rpx;
+    padding-top: 300rpx;
     color: #000000;
     padding-left: 0rpx;
 }
@@ -366,7 +368,7 @@
     align-items: center;
     position: relative;
     justify-content: center;
-    top: -400rpx;
+    top: -420rpx;
     width: 100%;
     height: 200rpx;
     /* left: 5%; */

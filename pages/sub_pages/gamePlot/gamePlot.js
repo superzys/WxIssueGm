@@ -104,7 +104,7 @@ Page({
           }
 
           let WordsArr = [];
-          let totalH  = 0;
+          let totalH  = 40;
           let viewH = 0.53 *app.globalData.windowHeight;
           let talkViewTop = 6;
           for (let i = 0; i < curPlotData.DialogsArr.length; i++) {
@@ -115,17 +115,25 @@ Page({
             wordObj.IsLeft = word.IsLeft;
             wordObj.Words = word.Words;
             wordObj.ImgFaceArr = word.ImgFaceArr;
-            wordObj.TxtLen = Math.ceil(word.Words.length / 16);
+            wordObj.TxtLen = Math.ceil(word.Words.length / 13);
             if (wordObj.TxtLen < 2) {
               wordObj.TxtLen = 2;
             }
             WordsArr.push(wordObj);
-            totalH += wordObj.TxtLen *35;
+            totalH += wordObj.TxtLen *50  +20;
           }
-          if(totalH >= viewH * 0.75){
-            talkViewTop = 6;
+          if(totalH >= viewH){// * 0.75){
+            talkViewTop = 6;   
           }else{
-            talkViewTop = (viewH - totalH - 30 )/2;
+            talkViewTop = (viewH - totalH +20 )/2;
+          }
+          if(totalH >= viewH ){
+            wx.showToast({
+              title: "可滚动查看剧情对话",
+              icon: "none",
+              mask: true,
+              duration: 2e3
+            });
           }
 
           this.setData({
@@ -317,15 +325,15 @@ Page({
         if (isNextChapter) { //去下一章节了
           if (app.gameData.chapterId > app.gameData.gameChapterId) { //下一关也开了 直接去吧
             
-    app.gameData.gameChapterId++;
-    app.gameData.gameCpPlotIdx=0;
+            app.gameData.gameChapterId++;
+            app.gameData.gameCpPlotIdx=0;
             this.btnClick_NextChapter();
             return;
           }
           if(!isNeedShare && !isNeedCharge){
             this.WinCurUnLockNextChapter();
           }
-        
+          this.WinCurPlot();
         } else { //检测本关是否领过奖励      
           if (app.gameData.plotIdArr.indexOf(this.data.CurPlotData._id) >= 0) { //领取过奖励
             app.gameData.gameCpPlotIdx++;
@@ -463,9 +471,10 @@ Page({
    */
 
    WinCurPlot:function(){
+    app.gameData.goldNum += this.data.CurPlotData.RewardGoldNum;
     //这样需要更新服务器数据
     NetReprot.GainPlotReward(app.gameData.chapterId, this.data.CurPlotData._id);
-
+    
     app.gameData.gameCpPlotIdx++;
     if (app.gameData.chapterId == app.gameData.gameChapterId && app.gameData.cpPlotIndex < app.gameData.gameCpPlotIdx) { //是当前关卡的话。 进度改掉
       app.gameData.cpPlotIndex = app.gameData.gameCpPlotIdx;
