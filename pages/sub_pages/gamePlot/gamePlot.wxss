@@ -42,8 +42,8 @@
 }
 
 .ImgPhoto {
-    width: 86rpx;
-    height: 86rpx;
+    width: 90rpx;
+    height: 90rpx;
     padding-left: 15rpx;
     padding-top: 2rpx;
     position: absolute;
@@ -224,8 +224,12 @@
 .lab_Csd {
     position: fixed;
     width: 76rpx;
-    height: 60rpx;
+    height: 80rpx;
     text-align: center;
+    padding-left: 5rpx;
+    line-height: 80rpx;
+    align-items: center;
+    justify-content: center;
 }
 
 .lab_Money {
