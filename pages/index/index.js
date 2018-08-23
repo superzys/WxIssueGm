@@ -40,6 +40,7 @@ Page({
 
   onShareAppMessage: function (a) {
     var o = 7;
+    let isCnacle = false;
     return {
       title: '转发', // 转发标题（默认：当前小程序名称）
       path: '/pages/index/index', // 转发路径（当前页面 path ），必须是以 / 开头的完整路径
@@ -55,24 +56,28 @@ Page({
       },
       fail(e) {
         console.log(e);
+        isCnacle = true;
         // shareAppMessage:fail cancel
         // shareAppMessage:fail(detail message) 
       },
       complete() {
         console.log("complete");
-        NetReprot.ShareOnce();
-        if (app.gameData.shareNumToday < 5) {
-          //不等结果。 自己计算成功    
-          wx.showToast({
-            title: "获得萝卜币+5",
-            image: "../images/Img_DinaLB.png",
-            duration: 2e3
-          });
-          app.gameData.shareNumToday++;
-          app.gameData.goldNum += 5;
-          dataCenter.SaveShareData(app.gameData, app.globalData);
-
+        if(!isCnacle){
+          NetReprot.ShareOnce();
+          if (app.gameData.shareNumToday < 5) {
+            //不等结果。 自己计算成功    
+            wx.showToast({
+              title: "获得萝卜币+5",
+              image: "../images/Img_DinaLB.png",
+              duration: 2e3
+            });
+            app.gameData.shareNumToday++;
+            app.gameData.goldNum += 5;
+            dataCenter.SaveShareData(app.gameData, app.globalData);
+  
+          }
         }
+    
       }
     }
   },
@@ -153,13 +158,14 @@ Page({
       app.gameData.lastSignDay = 0;
       app.gameData.plotIdArr = [];
       app.gameData.isAgreeXieYi = 0;
+      app.gameData.isShowedGameTip = 0;
 
       dataCenter.SaveAllData(app.gameData, app.globalData);
     }
     else {//如果是登录过的根据时间判断 初始化
 
       app.gameData.goldNum = wx.getStorageSync(app.globalData.GAME_GOLD);
-
+      app.gameData.isShowedGameTip =wx.getStorageSync(app.globalData.IS_Showed_GameTIp);
       app.gameData.chapterId = wx.getStorageSync(app.globalData.GAME_CHAPTERID);
       app.gameData.cpPlotIndex = wx.getStorageSync(app.globalData.GAME_CPPLOTINDEX);
       app.gameData.plotIdArr = wx.getStorageSync(app.globalData.GAME_PLOT_ARR);

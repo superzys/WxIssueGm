@@ -80,7 +80,15 @@ const SaveYongHuXieYi = (date, keyData) => {
         data: date.isAgreeXieYi
     });
 }
-
+const SaveIsShowedGameTip = (date, keyData) => {
+    if (date == undefined || keyData == undefined) {
+        return;
+    }
+    wx.setStorage({
+        key: keyData.IS_Showed_GameTIp,
+        data: date.isShowedGameTip
+    });
+}
 // const SaveGameData = (date, keyData) => {
 
 //     wx.setStorage({
@@ -104,5 +112,6 @@ module.exports = {
     SaveSignedData: SaveSignedData,
     SaveShareData: SaveShareData,
     SaveYongHuXieYi: SaveYongHuXieYi,
+    SaveIsShowedGameTip: SaveIsShowedGameTip,
     SaveLoginData: SaveLoginData
 }

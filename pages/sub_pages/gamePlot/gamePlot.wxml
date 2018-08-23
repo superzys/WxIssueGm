@@ -14,6 +14,7 @@
         </view>
     </scroll-view>
 </view>
+  
 <view class="ViewOp">
     <image class="Img_Line" src="../../images/Img_Line.png" />
     <view class="ViewBtns">
@@ -85,4 +86,7 @@
             </view>
         </view>
     </view>
+</view>
+<view class="GameTipView"  wx:if="{{IsShowGameTip}}">
+<image bind:tap="ClickClose_GameTip" class="ImgBk_GameTip" src="../../images/GameTip.png" />
 </view>

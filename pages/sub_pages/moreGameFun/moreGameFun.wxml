@@ -1,8 +1,15 @@
-<!--pages/sub_pages/moreGameFun/moreGameFun.wxml-->
+<!-- pages/sub_pages/moreGameFun/moreGameFun.wxml -->
 <image class="main_bg" src="../../imagesUrl/GameBk.jpg"></image>
 <view class="ViewPage">
     <image bind:tap="btnClick_CreateIssue" class="btnImg" src="../../images/Btn_WoChuTi.png" />
-    <image bind:tap="btnClick_Wujin" class="btnImg" src="../../images/Btn_WuJinStart.png" />
-    <image bind:tap="btnClick_Baby" class="btnImg" src="../../images/Btn_Baby.png" />
-    <image bind:tap="btnClick_Taolu" class="btnImg" src="../../images/Btn_Taolu.png" />
+    <image bind:tap="btnClick_Wujin" class="btnImg" src="../../images/Btn_WuJinStart.png" wx:if="{{IsShowWuJin}}" />
+
+ <navigator target="miniProgram" open-type="navigate" app-id="wx3a83a09060d48147" path="" extra-data="" version="release">
+        <image  class="btnImg" src="../../images/Btn_Baby.png" />
+    </navigator>
+
+     <navigator target="miniProgram" open-type="navigate" app-id="wx48263859e4e1255a" path="" extra-data="" version="release">
+        <image  class="btnImg" src="../../images/Btn_RenZhi.png" />
+    </navigator>
+    <image bind:tap="btnClick_Taolu" class="btnImg" src="../../images/Btn_Taolu.png" wx:if="{{IsShowTaoLu}}" />
 </view>

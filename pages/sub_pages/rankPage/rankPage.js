@@ -17,6 +17,7 @@ Page({
    * }
    */
   data: {
+    IsShowWuJin: 0,
     rankType: 1,
     myOrder: 0,
     myChapter: "asdasd",
@@ -35,6 +36,7 @@ Page({
     let myPlot =app.gameData.plotIdArr.length;
 
     this.setData({
+      IsShowWuJin:false,
       myChapter: myChapter,
       myPlot:myPlot
     });
@@ -55,7 +57,7 @@ Page({
       rankArr = this.GetGameRanArr();
     }
     else if (this.data.rankType == 2) {
-
+      rankArr = this.GetChuTiRanArr();
     } else {
 
     }
@@ -102,6 +104,41 @@ Page({
 
   },
 
+  GetChuTiRanArr: function () {
+    let curPage = this;
+    var timestamp = new Date().getTime();
+    if (app.gameData.chutiRankArr == undefined || (timestamp - app.gameData.chutiRankTime ) >= 3000) {//需要更新
+
+      wx.showLoading({
+        title: "加载中..."
+      });
+      NetReprot.GetRankInfo(this.data.rankType, (arr) => {
+        wx.hideLoading();
+        let rankArr = [];
+        for (let i = 0; i < arr.length; i++) {
+          let netObj = arr[i];
+          let rankObj = {};
+          rankObj.rankNum = netObj.rankNum;
+          rankObj.nickName = netObj.nickName;
+          rankObj.avatarUrl = netObj.avatarUrl;
+          // let cpname =util. GetChapterName(netObj.value1);
+          rankObj.value = netObj.value+"";
+          // rankObj.value1 = cpname;
+          rankArr.push(rankObj);
+        }
+        app.gameData.chutiRankArr = rankArr;
+        app.gameData.chutiRankTime = timestamp;
+
+        curPage.setData({
+          rankArr: rankArr
+        });
+      });
+      return [];
+    } else {
+      return app.gameData.chutiRankArr;
+    }
+
+  },
 
   /**
    * 生命周期函数--监听页面初次渲染完成

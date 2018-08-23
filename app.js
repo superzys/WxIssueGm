@@ -77,6 +77,7 @@ App({
     GAME_PLOT_ARR: "gamePlotArr",
     
     IS_AGREE_XIEYI: "IsAgreeXieYi",
+    IS_Showed_GameTIp: "IS_Showed_GameTIp",
     SHARE_COUNT: "ShareCount",
     LAST_LOGINDAY: "LastLoginDay",
     LAST_SIGNIN: "LastSignin",
@@ -91,6 +92,8 @@ App({
     gameChapterId :0,
     gameCpPlotIdx :0,
     isAgreeXieYi :0,
+
+    isShowedGameTip :0,
 
     chapterId :0,
     cpPlotIndex: 0,

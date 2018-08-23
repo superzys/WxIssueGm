@@ -9,7 +9,7 @@
         <image src="../../images/Btn_ChuTiRank_Down.png" wx:if="{{rankType==2}}"></image>
         <image src="../../images/Btn_ChuTiRank.png" wx:else></image>
     </view>
-    <view bindtap="clickTop" class="radio  {{rankType==3?'choosed':'un-choosed'}}" data-type="3">
+    <view bindtap="clickTop" class="radio  {{rankType==3?'choosed':'un-choosed'}}" data-type="3" wx:if="{{IsShowWuJin}}">>
         <image src="../../images/Btn_WuJinRank_Down.png" wx:if="{{rankType==3}}"></image>
         <image src="../../images/Btn_WuJinRank.png" wx:else></image>
     </view>
@@ -27,8 +27,8 @@
                 <text class="myChapter">{{item.value1}}</text>
                 <text class="myPlot">第{{item.value}}关</text>
             </view>
-            <text class="level" wx:if="{{rankType==2}}">{{item.praise}}</text>
-            <text class="level" wx:if="{{rankType==3}}">{{item.questions}}</text>
+            <text class="level" wx:if="{{rankType==2}}">{{item.value}}</text>
+            <text class="level" wx:if="{{rankType==3}}">{{item.value}}</text>
         </view>
     </scroll-view>
     <view class="item me" disabled="false" wx:if="{{rankType==1}}">

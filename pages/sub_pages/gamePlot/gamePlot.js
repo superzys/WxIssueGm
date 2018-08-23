@@ -11,14 +11,15 @@ Page({
    */
   data: {
     IsGameing: false,
+    IsShowGameTip: false,
     IsLoseGame: false,
     IsNextPlot: false,
     IsNextChapter: false,
     isNeedCharge: false,
     isNeedShare: false,
-    talkViewTop:6,
+    talkViewTop: 6,
     allFontColumNum: 3,
-    rightStr:"",
+    rightStr: "",
     CurCpData: {},
 
     WordsArr: [],
@@ -52,7 +53,7 @@ Page({
     }
     if (curCpData != undefined) {
       if (cpPlotIdx >= curCpData.PlotIDArr.length) { //这关打完了。 跳下各章节
-        let nextId = chapterId+1;
+        let nextId = chapterId + 1;
         this.ShowPlotInfo(nextId, 0);
       } else {
         let plotId = curCpData.PlotIDArr[cpPlotIdx];
@@ -92,20 +93,20 @@ Page({
           }
           //制作答案选项
           let ChoosedFontArr = [];
-        let rightStr=  "";
+          let rightStr = "";
           for (let i = 0; i < curPlotData.RightAnsArr.length; i++) {
             let fontObj = {};
             fontObj.idx = i;
             fontObj.sourceIdx = -1;
             fontObj.str = "";
             fontObj.IsChoose = false;
-            rightStr+=curPlotData.RightAnsArr[i];
+            rightStr += curPlotData.RightAnsArr[i];
             ChoosedFontArr.push(fontObj);
           }
 
           let WordsArr = [];
-          let totalH  = 40;
-          let viewH = 0.53 *app.globalData.windowHeight;
+          let totalH = 40;
+          let viewH = 0.53 * app.globalData.windowHeight;
           let talkViewTop = 6;
           for (let i = 0; i < curPlotData.DialogsArr.length; i++) {
             // "PhotoId":0,"IsLeft":1,"Words":"请问你","ImgFaceArr
@@ -120,14 +121,14 @@ Page({
               wordObj.TxtLen = 2;
             }
             WordsArr.push(wordObj);
-            totalH += wordObj.TxtLen *50  +20;
+            totalH += wordObj.TxtLen * 50 + 20;
           }
-          if(totalH >= viewH){// * 0.75){
-            talkViewTop = 6;   
-          }else{
-            talkViewTop = (viewH - totalH +20 )/2;
+          if (totalH >= viewH) { // * 0.75){
+            talkViewTop = 6;
+          } else {
+            talkViewTop = (viewH - totalH + 20) / 2;
           }
-          if(totalH >= viewH ){
+          if (totalH >= viewH) {
             wx.showToast({
               title: "可滚动查看剧情对话",
               icon: "none",
@@ -137,7 +138,8 @@ Page({
           }
 
           this.setData({
-            rightStr :rightStr,
+            rightStr: rightStr,
+            IsShowGameTip: !app.gameData.isShowedGameTip,
             IsGameing: true,
             IsLoseGame: false,
             IsNextPlot: false,
@@ -149,7 +151,7 @@ Page({
             CurCpData: curCpData,
             CurPlotData: curPlotData,
             AllFontArr: fontObkArr,
-            talkViewTop:talkViewTop,
+            talkViewTop: talkViewTop,
             ChoosedFontArr: ChoosedFontArr,
             Gold: app.gameData.goldNum
           });
@@ -162,6 +164,14 @@ Page({
     }
 
     dataCenter.SaveAllData(app.gameData, app.globalData);
+  },
+
+  ClickClose_GameTip: function () {
+    app.gameData.isShowedGameTip = 1;
+    dataCenter.SaveIsShowedGameTip(app.gameData, app.globalData);
+    this.setData({
+      IsShowGameTip: false,
+    });
   },
   /**
    * 给娃一个提示
@@ -218,12 +228,12 @@ Page({
         this.checkIsWinOrLose();
       }
     } else {
-      wx.showToast({
-        title: "萝卜币不足",
-        icon: "none",
-        mask: true,
-        duration: 2e3
-      });
+      // wx.showToast({
+      //   title: "萝卜币不足",
+      //   icon: "none",
+      //   mask: true,
+      //   duration: 2e3
+      // });
     }
   },
   /**
@@ -324,13 +334,13 @@ Page({
         }
         if (isNextChapter) { //去下一章节了
           if (app.gameData.chapterId > app.gameData.gameChapterId) { //下一关也开了 直接去吧
-            
+
             app.gameData.gameChapterId++;
-            app.gameData.gameCpPlotIdx=0;
+            app.gameData.gameCpPlotIdx = 0;
             this.btnClick_NextChapter();
             return;
           }
-          if(!isNeedShare && !isNeedCharge){
+          if (!isNeedShare && !isNeedCharge) {
             this.WinCurUnLockNextChapter();
           }
           this.WinCurPlot();
@@ -399,6 +409,7 @@ Page({
   onShareAppMessage: function (a) {
 
     let curPage = this;
+    let isCnacle = false;
     return {
       title: '转发', // 转发标题（默认：当前小程序名称）
       path: '/pages/index/index', // 转发路径（当前页面 path ），必须是以 / 开头的完整路径
@@ -413,33 +424,40 @@ Page({
         });
       },
       fail(e) {
+        isCnacle = true;
         console.log(e);
         // shareAppMessage:fail cancel
         // shareAppMessage:fail(detail message) 
       },
       complete() {
         console.log("complete");
-        if (curPage.data.IsGameing) {
+        if (!isCnacle) {
+          if (curPage.data.IsGameing) {
 
-          if (app.gameData.shareNumToday < 5) {
-            NetReprot.ShareOnce();
-            //不等结果。 自己计算成功    
-            wx.showToast({
-              title: "获得萝卜币+5",
-              image: "../../images/Img_DinaLB.png",
-              duration: 2e3
-            });
-            app.gameData.shareNumToday++;
-            app.gameData.goldNum += 5;
-            dataCenter.SaveShareData(app.gameData, app.globalData);
+            if (app.gameData.shareNumToday < 5) {
+              NetReprot.ShareOnce();
+              //不等结果。 自己计算成功    
+              wx.showToast({
+                title: "获得萝卜币+5",
+                image: "../../images/Img_DinaLB.png",
+                duration: 2e3
+              });
+              app.gameData.shareNumToday++;
+              app.gameData.goldNum += 5;
+              dataCenter.SaveShareData(app.gameData, app.globalData);
+              this.setData({
+                Gold: app.gameData.goldNum
+              });
 
+            }
+          } else {
+            //分享成功后解锁
+            NetReprot.ShareUnlock();
+            NetReprot.GainChapterReward(app.gameData.chapterId, curPage.data.CurPlotData._id);
+            curPage.GotoNextChapter();
           }
-        } else {
-          //分享成功后解锁
-          NetReprot.ShareUnlock();
-          NetReprot.GainChapterReward(app.gameData.chapterId, curPage.data.CurPlotData._id);
-          curPage.GotoNextChapter();
         }
+
       }
     }
   },
@@ -470,11 +488,11 @@ Page({
   },
    */
 
-   WinCurPlot:function(){
+  WinCurPlot: function () {
     app.gameData.goldNum += this.data.CurPlotData.RewardGoldNum;
     //这样需要更新服务器数据
     NetReprot.GainPlotReward(app.gameData.chapterId, this.data.CurPlotData._id);
-    
+
     app.gameData.gameCpPlotIdx++;
     if (app.gameData.chapterId == app.gameData.gameChapterId && app.gameData.cpPlotIndex < app.gameData.gameCpPlotIdx) { //是当前关卡的话。 进度改掉
       app.gameData.cpPlotIndex = app.gameData.gameCpPlotIdx;
@@ -483,11 +501,11 @@ Page({
     if (app.gameData.plotIdArr.indexOf(this.data.CurPlotData._id) < 0) {
       app.gameData.plotIdArr.push(this.data.CurPlotData._id);
     }
-   },
-   
-   WinCurUnLockNextChapter:function(){
+  },
+
+  WinCurUnLockNextChapter: function () {
     NetReprot.GainChapterReward(app.gameData.chapterId, this.data.CurPlotData._id);
-    
+
     app.gameData.gameChapterId++;
     app.gameData.gameCpPlotIdx = 0;
     if (app.gameData.chapterId < app.gameData.gameChapterId) { //是当前关卡的话。 进度改掉
@@ -497,7 +515,7 @@ Page({
     if (app.gameData.plotIdArr.indexOf(this.data.CurPlotData._id) < 0) {
       app.gameData.plotIdArr.push(this.data.CurPlotData._id);
     }
-   },
+  },
   /**
    * 下一关
    */
