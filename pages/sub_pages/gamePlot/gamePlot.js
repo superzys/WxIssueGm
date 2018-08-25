@@ -180,7 +180,7 @@ Page({
     if (!this.data.IsGameing) {
       return;
     }
-    if (app.gameData.goldNum >= this.data.CurPlotData.RewardGoldNum) { //钱足够
+    if (app.gameData.goldNum >= 30) { //钱足够
       let fitArr = [];
       for (let i = 0; i < this.data.ChoosedFontArr.length; i++) {
         let fontObj = this.data.ChoosedFontArr[i];
@@ -214,7 +214,7 @@ Page({
       }
       //这个字可以提示的话
       if (tipFontObj != undefined) {
-        app.gameData.goldNum -= this.data.CurPlotData.RewardGoldNum;
+        app.gameData.goldNum -= 30;
 
         let tipCmpObj = this.data.ChoosedFontArr[fotnIdx];
         tipCmpObj.str = tipStr;
@@ -438,14 +438,14 @@ Page({
               NetReprot.ShareOnce();
               //不等结果。 自己计算成功    
               wx.showToast({
-                title: "获得萝卜币+5",
+                title: "获得萝卜币+20",
                 image: "../../images/Img_DinaLB.png",
                 duration: 2e3
               });
               app.gameData.shareNumToday++;
-              app.gameData.goldNum += 5;
+              app.gameData.goldNum += 20;
               dataCenter.SaveShareData(app.gameData, app.globalData);
-              this.setData({
+              curPage.setData({
                 Gold: app.gameData.goldNum
               });
 

@@ -67,12 +67,12 @@ Page({
           if (app.gameData.shareNumToday < 5) {
             //不等结果。 自己计算成功    
             wx.showToast({
-              title: "获得萝卜币+5",
+              title: "获得萝卜币+20",
               image: "../images/Img_DinaLB.png",
               duration: 2e3
             });
             app.gameData.shareNumToday++;
-            app.gameData.goldNum += 5;
+            app.gameData.goldNum += 20;
             dataCenter.SaveShareData(app.gameData, app.globalData);
   
           }

@@ -1,6 +1,7 @@
 <!-- index.wxml -->
 <import src="../dialog_pages/lockChapterTip/lockChapterTip.wxml" />
 <image class="main_bg" src="../imagesUrl/LoginBk.jpg"></image>
+<image class="robet" src="../imagesUrl/robet.gif"></image>
 <view class="container">
   <!-- <view class="userinfo">
     <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo">
