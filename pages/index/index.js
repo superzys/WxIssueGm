@@ -185,10 +185,14 @@ Page({
       app.gameData.shareNumToday = 0;
       dataCenter.SaveShareData();
     }
-    if (curDay != app.gameData.lastSignDay) {
-      wx.navigateTo({
-        url: "../sub_pages/signin/signin"
-      });
+    if (curDay != app.gameData.lastSignDay ) {
+      app.gameData.remainSignNum = 1;
+      if( app.gameData.SessonId > 0){
+        wx.navigateTo({
+          url: "../sub_pages/signin/signin"
+        });
+      }
+
     }
 
 

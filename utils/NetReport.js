@@ -3,9 +3,9 @@ const app = getApp()
 const dataCenter = require('./dataCenter.js');
 
 // var serverURL = "http://192.168.10.152:8081/";
-var serverURL = "https://www.lqwkj.com:8081/";
+var serverURL = "https://kaixin.lqwkj.com/";
 // var serverURL = "http://47.100.200.222:8081/";
-
+// var serverURL = "http://192.168.0.3:8081/";
 
 module.exports = {
     /**
@@ -40,6 +40,11 @@ module.exports = {
                         app.gameData.gameUserId = userInfoObj.UserId;
                         dataCenter.SaveLoginData(userInfoObj, app.globalData);
                         console.log("登录成功 上报用户信息");
+                        if(app.gameData.remainSignNum  > 0){
+                            wx.navigateTo({
+                                url: "../sub_pages/signin/signin"
+                              });
+                        }
                     }
                 }
             });
