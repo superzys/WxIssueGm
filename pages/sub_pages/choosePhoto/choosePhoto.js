@@ -62,8 +62,8 @@ Page({
   },
 
   btnClick_Sure: function () {
-    app.choosePhotoLeft = this.data.leftPhoto;
-    app.choosePhotoRight = this.data.rightPhoto;
+    app.gameData.choosePhotoLeft = this.data.leftPhoto;
+    app.gameData.choosePhotoRight = this.data.rightPhoto;
       wx.navigateTo({
       url: "../createMyIssue/createMyIssue"
     });

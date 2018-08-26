@@ -11,8 +11,11 @@
 .robet {
   position: fixed;
   display: flex;
-  width: 252rpx;
-  height: 443rpx;
+  left: 40%;
+  top: 33%;
+  width: 53.9%;
+  height: 43.7%;
+  z-index: 999;
   flex-direction: column;
   align-items: center;
 }

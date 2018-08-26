@@ -24,7 +24,7 @@ Page({
       let oneTalk = {};
       // idx "PhotoId":0,"IsLeft":1,"Words":"请问你"
       oneTalk.IsLeft = i % 2 == 0 ? true : false;
-      oneTalk.PhotoId = 0;
+      oneTalk.PhotoId = oneTalk.IsLeft?app.gameData.choosePhotoLeft:app.gameData.choosePhotoRight;
       oneTalk.idx = i;
       oneTalk.heightRpx = 80;
       oneTalk.Words = "";
