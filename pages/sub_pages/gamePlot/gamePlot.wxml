@@ -58,21 +58,30 @@
     <view class="ViewTipRight">
         <image class="tipImg_Right" src="../../imagesUrl/Dialog_RightPlot.png"></image>
         <text class="lab_Reward">+{{CurPlotData.RewardGoldNum}}</text>
-        <text class="lab_Ans">答案:{{rightStr}}</text>
-        <text class="lab_AnsTip">解析:{{CurPlotData.AnsDes}}</text>
+        <view class="tipView_plot">
+            <text class="lab_Ans">答案:{{rightStr}}</text>            
+            <view class="jiexiView">
+                <text class="lab_AnsTip">解析:{{CurPlotData.AnsDes}}</text>
+            </view>        
+        </view>
         <image bind:tap="btnClick_NextPlot" class="btnNextPlot" src="../../images/Btn_NextPlot.png" />
     </view>
 </view>
 <!-- 下一章节 -->
 <view catchtap="clickTipBk" class="tipNextChapterInfo" wx:if="{{IsNextChapter}}">
     <view class="ViewTipChapter">
-        <image class="tipImg_Chapter" src="../../imagesUrl/Dialog_DoneChapter.png"></image>
-    <view class="ViewTipTxt">
-    <text class="lab_Ans1">答案:{{rightStr}}</text>
-    <text class="lab_AnsTip1">解析:{{CurPlotData.AnsDes}}</text>
-  <image class="tipTxt1" wx:if="{{!isNeedShare && !isNeedCharge}}" src="../../images/Tip_NextChapter.png"></image>
-  <image class="tipTxt2" wx:else src="../../images/Tip_UnlockChapter.png"></image>
-             </view>
+            <image class="tipImg_Chapter" src="../../imagesUrl/Dialog_DoneChapter.png"></image>
+        <view class="ViewTipTxt">
+            <image class="tipTxt1" wx:if="{{!isNeedShare && !isNeedCharge}}" src="../../images/Tip_NextChapter.png"></image>
+            <image class="tipTxt2" wx:else src="../../images/Tip_UnlockChapter.png"></image>
+            <view class="jiexiView_plot">
+                <text class="lab_Ans">答案:{{rightStr}}</text>            
+                <view class="jiexiView">
+                    <text class="lab_AnsTip">解析:{{CurPlotData.AnsDes}}</text>
+                </view>        
+            </view>            
+        </view>
+
         <view class="ViewTipBtns">
             <view class="TipBtnLeft">
                 <image bind:tap="btnClick_Return" class="btnReturn" src="../../images/Btn_Return.png" />

@@ -326,23 +326,42 @@
     color: #00b840;
     padding-left: 300rpx;
 }
-.lab_Ans {
+.tipView_plot
+{
+    display: flex;
     position: fixed;
+    top: 560rpx;
+    flex-direction: column;
+    align-items: center;
+}
+
+.jiexiView
+{
+    display: flex;
+    height: 80rpx;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.lab_Ans {
+    display: flex;
+    /* position: fixed; */
     width: 400rpx;
-    height: 100rpx;
+    /* height: 100rpx; */
     text-align: left;
     font-size: 30rpx;
-    padding-top: 260rpx;
+    /* padding-top: 260rpx; */
     color: #000000;
     padding-left: 0rpx;
 }
 .lab_AnsTip {
-    position: fixed;
+    display: flex;
+    /* position: fixed; */
     width: 400rpx;
-    height: 100rpx;
+    /* height: 100rpx; */
     text-align: left;
     font-size: 30rpx;
-    padding-top: 300rpx;
+    /* padding-top: 300rpx; */
     color: #000000;
     padding-left: 0rpx;
 }
@@ -380,7 +399,7 @@
 }
 .ViewTipTxt {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
     position: relative;
     justify-content: center;
@@ -456,11 +475,13 @@
     padding-left: 300rpx; */
 }
 .tipTxt1{
+    position: fixed;
     width: 358rpx;
     height: 30rpx;
     /* padding-top: 20rpx; */
 }
 .tipTxt2{
+    position: fixed;
     width: 402rpx;
     height: 70rpx;
 }
@@ -474,13 +495,22 @@
     color: #000000;
     padding-left: 0rpx;
 }
-.lab_AnsTip1 {
+.jiexiView_plot
+{
+    display: flex;
     position: fixed;
+    top: 470rpx;
+    flex-direction: column;
+    align-items: center;
+}
+
+.lab_AnsTip1 {
+    /* position: fixed; */
     width: 400rpx;
-    height: 100rpx;
+    /* height: 100rpx; */
     text-align: left;
     font-size: 26rpx;
-    padding-top: 230rpx;
+    /* padding-top: 230rpx; */
     color: #000000;
     padding-left: 0rpx;
 }
