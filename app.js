@@ -93,6 +93,8 @@ App({
     gameCpPlotIdx :0,
     isAgreeXieYi :0,
 
+    isIndexPage :0,
+
     isShowedGameTip :0,
 
     chapterId :0,

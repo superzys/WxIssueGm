@@ -2,7 +2,7 @@
 //获取应用实例
 const app = getApp()
 const dataCenter = require('../../utils/dataCenter.js');
-const NetReprot = require('../../utils/netReport.js');
+const NetReprot = require('../../utils/NetReport.js');
 const shareCmp = require("../../utils/share-util.js")
 
 
@@ -18,6 +18,14 @@ Page({
     isiPhone: app.globalData.isiPhone,
     isiPhoneX: app.globalData.isiPhoneX
   },
+
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function () {
+    app.gameData.isIndexPage = true;
+  },
+
   //事件处理函数
   bindViewTap: function () {
     wx.navigateTo({
@@ -41,9 +49,23 @@ Page({
   onShareAppMessage: function (a) {
     var o = 7;
     let isCnacle = false;
+    let wordsArr = ["领导说这个程序不错，要好好学习",
+      "快上车，没时间解释了，目标秋名山",
+      "新换了手机号码，想逗一下女朋友，结果。。。",
+      "你的智商已欠费，请及时充值",
+      "城市套路深，我要回农村；农村路也滑，套路更复杂",
+      "涨姿势！撩汉/妹宝典在此，单身狗就靠它了！"
+    ];
+    let ranNum = Math.random(0, 1) * wordsArr.length;
+    let TipIdx = Math.floor(ranNum);
+    if (TipIdx >= 6) {
+      TipIdx = 5;
+    }
+    let shareStr = wordsArr[TipIdx];
     return {
-      title: '转发', // 转发标题（默认：当前小程序名称）
+      title: shareStr, // 转发标题（默认：当前小程序名称）
       path: '/pages/index/index', // 转发路径（当前页面 path ），必须是以 / 开头的完整路径
+      imageUrl: "../imagesUrl/Share_" + TipIdx + ".jpg",
       success(e) {
         console.log(e);
         // shareAppMessage: ok,
@@ -62,7 +84,7 @@ Page({
       },
       complete() {
         console.log("complete");
-        if(!isCnacle){
+        if (!isCnacle) {
           NetReprot.ShareOnce();
           if (app.gameData.shareNumToday < 5) {
             //不等结果。 自己计算成功    
@@ -74,10 +96,10 @@ Page({
             app.gameData.shareNumToday++;
             app.gameData.goldNum += 20;
             dataCenter.SaveShareData(app.gameData, app.globalData);
-  
+
           }
         }
-    
+
       }
     }
   },
@@ -110,7 +132,14 @@ Page({
       url: "../sub_pages/createMyIssue/createMyIssue"
     });
   },
+  bindBtnClickOpenGameCpList: function () {
+    this.StartLoginAndGotoGame();
+    // wx.navigateTo({
+    //   url: "../sub_pages/chapterList/chapterList"
+    // });
+  },
   onLoad: function () {
+    app.gameData.isIndexPage = true;
     if (app.globalData.userInfo) {
       this.setData({
         userInfo: app.globalData.userInfo,
@@ -128,7 +157,7 @@ Page({
         if (app.gameData.SessonId > 0) {
 
         } else {
-          NetReprot.LoginWx();
+          NetReprot.LoginWx(this.loginBack);
         }
       }
     } else {
@@ -148,7 +177,7 @@ Page({
     //如果没有登录过； 呵呵 给一份数据
     // let signTime = wx.getStorageSync(app.globalData.LAST_SIGNIN);
     let chapterId = wx.getStorageSync(app.globalData.GAME_CHAPTERID);
-    if (chapterId == undefined || chapterId == "") {//没存的话初始化用户
+    if (chapterId == undefined || chapterId == "") { //没存的话初始化用户
       app.gameData.chapterId = 1;
       app.gameData.cpPlotIndex = 0;
       app.gameData.goldNum = 0;
@@ -161,11 +190,10 @@ Page({
       app.gameData.isShowedGameTip = 0;
 
       dataCenter.SaveAllData(app.gameData, app.globalData);
-    }
-    else {//如果是登录过的根据时间判断 初始化
+    } else { //如果是登录过的根据时间判断 初始化
 
       app.gameData.goldNum = wx.getStorageSync(app.globalData.GAME_GOLD);
-      app.gameData.isShowedGameTip =wx.getStorageSync(app.globalData.IS_Showed_GameTIp);
+      app.gameData.isShowedGameTip = wx.getStorageSync(app.globalData.IS_Showed_GameTIp);
       app.gameData.chapterId = wx.getStorageSync(app.globalData.GAME_CHAPTERID);
       app.gameData.cpPlotIndex = wx.getStorageSync(app.globalData.GAME_CPPLOTINDEX);
       app.gameData.plotIdArr = wx.getStorageSync(app.globalData.GAME_PLOT_ARR);
@@ -185,9 +213,9 @@ Page({
       app.gameData.shareNumToday = 0;
       dataCenter.SaveShareData();
     }
-    if (curDay != app.gameData.lastSignDay ) {
+    if (curDay != app.gameData.lastSignDay) {
       app.gameData.remainSignNum = 1;
-      if( app.gameData.SessonId > 0){
+      if (app.gameData.SessonId > 0) {
         wx.navigateTo({
           url: "../sub_pages/signin/signin"
         });
@@ -198,20 +226,34 @@ Page({
 
   },
   StartLoginAndGotoGame: function () {
+
+    wx.navigateTo({
+      url: "../sub_pages/chapterList/chapterList"
+    });
+
     if (app.gameData.SessonId > 0) {
 
     } else {
-      NetReprot.LoginWx();
+      NetReprot.LoginWx(this.loginBack);
     }
-
-    wx.navigateTo({
-      url: "../sub_pages/chapterLv/chapterLv"
-    });
   },
-  bindBtnClick :function(){
+  loginBack: function () {
+    if (app.gameData.remainSignNum > 0) {
+      if (app.gameData.isIndexPage) {
+        wx.navigateTo({
+          url: "../sub_pages/signin/signin"
+        });
+      } else {
+        wx.navigateTo({
+          url: "../signin/signin"
+        });
+      }
+    }
+  },
+  bindBtnClick: function () {
     wx.showLoading({
       title: "加载中..."
-  });
+    });
   },
   getUserInfo: function (e) {
     console.log(e)

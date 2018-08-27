@@ -29,10 +29,10 @@
     </view>
     <view class="ViewShare">
       <button bindtap="bindBtnClick" class="getUserInfoAndFun" wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfoAndShare">
-        <image bindtap="bindBtnClickShare" class="Btn_Share"  src="../images/Btn_Share.png" mode="cover"></image>
+        <image class="Btn_Share"  src="../images/Btn_Share.png" mode="cover"></image>
       </button>
       <button  class="getUserInfoAndFun" wx:else openType="share">
-        <image bindtap="bindBtnClickShare" class="Btn_Share"  src="../images/Btn_Share.png" mode="cover"></image>
+        <image class="Btn_Share"  src="../images/Btn_Share.png" mode="cover"></image>
       </button>
     </view>
   </view>
@@ -41,7 +41,7 @@
     <button bindtap="bindBtnClick" class="Btn_GetUeseInfo" wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo">
         <image bindtap="bindBtnClickStartGame" class="Btn_StartGame" src="../images/Btn_StartGame.png" mode="cover"></image>
     </button>
-      <image bindtap="bindBtnClickStartGame" wx:else class="Btn_StartGame" src="../images/Btn_StartGame.png" mode="cover"></image>
+      <image bindtap="bindBtnClickOpenGameCpList" wx:else class="Btn_StartGame" src="../images/Btn_StartGame.png" mode="cover"></image>
   </view>
   <!-- <view class="usermotto">
     <text class="user-motto">{{motto}}</text>

@@ -1,4 +1,4 @@
-<!-- pages/sub_pages/chapterLv.wxml -->
+<!-- pages/sub_pages/chapterList.wxml -->
 <image class="main_bg" src="../../imagesUrl/GameBk.jpg"></image>
 <view class="rankList-wrap">
     <scroll-view scrollY="true">

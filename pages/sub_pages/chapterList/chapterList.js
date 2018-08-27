@@ -2,7 +2,7 @@ const app = getApp()
 const dataCenter = require('../../../utils/dataCenter.js')
 const util = require('../../../utils/util.js')
 
-// pages/sub_pages/chapterLv/chapterLv.js
+// pages/sub_pages/chapterList/chapterList.js
 Page({
 
   /**
@@ -18,6 +18,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    app.gameData.isIndexPage = false;
     this.ShowCurLvInfo();
   },
   ShowCurLvInfo: function () {
@@ -95,6 +96,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    app.gameData.isIndexPage = false;
     this.ShowCurLvInfo();
   },
 

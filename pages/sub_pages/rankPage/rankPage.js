@@ -1,7 +1,7 @@
 // pages/sub_pages/rankPage/rankPage.js
 const app = getApp()
 
-const NetReprot = require('../../../utils/netReport.js')
+const NetReprot = require('../../../utils/NetReport.js')
 const util = require('../../../utils/util.js')
 
 Page({

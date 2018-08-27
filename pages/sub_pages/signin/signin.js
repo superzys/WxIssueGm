@@ -1,7 +1,7 @@
 const app = getApp()
 const dataCenter = require('../../../utils/dataCenter.js');
 
-const NetReprot = require('../../../utils/netReport.js')
+const NetReprot = require('../../../utils/NetReport.js')
 
 // pages/sub_pages/signin/signin.js
 Page({
@@ -48,6 +48,7 @@ Page({
 
   },
   onKnow: function () {
+    
     wx.navigateBack({});
   },
   /**

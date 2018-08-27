@@ -1,4 +1,4 @@
-/* pages/sub_pages/chapterLv.wxss */
+/* pages/sub_pages/chapterList.wxss */
 
 .main_bg {
     width: 100%;

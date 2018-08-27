@@ -1,5 +1,5 @@
 const app = getApp()
-const NetReprot = require('../../../utils/netReport.js')
+const NetReprot = require('../../../utils/NetReport.js')
 const dataCenter = require('../../../utils/dataCenter.js');
 
 // pages/sub_pages/createMyIssue/createMyIssue.js
