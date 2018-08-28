@@ -20,7 +20,7 @@ Page({
   onLoad: function (options) {
     //初始化的时候给三个对话
     let arr = [];
-    for (let i = 0; i < 3; i++) {
+    for (let i = 0; i < 5; i++) {
       let oneTalk = {};
       // idx "PhotoId":0,"IsLeft":1,"Words":"请问你"
       oneTalk.IsLeft = i % 2 == 0 ? true : false;
@@ -41,6 +41,9 @@ Page({
     let oneTalk = this.data.issueArr[curItem.idx];
     oneTalk.Words = item.detail.value;
 
+    // if (oneTalk.Words != "" && (oneTalk.idx + 1) == this.data.issueArr.length) {//最后一个给文本了
+    //   this.AddOneTalk();
+    // }
   },
   inputAnswear: function (item) {
 
@@ -58,9 +61,7 @@ Page({
       });
     }
 
-    if (oneTalk.Words != "" && (oneTalk.idx + 1) == this.data.issueArr.length) {//最后一个给文本了
-      this.AddOneTalk();
-    }
+
     // console.log("  "+item);
   },
   AddOneTalk: function () {
@@ -130,7 +131,12 @@ Page({
   onReady: function () {
 
   },
-
+  /**
+   * 点击到了背景
+   */
+  clickTipBk: function () {
+    //不做处理只是为了阻挡点击
+  },
   /**
    * 生命周期函数--监听页面显示
    */

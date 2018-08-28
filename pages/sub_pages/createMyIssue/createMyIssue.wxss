@@ -71,40 +71,30 @@
     height: 63rpx;
     padding-left: 15rpx;
     padding-top: 2rpx;
-    position: fixed;
+    position: absolute;
 }
 
-.inputWords {
-    position: fixed;
-    padding-top: 2rpx;
-    font-size: 26rpx;
-    width: 350rpx;
-}
-.lab_Talk_Left {
+/* .lab_Talk_Left {
     padding-top: 2rpx;
     width: 350rpx;
     letter-spacing: 2px;
-    /* height: 100rpx; */
-    position: fixed;
+    position: absolute;
     text-align: left;
     font-size: 26rpx;
     color: #000000;
     padding-left: 110rpx;
-    /* vertical-align: middle; */
 }
 
 .lab_Talk_Right {
     padding-top: 2rpx;
     width: 350rpx;
     letter-spacing: 2px;
-    /* height: 100rpx; */
-    position: fixed;
+    position: absolute;
     text-align: right;
     font-size: 26rpx;
     color: #000000;
     padding-left: 9rpx;
-    /* vertical-align: middle; */
-}
+} */
 .inputWords_Left
 {
     flex-wrap: wrap;
@@ -112,7 +102,7 @@
     width: 350rpx;
     letter-spacing: 2px;
     /* height: 100rpx; */
-    position: fixed;
+    position: absolute;
     text-align: left;
     font-size: 26rpx;
     color: #000000;
@@ -126,7 +116,7 @@
     width: 350rpx;
     letter-spacing: 2px;
     /* height: 100rpx; */
-    position: fixed;
+    position: absolute;
     text-align: left;
     font-size: 26rpx;
     color: #000000;
@@ -134,7 +124,7 @@
     /* vertical-align: middle; */
 }
 .inputAns{
-    padding-top: 25rpx;
+    padding-top: 30rpx;
     font-size: 28rpx;
 }
 .agreement

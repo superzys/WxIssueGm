@@ -6,4 +6,6 @@
 
 .Content {
     text-align: left;
+    padding-left: 10rpx;
+    padding-right: 10rpx;
 }

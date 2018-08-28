@@ -30,7 +30,12 @@ Page({
       });
     }
   },
-
+  /**
+   * 点击到了背景
+   */
+  clickTipBk: function () {
+    //不做处理只是为了阻挡点击
+  },
   btnClick_Wujin: function () {
   
   },
