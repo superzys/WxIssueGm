@@ -229,12 +229,12 @@ Page({
         this.checkIsWinOrLose();
       }
     } else {
-      // wx.showToast({
-      //   title: "萝卜币不足",
-      //   icon: "none",
-      //   mask: true,
-      //   duration: 2e3
-      // });
+      wx.showToast({
+        title: "萝卜币不足",
+        icon: "none",
+        mask: true,
+        duration: 2e3
+      });
     }
   },
   /**

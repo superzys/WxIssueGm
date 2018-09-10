@@ -11,14 +11,14 @@
 .rankList-wrap {
     flex: 1;
     width: 92%;
-    height: 76%;
+    height: 80%;
     align-items: center;
     flex-direction: column;
     padding-left: 5%;
 }
 
 .rankList-wrap scroll-view {
-    padding-top: 120rpx;
+    padding-top: 40rpx;
     flex: 1;
     display: flex;
     flex-direction: column;

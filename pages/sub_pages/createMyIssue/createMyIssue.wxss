@@ -44,7 +44,9 @@
 
 .Btn_Submit
 {
-    padding-top: 60rpx;
+    position: fixed;
+    bottom: 18%;
+    /* bottom: 60rpx; */
     width: 357rpx;
     height: 92rpx;
 }

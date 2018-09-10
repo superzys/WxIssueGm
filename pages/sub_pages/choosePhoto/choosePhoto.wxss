@@ -53,8 +53,9 @@
     height: 6rpx;
 }
 .btnSure
-{
-    padding-top: 60rpx;
+{ 
+    position: fixed;
+    bottom: 18%;
     width: 357rpx;
     height: 92rpx;
 }

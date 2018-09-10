@@ -180,7 +180,7 @@ const soundCtl = require("../../utils/audio-manager");
         if (chapterId == undefined || chapterId == "") { //没存的话初始化用户
           app.gameData.chapterId = 1;
           app.gameData.cpPlotIndex = 0;
-          app.gameData.goldNum = 0;
+          app.gameData.goldNum = 100;
           app.gameData.shareNumToday = 0;
           app.gameData.lastLoginDay = 0;
           app.gameData.totalSignedDayNum = 0;
@@ -206,9 +206,18 @@ const soundCtl = require("../../utils/audio-manager");
 
         }
 
-        let date = new Date();
-        let curDay = date.getDate();
+        let today = new Date();
+        let curDay = today.getDate();  
+        var   yesterday_milliseconds=today.getTime()-1000*60*60*24;      
+        var   yesterday=new   Date();      
+        yesterday.setTime(yesterday_milliseconds);
+        let yesDay = yesterday.getDate();  
+
+        // console.log("yesDay::" + yesDay + "   curDay::" + curDay);
         if (app.gameData.lastLoginDay != curDay) {
+          if(app.gameData.lastLoginDay != yesDay){//昨天没登录
+            app.gameData.totalSignedDayNum = 0; 
+          }
           app.gameData.lastLoginDay = curDay;
           app.gameData.shareNumToday = 0;
           dataCenter.SaveShareData();

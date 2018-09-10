@@ -80,7 +80,7 @@ App({
     IS_Showed_GameTIp: "IS_Showed_GameTIp",
     SHARE_COUNT: "ShareCount",
     LAST_LOGINDAY: "LastLoginDay",
-    LAST_SIGNIN: "LastSignin",
+    LAST_SIGNIN: "LastSignin",  
     TOTAL_SIGNIN_COUNT: "TotalSigninCount",
 
     CodeVersion: "0.1.01"

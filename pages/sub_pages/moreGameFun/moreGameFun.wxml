@@ -13,3 +13,6 @@
     </navigator>
     <image bind:tap="btnClick_Taolu" class="btnImg" src="../../images/Btn_Taolu.png" wx:if="{{IsShowTaoLu}}" />
 </view>
+<view class="ad-bottom" style="margin-bottom: {{isiPhoneX?'30rpx':'0'}}">
+    <ad unit-id="adunit-f43b88a3f7a418d2"></ad>
+</view>

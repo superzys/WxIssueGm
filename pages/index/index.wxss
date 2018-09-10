@@ -15,7 +15,7 @@
   top: 33%;
   width: 53.9%;
   height: 43.7%;
-  z-index: 999;
+  z-index: 10;
   flex-direction: column;
   align-items: center;
 }
@@ -117,12 +117,13 @@
 /* 开始 */
 
 .ViewBtnStart {
-  top: 72%;
+  bottom: 12%;
   position: fixed;
   align-items: center;
   flex-direction: row;
   width: 322rpx;
   height: 200rpx;
+  z-index: 50;
   /* margin-top: 260rpx; */
 }
 .Btn_StartGame {

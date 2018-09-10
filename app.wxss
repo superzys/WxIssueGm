@@ -52,5 +52,6 @@ page {
 .ad-bottom {
     position: fixed;
     bottom: 0;
+    height: 150rpx;
     width: 100%;
 }

@@ -48,3 +48,7 @@
   </view> -->
 </view>
 <!-- <template is="toast" data="{{txt,isShow,iconClass}}"></template> -->
+
+<view class="ad-bottom" style="margin-bottom: {{isiPhoneX?'30rpx':'0'}}">
+<ad unit-id="adunit-f43b88a3f7a418d2"></ad>
+</view>
