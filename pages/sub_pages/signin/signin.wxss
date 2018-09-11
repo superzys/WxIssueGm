@@ -12,7 +12,7 @@
     align-items: center;
     justify-content: center;
     position: absolute;
-    top: 100rpx;
+    top: 40rpx;
 }
 
 .header image {
@@ -37,7 +37,7 @@
     flex-wrap: wrap;
     justify-content: center;
     width: 100%;
-    margin-top: 150rpx;
+    margin-top: 100rpx;
     padding-top: 80rpx;
 }
 
