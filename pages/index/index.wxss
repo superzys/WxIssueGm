@@ -117,7 +117,7 @@
 /* 开始 */
 
 .ViewBtnStart {
-  bottom: 14%;
+  bottom: 16%;
   position: fixed;
   align-items: center;
   flex-direction: row;
